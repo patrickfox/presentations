@@ -1,0 +1,167 @@
+extends partials/master.jade
+
+prepend head
+	title Intro to A11y
+
+block main
+	a-slide(data-state='intro')
+			h1 Intro to Accessibility
+
+	a-slide(data-state='section', id='whatisa11y')
+		h2 What is accessibility?
+
+	a-slide(for='whatisa11y')
+		h2 For our clients:
+		ul
+			li(part) Brand perception
+			li(part) More sales, participation
+			li(part) Avoiding lawsuits
+
+	a-slide(for='whatisa11y')
+		h2 For Razorfish:
+		ul
+			li(part) Exceed the accessibility standards and best practices
+			li(part) Create efficient and innovative web experiences for all
+			li(part) Good stewards of the web
+
+	a-slide(for='whatisa11y')
+		h2 For our end users:
+		ul
+			li(part) Access to the conveniences of the web (e.g. banking, shopping, social)
+			li(part) Independence, self-reliance
+	a-slide(for='whatisa11y')
+		h2 In a nutshell:
+		ul
+			li(part) What can be seen or heard (color, imagery, icons, font weight/size, audio alerts) can be read/interpreted by a screen reader (and still make sense)
+			li(part) What can be heard can also be indicated to the user via visible text
+			li(part) What functions and interactions that can be performed with a mouse can be performed using a keyboard as well
+
+	a-slide(data-state='section', id='target')
+		h2 Target Audience
+
+	a-slide(for='target')
+		h2 Areas of Difficulty
+		p From WebAIM's Annual Screen Reader Survey
+		flex-line
+			div(flex)
+				ul
+					li Inaccessible Flash content
+					li CAPTCHA’s
+					li Ambiguous links
+					li Missing/improper alt text
+					li Unexpected screen changes
+					li Complex/difficult forms
+			div(flex)
+				ul
+					li Poor keyboard accessibility
+					li Missing or improper headings
+					li Too many links
+					li Complex data tables
+					li Lack of ‘Skip’ links
+					li Inaccessible/missing search
+
+	a-slide(for='target')
+		h2 Vision impairments
+		ul
+			li Partial to total blindness
+			li Color blindness and other vision impairments
+
+	a-slide(for='target')
+		h2 Hearing impairments 
+		ul
+			li Partial to total deafness
+			li Color blindness and other vision impairments
+
+	a-slide(for='target')
+		h2 Mobility impairments 
+		ul
+			li Loss of mobility in arms/hands
+
+	a-slide(for='target')
+		h2 Cognitive impairments 
+		ul
+			li Attention deficit disorders
+
+	a-slide(data-state='section', id='laws')
+		h2 Laws and Standards
+
+	a-slide(for='laws')
+		h2 Section 508 amendment to the Rehabilitation Act
+		p Established a US government accessibility standard, requires that all US federal agencies ensure that their electronic and information technology are accessible per the Section 508 guidelines
+
+	a-slide(for='laws')
+		h2 ARIA Specification
+		p Established a specification for browsers, screen readers and developers to address accessibility issues pertaining to dynamic and custom web UI
+
+	a-slide(for='laws')
+		h2 WCAG2
+		p W3C's international accessibility standard
+		ul
+			li levels of compliance: A, AA, AAA
+			li WCAG2 Level AA covers the majority of Section 508
+
+	a-slide(for='laws')
+		h2 American's with Disabilities Act of 1990 (ADA)
+		p civil rights law that is intended to protect against discrimination based on disability
+
+	a-slide(for='laws')
+		h2 National Federation of the Blind (NFB)
+		p blind and vision-impaired rights advocacy group, assists with high-profile lawsuits
+
+	a-slide(for='laws')
+		h2 Air Carrier Access Act (ACAA)
+		p web experiences for air carriers operating in the US must be WCAG2 Level AA compliant by December 2016
+
+	a-slide(for='laws')
+		h2 Accessibility for Ontarians with Disabilities Act, 2005 (AODA)
+		p Canadian standard, similar to 
+
+	a-slide(data-state='intro', id='implementation')
+		h2 Implementation and Process
+
+
+	a-slide(for='implementation')
+		h2 
+		p 
+	a-slide(for='implementation')
+		h2 
+		p 
+	a-slide(for='implementation')
+		h2 
+		p 
+	a-slide(for='implementation')
+		h2 
+		p 
+	a-slide(for='implementation')
+		h2 
+		p 
+	a-slide(for='implementation')
+		h2 
+		p 
+	a-slide(for='implementation')
+		h2 
+		p 
+	a-slide(for='implementation')
+		h2 
+		p 
+
+	a-slide
+		h2 What is accessibility?
+		p(part) Ad diam nisl aliquip luptatum vulputate augue enim minim, et aliquam luptatum eu minim vel at molestie autem in nonummy ad.
+		p(part) Ad diam nisl aliquip luptatum vulputate augue enim minim, et aliquam luptatum eu minim vel at molestie autem in nonummy ad.
+		p(part) Ad diam nisl aliquip luptatum vulputate augue enim minim, et aliquam luptatum eu minim vel at molestie autem in nonummy ad.
+		p(part) Ad diam nisl aliquip luptatum vulputate augue enim minim, et aliquam luptatum eu minim vel at molestie autem in nonummy ad.
+
+	a-slide
+		h2 Code blocks
+		code-block(language="javascript")
+			| // Create an object that will be the new element's prototype.
+			| var HelloWorld = Object.create(HTMLElement.prototype);
+			| // Add a callback to run whenever a new <hello-world> tag is created.
+			| HelloWorld.createdCallback = function() {
+			| 	this.createShadowRoot().innerHTML =
+			| 	'<style>code { color: red }</style>' +
+			| 	'<p>Hello, <code><content></content></code></p>';
+			| }
+			| // Register the element.
+			| document.registerElement('hello-world', { prototype: HelloWorld });

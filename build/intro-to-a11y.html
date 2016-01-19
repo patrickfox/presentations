@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+  <title>Intro to A11y</title>
+  <meta charset="utf-8">
+  <title>Slider</title>
+  <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link href="a-slide-deck.html" rel="import">
+  <link href="a-slide.html" rel="import">
+  <link href="flex-line.html" rel="import">
+  <link href="flex-grid.html" rel="import">
+  <link href="code-block.html" rel="import">
+  <link href="/css/theme.css" rel="stylesheet">
+</head>
+<body unresolved>
+  <a-slide-deck>
+    <a-slide data-state="intro">
+      <h1>Intro to Accessibility</h1>
+    </a-slide>
+    <a-slide data-state="section" id="whatisa11y">
+      <h2>What is accessibility?</h2>
+    </a-slide>
+    <a-slide for="whatisa11y">
+      <h2>For our clients:</h2>
+      <ul>
+        <li part>Brand perception</li>
+        <li part>More sales, participation</li>
+        <li part>Avoiding lawsuits</li>
+      </ul>
+    </a-slide>
+    <a-slide for="whatisa11y">
+      <h2>For Razorfish:</h2>
+      <ul>
+        <li part>Exceed the accessibility standards and best practices</li>
+        <li part>Create efficient and innovative web experiences for all</li>
+        <li part>Good stewards of the web</li>
+      </ul>
+    </a-slide>
+    <a-slide for="whatisa11y">
+      <h2>For our end users:</h2>
+      <ul>
+        <li part>Access to the conveniences of the web (e.g. banking, shopping, social)</li>
+        <li part>Independence, self-reliance</li>
+      </ul>
+    </a-slide>
+    <a-slide for="whatisa11y">
+      <h2>In a nutshell:</h2>
+      <ul>
+        <li part>What can be seen or heard (color, imagery, icons, font weight/size, audio alerts) can be read/interpreted by a screen reader (and still make sense)</li>
+        <li part>What can be heard can also be indicated to the user via visible text</li>
+        <li part>What functions and interactions that can be performed with a mouse can be performed using a keyboard as well</li>
+      </ul>
+    </a-slide>
+    <a-slide data-state="section" id="target">
+      <h2>Target Audience</h2>
+    </a-slide>
+    <a-slide for="target">
+      <h2>Areas of Difficulty</h2>
+      <p>From WebAIM's Annual Screen Reader Survey</p>
+      <flex-line>
+        <div flex>
+          <ul>
+            <li>Inaccessible Flash content</li>
+            <li>CAPTCHA’s</li>
+            <li>Ambiguous links</li>
+            <li>Missing/improper alt text</li>
+            <li>Unexpected screen changes</li>
+            <li>Complex/difficult forms</li>
+          </ul>
+        </div>
+        <div flex>
+          <ul>
+            <li>Poor keyboard accessibility</li>
+            <li>Missing or improper headings</li>
+            <li>Too many links</li>
+            <li>Complex data tables</li>
+            <li>Lack of ‘Skip’ links</li>
+            <li>Inaccessible/missing search</li>
+          </ul>
+        </div>
+      </flex-line>
+    </a-slide>
+    <a-slide for="target">
+      <h2>Vision impairments</h2>
+      <ul>
+        <li>Partial to total blindness</li>
+        <li>Color blindness and other vision impairments</li>
+      </ul>
+    </a-slide>
+    <a-slide for="target">
+      <h2>Hearing impairments </h2>
+      <ul>
+        <li>Partial to total deafness</li>
+        <li>Color blindness and other vision impairments</li>
+      </ul>
+    </a-slide>
+    <a-slide for="target">
+      <h2>Mobility impairments </h2>
+      <ul>
+        <li>Loss of mobility in arms/hands</li>
+      </ul>
+    </a-slide>
+    <a-slide for="target">
+      <h2>Cognitive impairments </h2>
+      <ul>
+        <li>Attention deficit disorders</li>
+      </ul>
+    </a-slide>
+    <a-slide data-state="section" id="laws">
+      <h2>Laws and Standards</h2>
+    </a-slide>
+    <a-slide for="laws">
+      <h2>Section 508 amendment to the Rehabilitation Act</h2>
+      <p>Established a US government accessibility standard, requires that all US federal agencies ensure that their electronic and information technology are accessible per the Section 508 guidelines</p>
+    </a-slide>
+    <a-slide for="laws">
+      <h2>ARIA Specification</h2>
+      <p>Established a specification for browsers, screen readers and developers to address accessibility issues pertaining to dynamic and custom web UI</p>
+    </a-slide>
+    <a-slide for="laws">
+      <h2>WCAG2</h2>
+      <p>W3C's international accessibility standard</p>
+      <ul>
+        <li>levels of compliance: A, AA, AAA</li>
+        <li>WCAG2 Level AA covers the majority of Section 508</li>
+      </ul>
+    </a-slide>
+    <a-slide for="laws">
+      <h2>American's with Disabilities Act of 1990 (ADA)</h2>
+      <p>civil rights law that is intended to protect against discrimination based on disability</p>
+    </a-slide>
+    <a-slide for="laws">
+      <h2>National Federation of the Blind (NFB)</h2>
+      <p>blind and vision-impaired rights advocacy group, assists with high-profile lawsuits</p>
+    </a-slide>
+    <a-slide for="laws">
+      <h2>Air Carrier Access Act (ACAA)</h2>
+      <p>web experiences for air carriers operating in the US must be WCAG2 Level AA compliant by December 2016</p>
+    </a-slide>
+    <a-slide for="laws">
+      <h2>Accessibility for Ontarians with Disabilities Act, 2005 (AODA)</h2>
+      <p>Canadian standard, similar to </p>
+    </a-slide>
+    <a-slide data-state="intro" id="implementation">
+      <h2>Implementation and Process</h2>
+    </a-slide>
+    <a-slide for="implementation">
+      <h2> </h2>
+      <p> </p>
+    </a-slide>
+    <a-slide for="implementation">
+      <h2> </h2>
+      <p> </p>
+    </a-slide>
+    <a-slide for="implementation">
+      <h2> </h2>
+      <p> </p>
+    </a-slide>
+    <a-slide for="implementation">
+      <h2> </h2>
+      <p> </p>
+    </a-slide>
+    <a-slide for="implementation">
+      <h2> </h2>
+      <p> </p>
+    </a-slide>
+    <a-slide for="implementation">
+      <h2> </h2>
+      <p> </p>
+    </a-slide>
+    <a-slide for="implementation">
+      <h2> </h2>
+      <p> </p>
+    </a-slide>
+    <a-slide for="implementation">
+      <h2> </h2>
+      <p> </p>
+    </a-slide>
+    <a-slide>
+      <h2>What is accessibility?</h2>
+      <p part>Ad diam nisl aliquip luptatum vulputate augue enim minim, et aliquam luptatum eu minim vel at molestie autem in nonummy ad.</p>
+      <p part>Ad diam nisl aliquip luptatum vulputate augue enim minim, et aliquam luptatum eu minim vel at molestie autem in nonummy ad.</p>
+      <p part>Ad diam nisl aliquip luptatum vulputate augue enim minim, et aliquam luptatum eu minim vel at molestie autem in nonummy ad.</p>
+      <p part>Ad diam nisl aliquip luptatum vulputate augue enim minim, et aliquam luptatum eu minim vel at molestie autem in nonummy ad.</p>
+    </a-slide>
+    <a-slide>
+      <h2>Code blocks</h2>
+      <code-block language="javascript">
+        // Create an object that will be the new element's prototype.
+        var HelloWorld = Object.create(HTMLElement.prototype);
+        // Add a callback to run whenever a new <hello-world> tag is created.
+        HelloWorld.createdCallback = function() {
+        	this.createShadowRoot().innerHTML =
+        	'<style>code { color: red }</style>' +
+        	'<p>Hello, <code><content></content></code></p>';
+        }
+        // Register the element.
+        document.registerElement('hello-world', { prototype: HelloWorld });
+      </code-block>
+    </a-slide>
+  </a-slide-deck>
+</body>

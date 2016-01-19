@@ -1,0 +1,38 @@
+doctype
+html(lang="en")
+head
+	meta(charset="utf-8")
+	title Slider
+	script(src="/bower_components/webcomponentsjs/webcomponents-lite.js")
+	link(href="a-slide-deck.html" rel="import")
+	link(href="a-slide.html" rel="import")
+	link(href="code-block.html" rel="import")
+	link(href="assets/theme.css" rel="stylesheet")
+body(unresolved)
+	a-slide-deck
+		a-slide(data-state="intro")
+			h1 Slider
+			h3 A Web Component presentation framework.
+
+		a-slide
+			h2 Slide with parts
+			p(part) Ad diam nisl aliquip luptatum vulputate augue enim minim, et aliquam luptatum eu minim vel at molestie autem in nonummy ad.
+			p(part) Ad diam nisl aliquip luptatum vulputate augue enim minim, et aliquam luptatum eu minim vel at molestie autem in nonummy ad.
+			p(part) Ad diam nisl aliquip luptatum vulputate augue enim minim, et aliquam luptatum eu minim vel at molestie autem in nonummy ad.
+			p(part) Ad diam nisl aliquip luptatum vulputate augue enim minim, et aliquam luptatum eu minim vel at molestie autem in nonummy ad.
+
+		a-slide
+			h2 Code blocks
+			code-block(language="javascript")
+				// Create an object that will be the new element's prototype.
+				var HelloWorld = Object.create(HTMLElement.prototype);
+
+				// Add a callback to run whenever a new <hello-world> tag is created.
+				HelloWorld.createdCallback = function() {
+					this.createShadowRoot().innerHTML =
+					'<style>code { color: red }</style>' +
+					'<p>Hello, <code><content></content></code></p>';
+				}
+
+				// Register the element.
+				document.registerElement('hello-world', { prototype: HelloWorld });
