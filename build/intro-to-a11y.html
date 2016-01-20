@@ -16,24 +16,39 @@
   <a-slide-deck>
     <a-slide data-state="intro">
       <h1>Intro to Accessibility</h1>
+      <p>Patrick Fox, Technology Director, Austin, TX</p>
+    </a-slide>
+    <a-slide data-state="intro">
+      <h2>Agenda</h2>
+      <ul>
+        <li>What is accessibility?</li>
+        <li>Target Audience</li>
+        <li>Screen Readers</li>
+        <li>Laws and Standards</li>
+        <li>WCAG2 and Best Practices Overview</li>
+        <li>Integrating Accessibility Into Our Process</li>
+        <li>Break</li>
+        <li>Implementation Deep Dive</li>
+      </ul>
     </a-slide>
     <a-slide data-state="section" id="whatisa11y">
-      <h2>What is accessibility?</h2>
+      <h2>What is accessibility (a11y)?</h2>
     </a-slide>
     <a-slide for="whatisa11y">
       <h2>For our clients:</h2>
       <ul>
-        <li part>Brand perception</li>
-        <li part>More sales, participation</li>
+        <li part>Inclusivity</li>
+        <li part>More sales, participation, improved brand perception</li>
         <li part>Avoiding lawsuits</li>
       </ul>
     </a-slide>
     <a-slide for="whatisa11y">
       <h2>For Razorfish:</h2>
       <ul>
-        <li part>Exceed the accessibility standards and best practices</li>
         <li part>Create efficient and innovative web experiences for all</li>
-        <li part>Good stewards of the web</li>
+        <li part>Exceed the accessibility standards and best practices</li>
+        <li part>Value-add, key differentiator</li>
+        <li part>Being a good steward of the web</li>
         <li part>Looking out for our clients</li>
       </ul>
     </a-slide>
@@ -47,18 +62,18 @@
     <a-slide for="whatisa11y">
       <h2>In a nutshell:</h2>
       <ul>
-        <li part>What can be seen or heard (color, imagery, icons, font weight/size, audio alerts) can be read/interpreted by a screen reader (and still make sense)</li>
-        <li part>What can be heard can also be indicated to the user via visible text</li>
-        <li part>What functions and interactions that can be performed with a mouse can be performed using a keyboard as well</li>
+        <li>What can be seen or heard (color, imagery, icons, font weight/size, audio alerts) can be read/interpreted by a screen reader (and still make sense)</li>
+        <li>What can be heard can also be indicated to the user via visible text</li>
+        <li>What functions and interactions that can be performed with a mouse can be performed using a keyboard as well</li>
       </ul>
     </a-slide>
     <a-slide data-state="section" id="target">
       <h2>Target Audience</h2>
     </a-slide>
     <a-slide for="target">
-      <h2>Areas of Difficulty</h2>
-      <p>From WebAIM's Annual Screen Reader Survey</p>
-      <flex-line>
+      <h3>Areas of difficulty</h3>
+      <p>From WebAIM's Annual Screen Reader Survey (2014)</p>
+      <flex-line style="display: flex;">
         <div flex>
           <ul>
             <li>Inaccessible Flash content</li>
@@ -82,39 +97,59 @@
       </flex-line>
     </a-slide>
     <a-slide for="target">
-      <h2>Vision impairments</h2>
+      <h3>Vision impairments</h3>
       <ul>
         <li>Partial to total blindness</li>
         <li>Color blindness and other vision impairments</li>
       </ul>
     </a-slide>
     <a-slide for="target">
-      <h2>Hearing impairments </h2>
+      <h3>Hearing impairments </h3>
       <ul>
         <li>Partial to total deafness</li>
       </ul>
     </a-slide>
     <a-slide for="target">
-      <h2>Mobility impairments </h2>
+      <h3>Mobility impairments </h3>
       <ul>
         <li>Loss of mobility in arms/hands</li>
       </ul>
     </a-slide>
     <a-slide for="target">
-      <h2>Cognitive impairments </h2>
+      <h3>Cognitive impairments </h3>
       <ul>
-        <li>Attention deficit disorders</li>
+        <li>Attention deficit</li>
+      </ul>
+    </a-slide>
+    <a-slide data-state="intro" id="screenreaders">
+      <h2>Screen readers</h2>
+      <p>Software that reads content, provides tools to navigate and understand UI</p>
+      <h4>Top screen readers</h4>
+      <ul>
+        <li>JAWS</li>
+        <li>NVDA</li>
+        <li>VoiceOver (MacOS and iOS)</li>
+        <li>TalkBack (Android)</li>
+      </ul>
+    </a-slide>
+    <a-slide for="screenreaders">
+      <h3>Basic Voiceover Commands</h3>
+      <ul>
+        <li>⌘-F5 - toggle on/off</li>
+        <li>VO(ctrl + option) + left/right arrows - navigate through elements</li>
+        <li>VO + U - use arrows to view available elements</li>
+        <li>VO + A/B - start reading page from cursor or from top of page to cursor</li>
       </ul>
     </a-slide>
     <a-slide data-state="section" id="laws">
       <h2>Laws and Standards</h2>
     </a-slide>
     <a-slide for="laws">
-      <h2>Section 508 amendment to the Rehabilitation Act</h2>
+      <h3>Section 508 amendment to the Rehabilitation Act</h3>
       <p>Established a US government accessibility standard, requires that all US federal agencies ensure that their electronic and information technology are accessible per the Section 508 guidelines</p>
     </a-slide>
     <a-slide for="laws">
-      <h2>WCAG2</h2>
+      <h3>WCAG2</h3>
       <p>W3C's international accessibility standard</p>
       <ul>
         <li>levels of compliance: A, AA, AAA</li>
@@ -122,7 +157,7 @@
       </ul>
     </a-slide>
     <a-slide for="laws">
-      <h2>ARIA Specification</h2>
+      <h3>ARIA Specification</h3>
       <ul>
         <li>International, W3C spec</li>
         <li>Addresses accessibility issues pertaining to dynamic and custom web UI</li>
@@ -130,95 +165,189 @@
       </ul>
     </a-slide>
     <a-slide for="laws">
-      <h2>American's with Disabilities Act of 1990 (ADA)</h2>
+      <h3>American's with Disabilities Act of 1990 (ADA)</h3>
       <p>A civil rights law that is intended to protect against discrimination based on disability</p>
+      <p>Specific to physical </p>
     </a-slide>
     <a-slide for="laws">
-      <h2>National Federation of the Blind (NFB)</h2>
+      <h3>National Federation of the Blind (NFB)</h3>
       <p>Blind and vision-impaired rights advocacy group, assists with high-profile lawsuits</p>
     </a-slide>
     <a-slide for="laws">
-      <h2>Air Carrier Access Act (ACAA)</h2>
+      <h3>Air Carrier Access Act (ACAA)</h3>
       <p>Mandates compliant, accessible web experiences for air carriers operating in the US by December 2015/2016</p>
     </a-slide>
     <a-slide for="laws">
-      <h2>Accessibility for Ontarians with Disabilities Act, 2005 (AODA)</h2>
+      <h3>Accessibility for Ontarians with Disabilities Act, 2005 (AODA)</h3>
       <p>Canadian standard based on WCAG2 AA</p>
       <p>Mandates timeline for government and public sector organization compliance</p>
     </a-slide>
     <a-slide data-state="section" id="standards">
-      <h2>Standards and Best Practices</h2>
+      <h2>WCAG2 and Best Practice Overview</h2>
     </a-slide>
     <a-slide for="standards">
-      <h2>Structure/Layout</h2>
+      <h3>Structure/Layout</h3>
       <ul>
-        <li>Ensure that content is accurately represented by HTML (semantic HTML) </li>
-        <li>Headings and labels accurately describe topic or purpose (<a href="https://www.w3.org/TR/WCAG20/#" target="wcag">2.4.6</a>)</li>
+        <li>Ensure that content is accurately represented by HTML ("semantic HTML") </li>
+        <li>Headings and labels accurately describe topic or purpose (<a href="https://www.w3.org/TR/WCAG20/#navigation-mechanisms-descriptive" target="wcag">2.4.6</a>) </li>
         <li>Provide specific usage requirements for landmarks and headings</li>
-        <li>skip link to bypass repetitive header content (<a href="https://www.w3.org/TR/WCAG20/#" target="wcag">2.4.1</a>)</li>
-        <li>ensure meaningful focus order (<a href="https://www.w3.org/TR/WCAG20/#" target="wcag">2.4.3</a>)</li>
-        <li>ensure that pages can be found in multiple ways (e.g. via navigation, site map, site search) (<a href="https://www.w3.org/TR/WCAG20/#" target="wcag">2.4.5</a>)</li>
+        <li>Provide a skip link to bypass repetitive header content (<a href="https://www.w3.org/TR/WCAG20/#navigation-mechanisms-skip" target="wcag">2.4.1</a>)</li>
+        <li>Ensure meaningful focus order (<a href="https://www.w3.org/TR/WCAG20/#" target="wcag">2.4.3</a>)</li>
+        <li>Ensure that pages can be found in multiple ways (e.g. via navigation, site map, site search) (<a href="https://www.w3.org/TR/WCAG20/#navigation-mechanisms-mult-loc" target="wcag">2.4.5</a>)</li>
       </ul>
     </a-slide>
     <a-slide for="standards">
-      <h2>Behaviors</h2>
+      <h3>Heading and Landmark Usage</h3>
+      <p>Landmarks and headings should be used sparingly to provide a high-level overview of page content</p>
+      <p>Proper use of landmarks and headings can greatly improve navigation and disoverability</p>
+    </a-slide>
+    <a-slide for="standards">
+      <h3>Headings and Heading Order</h3>
       <ul>
-        <li>provide timer, warnings and ability to extend time-based tasks or states/sessions (<a href="https://www.w3.org/TR/WCAG20/#" target="wcag">2.2.1</a>)</li>
-        <li>ensure that focus or input change does not change page context (<a href="https://www.w3.org/TR/WCAG20/#" target="wcag">3.2.1</a>, <a href="https://www.w3.org/TR/WCAG20/#" target="wcag">3.2.2</a>)</li>
-        <li>inform the user of any significant page updates (single-page apps) </li>
+        <li>Heading order should never decrease by more than 1:</li>
+        <li>Good: H2 &gt; H3, H1 &gt; H2, H4 &gt; H2 (increases by 2, which is fine)</li>
+        <li>Not so good: H2 &gt; H4, H1 &gt; H4</li>
+        <li>There should be one H1 per page/view</li>
+        <li>Modal headings should start at H1</li>
       </ul>
     </a-slide>
     <a-slide for="standards">
-      <h2>Copy</h2>
+      <h3>Landmark Usage</h3>
+      <p>All page content should live within a landmark - avoid orphaned content</p>
+      <p>Landmark roles:</p>
       <ul>
-        <li>avoid use of sensory characteristic references (shape, size, visual location, orientation, sound, e.g. 'click button above') (<a href="https://www.w3.org/TR/WCAG20/#" target="wcag">1.3.3</a>)</li>
-        <li>provide alternate text when standard text is unavailable or insufficient to properly convey meaning</li>
-        <li>avoid use of ambiguous interactive element copy (e.g. 'Click here', 'Read more') (<a href="https://www.w3.org/TR/WCAG20/#" target="wcag">2.4.4</a>)</li>
+        <li>banner(required, 1 per page max) - header section container</li>
+        <li>main(required, 1 per page max) - main content section of page</li>
+        <li>complementary(optional) - secondary content related to main page content</li>
+        <li>contentinfo(required, 1 per page max) - footer section container</li>
+        <li>navigation - page/site navigation</li>
+        <li>search - enclosing search box container that contains search field; do not use directly on a form field</li>
       </ul>
     </a-slide>
     <a-slide for="standards">
-      <h2>Forms</h2>
+      <h3>Behaviors</h3>
       <ul>
-        <li>provide suggestions to help users address form errors (<a href="https://www.w3.org/TR/WCAG20/#" target="wcag">3.3.3</a>)</li>
-        <li>notify users of form errors before submission, and allow them to review and correct any issues (<a href="https://www.w3.org/TR/WCAG20/#" target="wcag">3.3.4</a>)</li>
-        <li>form field errors, labels, requirements and instructions must be made apparent to the user (<a href="https://www.w3.org/TR/WCAG20/#" target="wcag">3.3.1</a>, <a href="https://www.w3.org/TR/WCAG20/#" target="wcag">3.3.2</a>)</li>
+        <li>Provide timer, warnings and ability to extend time-based tasks or states/sessions (<a href="https://www.w3.org/TR/WCAG20/#time-limits-required-behaviors" target="wcag">2.2.1</a>)</li>
+        <li>Ensure that focus or input change does not change page context (<a href="https://www.w3.org/TR/WCAG20/#consistent-behavior-receive-focus" target="wcag">3.2.1</a>, <a href="https://www.w3.org/TR/WCAG20/#consistent-behavior-unpredictable-change" target="wcag">3.2.2</a>)</li>
+        <li>Inform the user of any significant page updates (single-page apps) </li>
       </ul>
     </a-slide>
     <a-slide for="standards">
-      <h2>Video</h2>
+      <h3>Copy</h3>
       <ul>
-        <li>provide ability for users to control motion/audio (1.4.3, 2.2.2)</li>
-        <li>video requires captions and audio description (1.2.1, 1.2.2, 1.2.3, 1.2.4, 1.2.5)</li>
+        <li>Avoid use of sensory characteristic references (shape, size, visual location, orientation, sound, e.g. 'click button above') (<a href="https://www.w3.org/TR/WCAG20/#content-structure-separation-understanding" target="wcag">1.3.3</a>)</li>
+        <li>Provide alternate text when standard text is unavailable or insufficient to properly convey meaning</li>
+        <li>Avoid use of ambiguous interactive element copy (e.g. 'Click here', 'Read more') (<a href="https://www.w3.org/TR/WCAG20/#navigation-mechanisms-refs" target="wcag">2.4.4</a>)</li>
+      </ul>
+    </a-slide>
+    <a-slide for="standards">
+      <h3>Forms</h3>
+      <ul>
+        <li>Provide suggestions to help users address form errors (<a href="https://www.w3.org/TR/WCAG20/#minimize-error-suggestions" target="wcag">3.3.3</a>)</li>
+        <li>Notify users of form errors before submission, and allow them to review and correct any issues (<a href="https://www.w3.org/TR/WCAG20/#minimize-error-reversible" target="wcag">3.3.4</a>)</li>
+        <li>Form field errors, labels, requirements and instructions must be made apparent to the user (<a href="https://www.w3.org/TR/WCAG20/#minimize-error-identified" target="wcag">3.3.1</a>, <a href="https://www.w3.org/TR/WCAG20/#minimize-error-cues" target="wcag">3.3.2</a>)</li>
+      </ul>
+    </a-slide>
+    <a-slide for="standards">
+      <h3>Video</h3>
+      <ul>
+        <li>Provide ability for users to control motion/audio (<a href="https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast" target="wcag">1.4.3</a>, <a href="https://www.w3.org/TR/WCAG20/#time-limits-pause" target="wcag">2.2.2</a>)</li>
+        <li>Video requires captions and audio description (<a href="https://www.w3.org/TR/WCAG20/#media-equiv-av-only-alt" target="wcag">1.2.1</a>, <a href="https://www.w3.org/TR/WCAG20/#media-equiv-captions" target="wcag">1.2.2</a>, <a href="https://www.w3.org/TR/WCAG20/#media-equiv-audio-desc" target="wcag">1.2.3</a>, <a href="https://www.w3.org/TR/WCAG20/#media-equiv-real-time-captions" target="wcag">1.2.4</a>, <a href="https://www.w3.org/TR/WCAG20/#media-equiv-audio-desc-only" target="wcag">1.2.5</a>)</li>
       </ul>
     </a-slide>
     <a-slide for="standards">
       <h2>Visual Design</h2>
       <ul>
-        <li>avoid use of color alone to indicate meaning (1.4.1)</li>
-        <li>ensure that minimum color contrast requirements are met (1.4.3)</li>
-        <li>ensure visible focus state for interactive elements (2.4.7)</li>
-        <li>ensure text can be sized up 2x without breaking UI (1.4.4)</li>
-        <li>avoid use of graphical text in images (brand logos are main exception) (1.4.5)</li>
-        <li>provide succinct, descriptive alt text for important images (Section 508)</li>
-        <li>avoid flashing content (&lt;3Hz and &gt;55Hz) (2.3.1)</li>
+        <li>Avoid use of color alone to indicate meaning (<a href="https://www.w3.org/TR/WCAG20/#visual-audio-contrast-without-color" target="wcag">1.4.1</a>)</li>
+        <li>Ensure that minimum color contrast requirements are met (<a href="https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast" target="wcag">1.4.3</a>)</li>
+        <li>Ensure visible focus state for interactive elements (<a href="https://www.w3.org/TR/WCAG20/#navigation-mechanisms-focus-visible" target="wcag">2.4.7</a>)</li>
+        <li>Ensure text can be sized up 2x without breaking UI (<a href="https://www.w3.org/TR/WCAG20/#visual-audio-contrast-scale" target="wcag">1.4.4</a>)</li>
+        <li>Avoid use of graphical text in images (brand logos are main exception) (<a href="https://www.w3.org/TR/WCAG20/#visual-audio-contrast-text-presentation" target="wcag">1.4.5</a>)</li>
+        <li>Provide succinct, descriptive alt text for important images (Section 508)</li>
+        <li>Avoid flashing content (&lt;3Hz and &gt;55Hz) (<a href="https://www.w3.org/TR/WCAG20/#seizure-does-not-violate" target="wcag">2.3.1</a>)</li>
       </ul>
     </a-slide>
     <a-slide for="standards">
       <h2>Tech</h2>
       <ul>
-        <li>page/phrase language is accurate and can be programmatically determined via proper use of the ```lang``` attribute (3.1.1, 3.1.2)</li>
-        <li>all functionality is operable via keyboard (2.1.1)</li>
-        <li>all `<img>` should have an `alt` attribute (copy)</li>
-        <li>don't overcomplicate your code</li>
-        <li>avoid overuse or redundant use of ARIA, markup</li>
+        <li>Page/phrase language is accurate and can be programmatically determined via proper use of the <code>lang</code> attribute (<a href="https://www.w3.org/TR/WCAG20/#meaning-doc-lang-id" target="wcag">3.1.1</a>, <a href="https://www.w3.org/TR/WCAG20/#meaning-other-lang-id" target="wcag">3.1.2</a>)</li>
+        <li>All functionality is operable via keyboard (<a href="https://www.w3.org/TR/WCAG20/#keyboard-operation-keyboard-operable" target="wcag">2.1.1</a>)</li>
+        <li>All <code>img</code> should have an <code>alt</code> attribute</li>
+      </ul>
+    </a-slide>
+    <a-slide for="process">
+      <h2>Integrating Accessibility Into Our Process</h2>
+    </a-slide>
+    <a-slide for="process">
+      <h3>General</h3>
+      <ul>
+        <li>Accessibility is a team effort!</li>
+        <li>Be proactive about accessibility</li>
+        <li>Retrofitting and remediation efforts are costly</li>
+        <li>Design, copy and UX must drive a11y requirements and direction from the beginning</li>
+      </ul>
+    </a-slide>
+    <a-slide for="process">
+      <h3>Delivery Management</h3>
+      <ul>
+        <li>Ensure dev oversight during wireframing and design process</li>
+        <li>Request dev sign off on client deliverables before delivery</li>
+      </ul>
+    </a-slide>
+    <a-slide for="process">
+      <h3>UX</h3>
+      <ul>
+        <li>Prescribe landmark and heading usage</li>
+        <li>Prescribe a "skip to content" link</li>
+      </ul>
+    </a-slide>
+    <a-slide for="process">
+      <h3>Design</h3>
+      <ul>
+        <li>Test and document color contrast in comps</li>
+        <li>Create a color usage page that outlines compliant color combination usage and color contrasts for each combo</li>
+      </ul><a href="/img/cc-documentation.png" target="ccdoc">Color contrast doc example ➔</a><br><a href="https://viget.com/inspire/color-contrast" target="ccdoc">Color contrast article ➔</a>
+    </a-slide>
+    <a-slide for="process">
+      <h3>Copy</h3>
+      <ul>
+        <li>Capture accessibility text in copy decks</li>
+        <li>Work with clients to understand impact on CMS</li>
+      </ul>
+    </a-slide>
+    <a-slide for="process">
+      <h3>Tech</h3>
+      <ul>
+        <li>Follow standards and best practices</li>
+        <li>Test code in <strong>aXe</strong> or <strong>FireEyes</strong></li>
+        <li>Manually test code frequently using screen readers</li>
+        <li>Mac users: set up VM's for JAWS, NVDA</li>
+      </ul>
+    </a-slide>
+    <a-slide for="process">
+      <h3>QA</h3>
+      <ul>
+        <li>Test code in aXe (free dev plugin for Chrome)</li>
+        <li>Manually test code using screen readers</li>
       </ul>
     </a-slide>
     <a-slide data-state="intro" id="implementation">
       <h2>Implementation Deep Dive</h2>
     </a-slide>
+    <a-slide data-state="intro" id="implementation">
+      <h2>Development Tips</h2>
+      <ul>
+        <li>Minimize the use of ARIA tags</li>
+        <li>Don't overcomplicate your code</li>
+      </ul>
+    </a-slide>
     <a-slide for="implementation">
-      <h2>Responsive Layout and Design</h2>
-      <ul></ul>
+      <h3>A11y Kit</h3>
+      <p>Provides essential accessibility tools:</p>
+      <ul>
+        <li>Announce content using <code>$.announce()</code></li>
+        <li>Focus on anything using <code>$.access()</code></li>
+      </ul><a href="https://github.com/patrickfox/a11y_kit" target="a11ykit">A11y Kit details ➔</a>
     </a-slide>
     <a-slide for="implementation">
       <h3>Use of Tabindex</h3>
@@ -236,7 +365,7 @@
         <li>Do not use <code>tabindex</code> &gt; 0</li>
         <li>Rely on natural tab order</li>
         <li>Use native interactive elements</li>
-      </ul>
+      </ul><a href="http://localhost:3002/#/blog/using-tabindex.html" target="popup">Tabindex details ➔</a>
     </a-slide>
     <a-slide for="implementation">
       <h3>Modals</h3>
@@ -270,15 +399,15 @@
       <ul>
         <li>remove UI isolation</li>
         <li>place focus back on modal trigger</li>
-      </ul>
+      </ul><a href="https://citiretailservices.citibankonline.com/RSnextgen/svc/launch/index.action?siteId=PLCN_HOMEDEPOT&amp;langId=en_US&amp;JFP_TOKEN=12345&amp;pagename=signon#retrieve" target="popup">Modal example (Citi) ➔</a><br><a href="http://localhost:3002/#/blog/accessible-modals.html" target="popup">Modal example ➔</a>
     </a-slide>
     <a-slide for="implementation">
       <h3>Tooltips</h3>
       <ul>
-        <li>Tooltips contain succinct, non-interactive, informational content</li>
+        <li>Tooltips contain succinct, non-interactive, informational content <strong>only</strong></li>
         <li>On hover/focus, it's OK to display a tooltip if contents are read to user</li>
         <li>E.g. <code>button(role="tooltip" aria-label="Tooltip content")</code></li>
-      </ul>
+      </ul><a href="http://localhost:3002/#/blog/accessible-tooltips.html" target="popup">Tooltip example ➔</a>
     </a-slide>
     <a-slide for="implementation">
       <h3>Form Validation</h3>
@@ -295,8 +424,7 @@
         <li>Visible error/help messages must be read upon interaction with field</li>
         <li>Use <code>aria-invalid="true"</code> to indicate invalid fields</li>
         <li>Use <code>$.announce()</code> to  announce error messages to user</li>
-        <li>Form validation example</li>
-      </ul>
+      </ul><a href="https://citiretailservices.citibankonline.com/RSnextgen/svc/launch/index.action?siteId=PLCN_HOMEDEPOT#signon" target="popup">From validation example (Citi) ➔</a>
     </a-slide>
     <a-slide for="implementation">
       <h3>Collapsibles</h3>
@@ -341,11 +469,11 @@
       <h4>Solution</h4>
       <ul>
         <li>use <code>$.announce()</code> to announce new view title upon view change</li>
-      </ul><a href="http://localhost:3002/" target="popup">SPA example ➔</a>
+      </ul><a href="http://localhost:3002/#/blog/screen-reader-page-load-behaviors.html" target="popup">Native page load behaviors ➔</a><br><a href="http://localhost:3002/" target="popup">SPA example ➔</a>
     </a-slide>
     <a-slide for="implementation">
       <h3>Buttons vs. Links</h3>
-      <p>Use buttons and links for their intended purpose:</p>
+      <p>Use buttons and links for their intended purpose</p>
       <ul>
         <li>Links: site navigation, external sites</li>
         <li>Buttons: internal functionality</li>
@@ -354,111 +482,18 @@
       <p>Don't create custom buttons from non-interactive elements</p>
     </a-slide>
     <a-slide for="implementation">
-      <h3>Bootstrap examples</h3>
+      <h3>Bootstrap accessibility</h3>
       <ul>
         <li>Bootstrap is great but not perfect</li>
         <li><a href="http://getbootstrap.com/javascript/#live-demo">Modal example</a></li>
       </ul>
     </a-slide>
     <a-slide for="process">
-      <h2>Integrating accessibility into our process</h2>
+      <h2>Questions</h2>
     </a-slide>
     <a-slide for="process">
-      <h3>General</h3>
-      <ul>
-        <li>Accessibility is a team effort!</li>
-        <li>Be proactive about accessibility</li>
-        <li>Retrofitting and remediation efforts are costly</li>
-        <li>Design, copy and UX should drive a11y requirements and direction</li>
-      </ul>
-    </a-slide>
-    <a-slide for="process">
-      <h3>Delivery Management</h3>
-      <ul>
-        <li>ensure dev oversight during wireframing and design process</li>
-        <li>request dev sign off on client deliverables before delivery</li>
-      </ul>
-    </a-slide>
-    <a-slide for="process">
-      <h3>UX</h3>
-      <ul>
-        <li>prescribe landmark and heading usage</li>
-        <li>prescribe a "skip to content" link</li>
-      </ul>
-    </a-slide>
-    <a-slide for="process">
-      <h3>Design</h3>
-      <ul>
-        <li>test and document color contrast in comps</li>
-        <li>create a color usage page that outlines compliant color combination usage and color contrasts for each combo</li>
-      </ul>
-    </a-slide>
-    <a-slide for="process">
-      <h3>Copy</h3>
-      <ul>
-        <li>capture accessibility text in copy decks</li>
-        <li>work with clients to understand impact on CMS</li>
-      </ul>
-    </a-slide>
-    <a-slide for="process">
-      <h3>Tech</h3>
-      <ul>
-        <li>test code frequently using screen readers</li>
-        <li>test code in aXe</li>
-      </ul>
-    </a-slide>
-    <a-slide for="process">
-      <h3>QA</h3>
-      <ul>
-        <li></li>
-      </ul>
-    </a-slide>
-    <a-slide for="implementation">
-      <h2> </h2>
-      <p> </p>
-    </a-slide>
-    <a-slide for="implementation">
-      <h2> </h2>
-      <p> </p>
-    </a-slide>
-    <a-slide for="implementation">
-      <h2> </h2>
-      <p> </p>
-    </a-slide>
-    <a-slide for="implementation">
-      <h2> </h2>
-      <p> </p>
-    </a-slide>
-    <a-slide for="implementation">
-      <h2> </h2>
-      <p> </p>
-    </a-slide>
-    <a-slide for="implementation">
-      <h2> </h2>
-      <p> </p>
-    </a-slide>
-    <a-slide for="implementation">
-      <h2> </h2>
-      <p> </p>
-    </a-slide>
-    <a-slide for="implementation">
-      <h2> </h2>
-      <p> </p>
-    </a-slide>
-    <a-slide>
-      <h2>Code blocks</h2>
-      <code-block language="javascript">
-        // Create an object that will be the new element's prototype.
-        var HelloWorld = Object.create(HTMLElement.prototype);
-        // Add a callback to run whenever a new <hello-world> tag is created.
-        HelloWorld.createdCallback = function() {
-        	this.createShadowRoot().innerHTML =
-        	'<style>code { color: red }</style>' +
-        	'<p>Hello, <code><content></content></code></p>';
-        }
-        // Register the element.
-        document.registerElement('hello-world', { prototype: HelloWorld });
-      </code-block>
+      <h2>Thanks!</h2>
+      <p>patrick.fox@razorfish.com</p>
     </a-slide>
   </a-slide-deck>
 </body>
