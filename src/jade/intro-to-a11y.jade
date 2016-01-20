@@ -23,12 +23,12 @@ block main
 			li(part) Exceed the accessibility standards and best practices
 			li(part) Create efficient and innovative web experiences for all
 			li(part) Good stewards of the web
-
+			li(part) Looking out for our clients
 	a-slide(for='whatisa11y')
 		h2 For our end users:
 		ul
 			li(part) Access to the conveniences of the web (e.g. banking, shopping, social)
-			li(part) Independence, self-reliance
+			li(part) Independence, self-reliance, participation
 	a-slide(for='whatisa11y')
 		h2 In a nutshell:
 		ul
@@ -70,7 +70,6 @@ block main
 		h2 Hearing impairments 
 		ul
 			li Partial to total deafness
-			li Color blindness and other vision impairments
 
 	a-slide(for='target')
 		h2 Mobility impairments 
@@ -90,10 +89,6 @@ block main
 		p Established a US government accessibility standard, requires that all US federal agencies ensure that their electronic and information technology are accessible per the Section 508 guidelines
 
 	a-slide(for='laws')
-		h2 ARIA Specification
-		p Established a specification for browsers, screen readers and developers to address accessibility issues pertaining to dynamic and custom web UI
-
-	a-slide(for='laws')
 		h2 WCAG2
 		p W3C's international accessibility standard
 		ul
@@ -101,56 +96,307 @@ block main
 			li WCAG2 Level AA covers the majority of Section 508
 
 	a-slide(for='laws')
+		h2 ARIA Specification
+		ul
+			li International, W3C spec
+			li Addresses accessibility issues pertaining to dynamic and custom web UI
+			li Defines a set of HTML attributes e.g. #[code aria-label], #[code role], #[code aria-live]
+
+
+	a-slide(for='laws')
 		h2 American's with Disabilities Act of 1990 (ADA)
-		p civil rights law that is intended to protect against discrimination based on disability
+		p A civil rights law that is intended to protect against discrimination based on disability
 
 	a-slide(for='laws')
 		h2 National Federation of the Blind (NFB)
-		p blind and vision-impaired rights advocacy group, assists with high-profile lawsuits
+		p Blind and vision-impaired rights advocacy group, assists with high-profile lawsuits
 
 	a-slide(for='laws')
 		h2 Air Carrier Access Act (ACAA)
-		p web experiences for air carriers operating in the US must be WCAG2 Level AA compliant by December 2016
+		p Mandates compliant, accessible web experiences for air carriers operating in the US by December 2015/2016
 
 	a-slide(for='laws')
 		h2 Accessibility for Ontarians with Disabilities Act, 2005 (AODA)
-		p Canadian standard, similar to 
+		p Canadian standard based on WCAG2 AA
+		p Mandates timeline for government and public sector organization compliance
 
-	a-slide(data-state='intro', id='implementation')
-		h2 Implementation and Process
+	a-slide(data-state='section' id="standards")
+		h2 Standards and Best Practices
+
+	a-slide(for='standards')
+		h2 Structure/Layout
+		ul
+			li Ensure that content is accurately represented by HTML (semantic HTML) 
+			li Headings and labels accurately describe topic or purpose (#[a(href="https://www.w3.org/TR/WCAG20/#" target="wcag") 2.4.6])
+			li Provide specific usage requirements for landmarks and headings
+			li skip link to bypass repetitive header content (#[a(href="https://www.w3.org/TR/WCAG20/#" target="wcag") 2.4.1])
+			li ensure meaningful focus order (#[a(href="https://www.w3.org/TR/WCAG20/#" target="wcag") 2.4.3])
+			li ensure that pages can be found in multiple ways (e.g. via navigation, site map, site search) (#[a(href="https://www.w3.org/TR/WCAG20/#" target="wcag") 2.4.5])
+
+	a-slide(for='standards')
+		h2 Behaviors
+		ul
+			li provide timer, warnings and ability to extend time-based tasks or states/sessions (#[a(href="https://www.w3.org/TR/WCAG20/#" target="wcag") 2.2.1])
+			li ensure that focus or input change does not change page context (#[a(href="https://www.w3.org/TR/WCAG20/#" target="wcag") 3.2.1], #[a(href="https://www.w3.org/TR/WCAG20/#" target="wcag") 3.2.2])
+			li inform the user of any significant page updates (single-page apps) 
+
+	a-slide(for='standards')
+		h2 Copy
+		ul
+			li avoid use of sensory characteristic references (shape, size, visual location, orientation, sound, e.g. 'click button above') (#[a(href="https://www.w3.org/TR/WCAG20/#" target="wcag") 1.3.3])
+			li provide alternate text when standard text is unavailable or insufficient to properly convey meaning
+			li avoid use of ambiguous interactive element copy (e.g. 'Click here', 'Read more') (#[a(href="https://www.w3.org/TR/WCAG20/#" target="wcag") 2.4.4])
+
+	a-slide(for='standards')
+		h2 Forms
+		ul
+			li provide suggestions to help users address form errors (#[a(href="https://www.w3.org/TR/WCAG20/#" target="wcag") 3.3.3])
+			li notify users of form errors before submission, and allow them to review and correct any issues (#[a(href="https://www.w3.org/TR/WCAG20/#" target="wcag") 3.3.4])
+			li form field errors, labels, requirements and instructions must be made apparent to the user (#[a(href="https://www.w3.org/TR/WCAG20/#" target="wcag") 3.3.1], #[a(href="https://www.w3.org/TR/WCAG20/#" target="wcag") 3.3.2])
+	a-slide(for='standards')
+		h2 Video
+		ul
+			li provide ability for users to control motion/audio (1.4.3, 2.2.2)
+			li video requires captions and audio description (1.2.1, 1.2.2, 1.2.3, 1.2.4, 1.2.5)
+
+	a-slide(for='standards')
+		h2 Visual Design
+		ul
+			li avoid use of color alone to indicate meaning (1.4.1)
+			li ensure that minimum color contrast requirements are met (1.4.3)
+			li ensure visible focus state for interactive elements (2.4.7)
+			li ensure text can be sized up 2x without breaking UI (1.4.4)
+			li avoid use of graphical text in images (brand logos are main exception) (1.4.5)
+			li provide succinct, descriptive alt text for important images (Section 508)
+			li avoid flashing content (&lt;3Hz and &gt;55Hz) (2.3.1)
+
+	a-slide(for='standards')
+		h2 Tech
+		ul
+			li page/phrase language is accurate and can be programmatically determined via proper use of the ```lang``` attribute (3.1.1, 3.1.2)
+			li all functionality is operable via keyboard (2.1.1)
+			li all `<img>` should have an `alt` attribute (copy)
+			li don't overcomplicate your code
+			li avoid overuse or redundant use of ARIA, markup
+
+
+
+	a-slide(data-state="intro" id='implementation')
+		h2 Implementation Deep Dive
+
+	
+	a-slide(for='implementation')
+		h2 Responsive Layout and Design
+		ul
+
+	a-slide(for='implementation')
+		h3 Use of Tabindex
+		h4 What can receive focus?
+		ul
+			li Native interactive elements
+			li Any element with #[code tabindex="-1"] or greater value
+			li #[code tabindex="-1"] allows for programmatic focus only
+
+	a-slide(for='implementation')
+		h3 Use of Tabindex
+		h4 Best Practices
+		ul
+			li Do not use #[code tabindex] &gt; 0
+			li Rely on natural tab order
+			li Use native interactive elements
+
+
 
 
 	a-slide(for='implementation')
-		h2 
-		p 
-	a-slide(for='implementation')
-		h2 
-		p 
-	a-slide(for='implementation')
-		h2 
-		p 
-	a-slide(for='implementation')
-		h2 
-		p 
-	a-slide(for='implementation')
-		h2 
-		p 
-	a-slide(for='implementation')
-		h2 
-		p 
-	a-slide(for='implementation')
-		h2 
-		p 
-	a-slide(for='implementation')
-		h2 
-		p 
+		h3 Modals
+		h4 Goal
+		ul
+			li Announce presence of modal and purpose
+			li Keep user isolated in modal
 
-	a-slide
-		h2 What is accessibility?
-		p(part) Ad diam nisl aliquip luptatum vulputate augue enim minim, et aliquam luptatum eu minim vel at molestie autem in nonummy ad.
-		p(part) Ad diam nisl aliquip luptatum vulputate augue enim minim, et aliquam luptatum eu minim vel at molestie autem in nonummy ad.
-		p(part) Ad diam nisl aliquip luptatum vulputate augue enim minim, et aliquam luptatum eu minim vel at molestie autem in nonummy ad.
-		p(part) Ad diam nisl aliquip luptatum vulputate augue enim minim, et aliquam luptatum eu minim vel at molestie autem in nonummy ad.
+	a-slide(for='implementation')
+		h3 Modals
+		h4 Setup
+		ul
+			li H1 is first heading
+			li #[code role="dialog"]
+			li #[code aria-labelledby] to label modal
+	a-slide(for='implementation')
+		h3 Modals
+		h4 On Open
+		ul
+			li UI Isolation
+			li place focus on first focusable
+			li Esc key closes dialog (unless action required)
+	a-slide(for='implementation')
+		h3 Modals
+		h4 On Close
+		ul
+			li remove UI isolation
+			li place focus back on modal trigger
+
+	a-slide(for='implementation')
+		h3 Tooltips
+		ul
+			li Tooltips contain succinct, non-interactive, informational content
+			li On hover/focus, it's OK to display a tooltip if contents are read to user
+			li E.g. #[code button(role="tooltip" aria-label="Tooltip content")]
+
+	a-slide(for='implementation')
+		h3 Form Validation
+		h4 Basics
+		ul
+			li Every form input requires a label (via #[code label(for="id")] or #[code aria-label])
+			li #[code aria-required="true"] to indicate required fields
+
+	a-slide(for='implementation')
+		h3 Form Validation
+		h4 Error/help messages
+		ul
+			li Visible error/help messages must be read upon interaction with field
+			li Use #[code aria-invalid="true"] to indicate invalid fields
+			li Use #[code $.announce()] to  announce error messages to user
+			li Form validation example
+
+	a-slide(for='implementation')
+		h3 Collapsibles
+		h4 Button
+		ul
+			li Toggle #[code aria-expanded="true|false"] to indicate expanded/collapsed state
+
+	a-slide(for='implementation')
+		h3 Collapsibles
+		h4 Content
+		ul
+			li #[code display: none;] to hide inactive content from screen readers
+
+	a-slide(for='implementation')
+		h3 Popup Menu
+		h4 Button
+		ul
+			li Use #[code aria-haspopup="true"] to indicate popup menu button
+			li Use #[code aria-expanded="true|false"] to indicate current menu state
+
+	a-slide(for='implementation')
+		h3 Popup Menu
+		h4 Menu
+		ul
+			li Use #[code display: none;] to hide inactive menu content from screen readers
+			li Emulate native menu keyboard navigation (arrow keys, esc, tab)
+
+		a(href="#{modern}#/blog/accessible-popup-menus.html" target="popup") Popup menu example ➔
+
+
+	a-slide(for='implementation')
+		h3 Single Page Applications
+		h4 Goals
+		ul
+			li make user aware of page transitions
+			li emulate native page load behavior
+
+	a-slide(for='implementation')
+		h3 Single Page Applications
+		h4 Solution
+		ul
+			li use #[code $.announce()] to announce new view title upon view change
+
+		a(href="#{modern}" target="popup") SPA example ➔
+
+
+	a-slide(for='implementation')
+		h3 Buttons vs. Links
+		p Use buttons and links for their intended purpose:
+		ul
+			li Links: site navigation, external sites
+			li Buttons: internal functionality
+
+		p Don't use #[code a(role="button")] or #[code button(role="link")]
+		p Don't create custom buttons from non-interactive elements
+
+	a-slide(for='implementation')
+		h3 Bootstrap examples
+		ul
+			li Bootstrap is great but not perfect
+			li #[a(href="http://getbootstrap.com/javascript/#live-demo") Modal example]
+
+
+	a-slide(for='process')
+		h2 Integrating accessibility into our process
+
+	a-slide(for='process')
+		h3 General
+		ul
+			li Accessibility is a team effort!
+			li Be proactive about accessibility
+			li Retrofitting and remediation efforts are costly
+			li Design, copy and UX should drive a11y requirements and direction
+
+
+	a-slide(for='process')
+		h3 Delivery Management
+		ul
+			li ensure dev oversight during wireframing and design process
+			li request dev sign off on client deliverables before delivery
+
+	a-slide(for='process')
+		h3 UX
+		ul
+			li prescribe landmark and heading usage
+			li prescribe a "skip to content" link
+
+
+	a-slide(for='process')
+		h3 Design
+		ul
+			li test and document color contrast in comps
+			li create a color usage page that outlines compliant color combination usage and color contrasts for each combo
+
+
+	a-slide(for='process')
+		h3 Copy
+		ul
+			li capture accessibility text in copy decks
+			li work with clients to understand impact on CMS
+
+
+	a-slide(for='process')
+		h3 Tech
+		ul
+			li test code frequently using screen readers
+			li test code in aXe
+
+	a-slide(for='process')
+		h3 QA
+		ul
+			li
+
+
+
+	a-slide(for='implementation')
+		h2 
+		p 
+	a-slide(for='implementation')
+		h2 
+		p 
+	a-slide(for='implementation')
+		h2 
+		p 
+	a-slide(for='implementation')
+		h2 
+		p 
+	a-slide(for='implementation')
+		h2 
+		p 
+	a-slide(for='implementation')
+		h2 
+		p 
+	a-slide(for='implementation')
+		h2 
+		p 
+	a-slide(for='implementation')
+		h2 
+		p 
 
 	a-slide
 		h2 Code blocks
