@@ -293,3 +293,13 @@ footer[role="contentinfo"] {
 }
 
 pre {padding-top:0;}
+
+a {
+  display: block;
+}
+a:after {
+  content: "\02192";
+}
+
+
+/**** CUSTOM ****/

@@ -1,0 +1,185 @@
+extends partials/master.jade
+
+prepend head
+	title Improving Single Page App Accessibility
+
+block main
+	a-slide
+		h1 Improving Single Page App Accessibility
+		p Patrick Fox, Technology Director, Austin, TX
+		a(href='http://www.twitter.com/patrickfox') @patrickfox
+
+	a-slide(data-state='intro')
+		h2 Overview
+	a-slide
+		h2 Overview
+		ul
+			li Modern Web UI Challenges
+			li Single-Page Applications
+			li Improving SPA UX
+			li Live Region Best Practices
+			li Implementation Examples
+
+	a-slide(data-state='intro', id='whatisa11y')
+		h2 Modern Web UI Challenges
+
+	a-slide(id='whatisa11y')
+		h2 Modern Web UI Challenges
+		h3 Dynamic UI
+		p Content and states change without a page refresh
+		ul
+			li Custom drop down Menus
+			li Modal dialogs
+			li Tooltips
+			li Tabbed and accordion content
+			li Dynamic errors, notifications
+
+
+	a-slide(id='whatisa11y')
+		h2 Modern Web UI Challenges
+		h3 Dynamic UI
+		p Assistive technology (AT) doesn't recognize dynamic UI changes
+		ul
+			li Native HTML, JavaScript can't communicate DOM updates
+			li AT is geared towards static documents
+
+	a-slide(id='whatisa11y')
+		h2 Modern Web UI Challenges
+		h3 ARIA bridges the gap
+		p ARIA provides missing semantics and info
+		ul
+			li States and Properties - #[code aria-disabled="true"], #[code aria-required="true"]
+			li Relationships - #[code aria-labelledby="{idref}"]
+			li Roles - #[code role="nav|header|footer|menu"]
+			li Live region - #[code aria-live="polite|assertive"]
+
+	a-slide(data-state='intro', id='whatisa11y')
+		h2 Single-Page Applications
+
+	a-slide(id='whatisa11y')
+		h2 Single-Page Applications
+		h3 The promise: Improved UX
+		ul
+			li Content updated dynamically w/o page refresh
+			li Refresh only what has changed
+			li Improved responsiveness, efficiency
+
+	a-slide(id='whatisa11y')
+		h2 Single-Page Applications
+		h3 The reality: broken accessibility
+		ul
+			li Screen readers don't recognize dynamically updated content
+			li View change can lose user's focus
+			li Standards are vague on handling dynamic content
+
+	a-slide(data-state='intro', id='whatisa11y')
+		h2 Improving SPA UX
+
+	a-slide(id='whatisa11y')
+		h2 Improving SPA UX
+		h3 Best Practice: Emulate native browser page-load behavior
+		ul
+			li Page title is used to announce page load/refresh
+			li Stating that page/view is "loaded" is helpful
+		a(href='https://moderna11y.firebaseapp.com/#/blog/screen-reader-page-load-behaviors.html' target='pageload') Page load behaviors
+
+	a-slide(id='whatisa11y')
+		h2 Improving SPA UX
+		h3 Recomended Approach
+		ul
+			li Update page #[code &lt;title&gt;]
+			li Announce page/view change (unobtrusively)
+			li Manage focus
+
+	a-slide(id='whatisa11y')
+		h2 Improving SPA UX
+		h3 Update Title
+		ul
+			li Significant UI/context change requires a title change
+			li #[code &lt;title&gt;] plays an important role in orientation
+			li Frameworks don't automate title updates ?
+
+	a-slide(id='whatisa11y')
+		h2 Improving SPA UX
+		h3 Announce view change
+		ul
+			li Live regions are great for announcing content unobtrusively
+			li Create a message: {page_title} + "loaded"
+			li Update live region &rarr; message is spoken by screen reader
+
+	a-slide(data-state='intro', id='whatisa11y')
+		h2 Live Region Best Practices
+
+	a-slide(id='whatisa11y')
+		h2 Live Region Best Practices
+		h3 Live region caveats
+		ul
+			li Multiple live regions add complexity, unpredicatability
+			li Live region roles unpredicatable (#[code role="log|status|alert|"])
+
+	a-slide(id='whatisa11y')
+		h2 Live Region Best Practices
+		h3 One live region to rule them all...
+		ul
+			li Provide common mechanism to "announce" content
+			li Use a single, global "announcer" live region
+			li Use a script - #[code $.announce()] - to make updates
+		a(href="https://jsfiddle.net/pfox/ou11fr9p/show/light/" target="github") $.announce in action
+		a(href="https://github.com/patrickfox/a11y_kit" target="github") Check out $.announce() and a11y_kit on Github
+
+	a-slide(data-state='intro', id='whatisa11y')
+		h2 Implementation Examples
+
+	a-slide(id='whatisa11y')
+		h2 Implementation Examples
+		h3 Single-Page Application Lifecycle
+		ul
+			li User action
+			li Controller handles request
+			li View rendered
+		p Event Pub Sub system adds flexibility
+
+	a-slide(id='whatisa11y')
+		h2 Implementation Examples
+		h3 Angular
+		ul
+			li #[code $viewContentLoaded] event emitted
+			li Update title, announce "{page_title} loaded"
+		a(href="#" target="angular") Angular Example
+
+	a-slide(id='whatisa11y')
+		h2 Implementation Examples
+		h3 Angular 2
+		ul
+			li Provides ngAfterViewInit() method
+		a(href="#" target="angular") Angular 2 Example
+
+	a-slide(id='whatisa11y')
+		h2 Implementation Examples
+		h3 React
+		ul
+			li
+		a(href="#" target="angular") React Example
+
+	a-slide(id='whatisa11y')
+		h2 Implementation Examples
+		h3 Ember
+		ul
+			li
+		a(href="#" target="angular") Ember Example
+
+	a-slide(id='whatisa11y')
+		h2 Implementation Examples
+		h3 RiotJS
+		ul
+			li
+		a(href="#" target="angular") RiotJS Example
+
+	a-slide(for='process')
+		h2 Questions
+
+	a-slide(for='process')
+		h2 Thanks!
+		a(href="https://twitter.com/patrickfox" target="twitter") @patrickfox
+
+

@@ -93,18 +93,19 @@ Polymer({
 
   navigate: function(i) {
     if (i < 0 || i > this.slides.length - 1) return;
-    var state = this.slide.getAttribute('data-state'),
-      direction = i > this.i ? 1 : -1;
-    state = state? state : '';
-    document.body.setAttribute('data-state', state);
+    var direction = i > this.i ? 1 : -1;
 
     // Update the history for each slide between this and the target.
     while (i !== this.i) {
       this.slide.setAttribute('history', direction > 0 ? 'past' : 'future');
       this.i += direction;
     }
-
     this.slide.setAttribute('history', 'present');
+
+    var state = this.slide.getAttribute('data-state'),
+    state = state? state : '';
+    document.body.setAttribute('data-state', state);
+    
     this.updateUrl(i);
 
     return true;
