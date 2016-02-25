@@ -303,3 +303,21 @@ a:after {
 
 
 /**** CUSTOM ****/
+
+#currentheading {
+  padding: 10px 20px;
+  background-color: rgba(0,0,0,0.1);
+  width: 100%;
+  position: fixed;
+  top: -200px;
+  left: 0;
+  transition: top .5s;
+}
+
+#currentheading.showheading {
+  top: 0;
+}
+
+#currentheading.disabled {
+  display:none;
+}

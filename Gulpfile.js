@@ -22,7 +22,6 @@ gulp.task('jade', function() {
 });
 
 gulp.task('browser-sync', function() {
-	console.log('bs: i love you');
 	browserSync.init({
 		server: {
 			baseDir: './build'
