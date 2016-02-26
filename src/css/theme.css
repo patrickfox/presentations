@@ -312,6 +312,8 @@ a:after {
   top: -200px;
   left: 0;
   transition: top .5s;
+  font-family: 'Maven Pro';
+  font-weight:600;
 }
 
 #currentheading.showheading {

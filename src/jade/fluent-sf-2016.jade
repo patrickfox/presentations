@@ -77,7 +77,7 @@ block main
 		a(href='https://moderna11y.firebaseapp.com/#/blog/screen-reader-page-load-behaviors.html' target='pageload') Page load behaviors
 
 	a-slide(data-hid='improving_spaux')
-		h3 Recomended Approach
+		h3 Recommended Approach
 		ul
 			li Update page #[code &lt;title&gt;]
 			li Announce page/view change (unobtrusively)
@@ -94,7 +94,7 @@ block main
 		h3 Announce view change
 		ul
 			li Live regions are great for announcing content unobtrusively
-			li Create a message: {page_title} + "loaded"
+			li Create a message: #[code {page_title} + " loaded"]
 			li Update live region &rarr; message is spoken by screen reader
 
 	a-slide(data-state='intro', id='best_practices')
@@ -142,7 +142,7 @@ block main
 	a-slide(data-hid='implementation')
 		h3 React
 		ul
-			li
+			li Use #[code componentDidUpdate] to trigger title change and announcement
 		a(href="#" target="angular") React Example
 
 	a-slide(data-hid='implementation')

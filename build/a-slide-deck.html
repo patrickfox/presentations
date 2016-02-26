@@ -92,27 +92,24 @@ Polymer({
 
 
   navigate: function(i) {
-    console.log('navigate');
     if (i < 0 || i > this.slides.length - 1) return;
-    console.log('navigate');
     var direction = i > this.i ? 1 : -1,
       currentHeading = document.querySelector('#currentheading'),
       currentHeadingId = currentHeading.getAttribute('data-hid'),
       slideHeadingId = this.slides[this.i + direction].getAttribute('data-hid');
-    if (this.slides[this.i + direction].getAttribute('data-state') === 'intro') {
-      //hide currentHeading
-      currentHeading.classList.remove('showheading');
-      console.log('intro slide');
-    } else if (currentHeadingId !== slideHeadingId) {
-      //update heading
+    console.log('currentHeadingId: ' + currentHeadingId);
+    console.log('slideHeadingId: ' + slideHeadingId);
+    if (currentHeadingId !== slideHeadingId && slideHeadingId) {
       console.log(slideHeadingId);
       var new_heading = document.querySelector('#' + slideHeadingId).innerText;
       currentHeading.innerText = new_heading;
       currentHeading.setAttribute('data-hid', slideHeadingId);
-      //show heading
+    }
+    if (this.slides[this.i + direction].getAttribute('data-state') === 'intro') {
+      currentHeading.classList.remove('showheading');
+      console.log('intro slide');
+    } else {
       currentHeading.classList.add('showheading');
-
-      console.log(new_heading);
     }
 
     // Update the history for each slide between this and the target.
