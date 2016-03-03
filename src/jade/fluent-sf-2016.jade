@@ -4,10 +4,10 @@ prepend head
 	title Improving Single Page App Accessibility
 
 block main
-	a-slide
+	a-slide(data-state='title')
 		h1 Improving Single Page App Accessibility
-		p Patrick Fox, Technology Director, Austin, TX
-		a(href='http://www.twitter.com/patrickfox') @patrickfox
+		p Patrick Fox, Technology Director @Razorfish, Austin, TX
+		a(href='http://www.twitter.com/patrickfox' target='twitter') @patrickfox
 
 	a-slide(data-state='intro' id='overview')
 		h2 Overview
@@ -106,7 +106,7 @@ block main
 			li Multiple live regions add complexity, unpredicatability
 			li Live region roles unpredicatable (#[code role="log|status|alert|"])
 
-	a-slide(data-hid='best_practices')
+	a-slide(data-hid='best_practices' data-state='one-ring')
 		h3 One live region to rule them all...
 		ul
 			li Provide common mechanism to "announce" content
@@ -115,53 +115,87 @@ block main
 		a(href="https://jsfiddle.net/pfox/ou11fr9p/show/light/" target="github") $.announce in action
 		a(href="https://github.com/patrickfox/a11y_kit" target="github") Check out $.announce() and a11y_kit on Github
 
+	a-slide(data-hid='best_practices' data-state='responsibility')
+		h3 With great power...
+		p Use this technique judiciously
+		ul
+			li Use to communicate pertinent information only
+			li Keep messages succinct
+			li Use cases:
+				ul
+					li View updates in single-page apps
+					li Form validation errors
+					li Alert messages (non-modal)
+					li Progress updates in multi-step process
+
 	a-slide(data-state='intro', id='implementation')
 		h2 Implementation Examples
 
 	a-slide(data-hid='implementation')
 		h3 Single-Page Application Lifecycle
-		ul
+		ol
 			li User action
-			li Controller handles request
-			li View rendered
-		p Event Pub Sub system adds flexibility
+			li Some stuff happens...
+			li View rendered &rarr; announce loaded status
+		p Create a helper function: #[code announce_view_loaded();]
+		p Most SPA's have a "view loaded" event of some sort
 
 	a-slide(data-hid='implementation')
-		h3 Angular
-		ul
-			li #[code $viewContentLoaded] event emitted
-			li Update title, announce "{page_title} loaded"
-		a(href="#" target="angular") Angular Example
+		h3 Announce Helper Function
+		p #[code announce_view_loaded();] does the following:
+		ol
+			li Grab new title from view's #[code h2[data-page-title]]
+			li Create "loaded" message
+			li Update page title 
+			li Call #[code announce(message, 'assertive')]
 
 	a-slide(data-hid='implementation')
-		h3 Angular 2
+		h3(class="angular") Angular
 		ul
-			li Provides ngAfterViewInit() method
+			li Subscribe to #[code $viewContentLoaded] event in controller
+		img(src="/img/spa-angular-code.png" alt="Angular code example using the $viewContentLoaded event")
+		a(href="https://moderna11y.firebaseapp.com/" target="angular") Angular Example
+		a(href="https://docs.angularjs.org/api/ngRoute/directive/ngView" target="angular") Angular's ngView directive
+
+	a-slide(data-hid='implementation')
+		h3(class="angular2") Angular 2
+		ul
+			li Provides #[code ngAfterViewInit()] method
 		a(href="#" target="angular") Angular 2 Example
 
 	a-slide(data-hid='implementation')
-		h3 React
+		h3(class="react") React
 		ul
-			li Use #[code componentDidUpdate] to trigger title change and announcement
-		a(href="#" target="angular") React Example
+			li Components
+			li Use #[code componentDidUpdate] - only called on updates after initial render
+		img(src="/img/spa-react-code.png" alt="React code example using componentDidUpdate")
+		a(href="#" target="react") React Example
+		a(href="https://facebook.github.io/react/docs/component-specs.html" target="react-lifecycle") React lifecycle
+
 
 	a-slide(data-hid='implementation')
-		h3 Ember
+		h3(class="ember") Ember 2.x
 		ul
-			li
-		a(href="#" target="angular") Ember Example
+			li As of 2.x, Views are deprecated in favor of Components
+			li Use Ember.Route's #[code renderTemplate()] and Ember's Run Loop #[code afterRender] queue
+		img(src="/img/spa-ember-code.png" alt="Ember code example using afterRender queue")
+		a(href="#" target="ember") Ember Example
+		a(href="http://emberjs.com/api/classes/Ember.run.html#method_scheduleOnce" target="ember-run") Run Loop and Ember.run
+		
 
-	a-slide(data-hid='implementation')
-		h3 RiotJS
-		ul
-			li
-		a(href="#" target="angular") RiotJS Example
+	//- a-slide(data-hid='implementation')
+	//- 	h3(class="riot") RiotJS
+	//- 	ul
+	//- 		li
+	//- 	a(href="#" target="angular") RiotJS Example
 
 	a-slide(data-state='intro' id='questions')
 		h2 Questions
 
 	a-slide(data-state='intro' id='thanks')
 		h2 Thanks!
+		a(href="https://twitter.com/patrickfox" target="twitter") This deck: spa-a11y.firebaseapp.com
 		a(href="https://twitter.com/patrickfox" target="twitter") @patrickfox
+
 
 

@@ -110,9 +110,17 @@ body[data-state='intro2'] {
   background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(0,0,0,.02) 35px, rgba(0,0,0,.02) 70px);
 }
 
-body[data-state="lotr"] {
+body[data-state="one-ring"], body[data-state="responsibility"]  {
   color:#fff;
-  background: #333 url(../img/lotr.jpg) no-repeat;
+  background: #333 url(../img/one-ring.jpg) no-repeat;
+}
+
+body[data-state="responsibility"] {
+  background-image: url(../img/great-power.jpg);
+}
+
+body[data-state="one-ring"] ul, body[data-state="responsibility"] ul {
+  color:#fff;
 }
 
 body[data-state='highlight-landmarks'] .landmarks tr td {
@@ -296,7 +304,9 @@ pre {padding-top:0;}
 
 a {
   display: block;
+  padding: 10px 0;
 }
+
 a:after {
   content: "\02192";
 }

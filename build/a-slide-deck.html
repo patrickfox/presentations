@@ -94,9 +94,13 @@ Polymer({
   navigate: function(i) {
     if (i < 0 || i > this.slides.length - 1) return;
     var direction = i > this.i ? 1 : -1,
+      _self = this,
       currentHeading = document.querySelector('#currentheading'),
       currentHeadingId = currentHeading.getAttribute('data-hid'),
-      slideHeadingId = this.slides[this.i + direction].getAttribute('data-hid');
+      slideHeadingId = this.slides[this.i + direction].getAttribute('data-hid'),
+      getNextSlideState = function () {
+        return _self.slides[_self.i + direction].getAttribute('data-state');
+      };
     console.log('currentHeadingId: ' + currentHeadingId);
     console.log('slideHeadingId: ' + slideHeadingId);
     if (currentHeadingId !== slideHeadingId && slideHeadingId) {
@@ -105,7 +109,8 @@ Polymer({
       currentHeading.innerText = new_heading;
       currentHeading.setAttribute('data-hid', slideHeadingId);
     }
-    if (this.slides[this.i + direction].getAttribute('data-state') === 'intro') {
+    this.slides[this.i + direction].getAttribute('data-state') 
+    if (getNextSlideState() === 'intro' || getNextSlideState() === 'title') {
       currentHeading.classList.remove('showheading');
       console.log('intro slide');
     } else {
