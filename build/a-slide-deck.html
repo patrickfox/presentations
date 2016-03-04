@@ -101,10 +101,7 @@ Polymer({
       getNextSlideState = function () {
         return _self.slides[_self.i + direction].getAttribute('data-state');
       };
-    console.log('currentHeadingId: ' + currentHeadingId);
-    console.log('slideHeadingId: ' + slideHeadingId);
     if (currentHeadingId !== slideHeadingId && slideHeadingId) {
-      console.log(slideHeadingId);
       var new_heading = document.querySelector('#' + slideHeadingId).innerText;
       currentHeading.innerText = new_heading;
       currentHeading.setAttribute('data-hid', slideHeadingId);
@@ -112,7 +109,6 @@ Polymer({
     this.slides[this.i + direction].getAttribute('data-state') 
     if (getNextSlideState() === 'intro' || getNextSlideState() === 'title') {
       currentHeading.classList.remove('showheading');
-      console.log('intro slide');
     } else {
       currentHeading.classList.add('showheading');
     }
