@@ -5,8 +5,8 @@ prepend head
 
 block main
 	a-slide(data-state='title')
-		h1 Improving Single Page App Accessibility
-		p Patrick Fox, Technology Director @Razorfish, Austin, TX
+		h1 Improving SPA Screen Reader A11y
+		p Patrick Fox, Razorfish, Austin, TX
 		a(href='http://www.twitter.com/patrickfox' target='twitter') @patrickfox
 
 	a-slide(data-state='intro' id='overview')
@@ -46,7 +46,7 @@ block main
 		ul
 			li States and Properties - #[code aria-disabled="true"], #[code aria-required="true"]
 			li Relationships - #[code aria-labelledby="{idref}"]
-			li Roles - #[code role="nav|header|footer|menu"]
+			li Roles - #[code role="nav|banner|contentinfo|main|menu"]
 			li Live region - #[code aria-live="polite|assertive"]
 
 	a-slide(data-state='intro', id='spas')
@@ -63,8 +63,10 @@ block main
 		h3 The reality: broken accessibility
 		ul
 			li Screen readers don't recognize dynamically updated content
-			li View change can lose user's focus
+			//li View change can lose user's focus
 			li Standards are vague on handling dynamic content
+		p From #[a(style="display: inline" href="https://www.w3.org/TR/WCAG20/#consistent-behavior-no-extreme-changes-context" target="wcag") WCAG 2]: 
+		blockquote #[strong "changes of context"]: major changes in the content of the Web page that, if made without user awareness, can disorient users who are not able to view the entire page simultaneously
 
 	a-slide(data-state='intro', id='improving_spaux')
 		h2 Improving SPA UX
@@ -81,14 +83,14 @@ block main
 		ul
 			li Update page #[code &lt;title&gt;]
 			li Announce page/view change (unobtrusively)
-			li Manage focus
+			//li Manage focus
 
 	a-slide(data-hid='improving_spaux')
 		h3 Update Title
 		ul
 			li Significant UI/context change requires a title change
 			li #[code &lt;title&gt;] plays an important role in orientation
-			li Frameworks don't automate title updates ?
+			li SPA frameworks don't automate title updates
 
 	a-slide(data-hid='improving_spaux')
 		h3 Announce view change
@@ -101,16 +103,17 @@ block main
 		h2 Live Region Best Practices
 
 	a-slide(data-hid='best_practices')
-		h3 Live region caveats
+		h3 Caveats
 		ul
-			li Multiple live regions add complexity, unpredicatability
-			li Live region roles unpredicatable (#[code role="log|status|alert|"])
+			li Multiple live regions add complexity
+			li Live region roles are unpredictable (#[code role="log|status|alert|timer"])
+			li Live regions can't be added dynamically to the DOM #[sup *]
 
 	a-slide(data-hid='best_practices' data-state='one-ring')
 		h3 One live region to rule them all...
 		ul
-			li Provide common mechanism to "announce" content
 			li Use a single, global "announcer" live region
+			li Provide common mechanism to "announce" content
 			li Use a script - #[code $.announce()] - to make updates
 		a(href="https://jsfiddle.net/pfox/ou11fr9p/show/light/" target="github") $.announce in action
 		a(href="https://github.com/patrickfox/a11y_kit" target="github") Check out $.announce() and a11y_kit on Github
@@ -119,7 +122,8 @@ block main
 		h3 With great power...
 		p Use this technique judiciously
 		ul
-			li Use to communicate pertinent information only
+			li Rule #1: Follow core accessibility principles, best practices
+			li Use this technique to communicate pertinent info only
 			li Keep messages succinct
 			li Use cases:
 				ul
@@ -142,12 +146,14 @@ block main
 
 	a-slide(data-hid='implementation')
 		h3 Announce Helper Function
-		p #[code announce_view_loaded();] does the following:
+		p #[code announce_view_loaded()] does the following:
 		ol
 			li Grab new title from view's #[code h2[data-page-title]]
 			li Create "loaded" message
 			li Update page title 
 			li Call #[code announce(message, 'assertive')]
+		//script(src="http://gist.github.com/patrickfox/ed600b3b38c2cfab2b11.js")
+		a(href="https://gist.github.com/patrickfox/ed600b3b38c2cfab2b11" target="anounce_view_loaded") anounce_view_loaded() Gist
 
 	a-slide(data-hid='implementation')
 		h3(class="angular") Angular
@@ -160,10 +166,10 @@ block main
 	a-slide(data-hid='implementation')
 		h3(class="angular2") Angular 2
 		ul
-			li Provides #[code ngAfterViewInit()] method
+			li #[code ngView] is deprecated, provides new #[code ngAfterViewInit()] method
 		img(src="/img/spa-angular2-code.png" alt="Angular 2 code example using ngAfterViewInit")
 		a(href="#" target="angular") Angular 2 Example
-		a(href="https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html" target="angular") Angular 2's Lifecycle Hooks and ngAfterViewInit()
+		a(href="https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html" target="angular") Angular 2's Component Lifecycle Hooks and ngAfterViewInit()
 
 
 	a-slide(data-hid='implementation')
@@ -172,7 +178,7 @@ block main
 			li Use #[code componentDidUpdate] - only called on updates after initial render
 		img(src="/img/spa-react-code.png" alt="React code example using componentDidUpdate")
 		a(href="#" target="react") React Example
-		a(href="https://facebook.github.io/react/docs/component-specs.html" target="react-lifecycle") React lifecycle
+		a(href="https://facebook.github.io/react/docs/component-specs.html" target="react-lifecycle") React Lifecycle Specs
 
 
 	a-slide(data-hid='implementation')
@@ -196,7 +202,9 @@ block main
 
 	a-slide(data-state='intro' id='thanks')
 		h2 Thanks!
-		a(href="https://twitter.com/patrickfox" target="twitter") This deck: spa-a11y.firebaseapp.com
+		p I'll post links to this deck and the code examples on Twitter tomorrow!
+		//a(href="https://spa-a11y.firebaseapp.com" target="twitter") This deck: spa-a11y.firebaseapp.com
+		//a(href="https://github.com/patrickfox/accessible_spa_examples" target="twitter") Deck examples: github.com/patrickfox/accessible_spa_examples
 		a(href="https://twitter.com/patrickfox" target="twitter") @patrickfox
 
 

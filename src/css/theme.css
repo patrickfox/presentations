@@ -333,3 +333,7 @@ a:after {
 #currentheading.disabled {
   display:none;
 }
+
+img {
+  border-radius: 10px;
+}
