@@ -1,5 +1,5 @@
 {
-  "firebase": "rf-accessibility",
+  "firebase": "spa-a11y",
   "public": "build",
   "ignore": [
     "firebase.json",

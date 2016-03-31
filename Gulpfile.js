@@ -50,6 +50,9 @@ gulp.task('copy', function() {
 
 	gulp.src('bower_components/**')
 		.pipe(gulp.dest('build/bower_components'));
+
+	gulp.src('CNAME')
+		.pipe(gulp.dest('build/'));
 });
 
 

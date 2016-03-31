@@ -311,6 +311,13 @@ a:after {
   content: "\02192";
 }
 
+a.noarrow:after {
+  content: "";
+}
+a.noarrow {
+  display: inline;
+}
+
 
 /**** CUSTOM ****/
 
@@ -336,4 +343,8 @@ a:after {
 
 img {
   border-radius: 10px;
+}
+
+.code_example {
+  max-width: 700px;
 }

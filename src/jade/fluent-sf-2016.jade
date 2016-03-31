@@ -5,7 +5,7 @@ prepend head
 
 block main
 	a-slide(data-state='title')
-		h1 Improving SPA Screen Reader A11y
+		h1 Improving SPA Screen Reader Accessibility
 		p Patrick Fox, Razorfish, Austin, TX
 		a(href='http://www.twitter.com/patrickfox' target='twitter') @patrickfox
 
@@ -42,12 +42,18 @@ block main
 
 	a-slide(data-hid='challenges')
 		h3 ARIA bridges the gap
-		p ARIA provides missing semantics and info
+		p The W3C's #[a(href="https://www.w3.org/TR/wai-aria/" class="noarrow" target="aria") WAI-ARIA specification] provides missing semantics
 		ul
-			li States and Properties - #[code aria-disabled="true"], #[code aria-required="true"]
-			li Relationships - #[code aria-labelledby="{idref}"]
-			li Roles - #[code role="nav|banner|contentinfo|main|menu"]
-			li Live region - #[code aria-live="polite|assertive"]
+			li(part="") States and Properties - #[code aria-disabled="true"], #[code aria-required="true"]
+			li(part="") Relationships - #[code aria-labelledby="{idref}"]
+			li(part="") Roles
+				ul
+					li Widgets: #[code role="menu|dialog|checkbox|radio"]
+					li Landmarks: #[code role="banner|main|contentinfo|nav"]
+			li(part="") Live regions
+				ul
+					li #[code aria-live="polite|assertive"]
+					li #[code role="alert|status|timer"]
 
 	a-slide(data-state='intro', id='spas')
 		h2 Single-Page Applications
@@ -58,10 +64,13 @@ block main
 			li Content updated dynamically w/o page refresh
 			li Refresh only what has changed
 			li Improved responsiveness, efficiency
+		a(href="https://moderna11y.firebaseapp.com/" target="angularwofix") Angular Example
+
 
 	a-slide(data-hid='spas')
 		h3 The reality: broken accessibility
 		ul
+			li Sreen reader users don't percieve important UI changes
 			li Screen readers don't recognize dynamically updated content
 			//li View change can lose user's focus
 			li Standards are vague on handling dynamic content
@@ -72,32 +81,32 @@ block main
 		h2 Improving SPA UX
 
 	a-slide(data-hid='improving_spaux')
-		h3 Best Practice: Emulate native browser page-load behavior
+		h3 Communicate View Changes
+		p One approach: Emulate native browser page-load behavior
 		ul
 			li Page title is used to announce page load/refresh
 			li Stating that page/view is "loaded" is helpful
 		a(href='https://moderna11y.firebaseapp.com/#/blog/screen-reader-page-load-behaviors.html' target='pageload') Page load behaviors
 
 	a-slide(data-hid='improving_spaux')
-		h3 Recommended Approach
-		ul
-			li Update page #[code &lt;title&gt;]
-			li Announce page/view change (unobtrusively)
-			//li Manage focus
-
-	a-slide(data-hid='improving_spaux')
-		h3 Update Title
+		h3 Step 1: Update Page Title
 		ul
 			li Significant UI/context change requires a title change
 			li #[code &lt;title&gt;] plays an important role in orientation
 			li SPA frameworks don't automate title updates
 
 	a-slide(data-hid='improving_spaux')
-		h3 Announce view change
+		h3 Step 2: Announce view change
 		ul
 			li Live regions are great for announcing content unobtrusively
 			li Create a message: #[code {page_title} + " loaded"]
 			li Update live region &rarr; message is spoken by screen reader
+
+	a-slide(data-hid='improving_spaux')
+		h3 Goal: Provide out-of-the-box accessibility
+		p Several view update solutions exist or are in the works
+		ul
+			li #[a(href="https://github.com/Robdel12/a11y-announcer" target="ember-a11y") Ember a11y-announcer]
 
 	a-slide(data-state='intro', id='best_practices')
 		h2 Live Region Best Practices
@@ -106,16 +115,16 @@ block main
 		h3 Caveats
 		ul
 			li Multiple live regions add complexity
-			li Live region roles are unpredictable (#[code role="log|status|alert|timer"])
+			li Live region role support is unreliable (#[code role="alert|log|status|timer"])
 			li Live regions can't be added dynamically to the DOM #[sup *]
 
 	a-slide(data-hid='best_practices' data-state='one-ring')
 		h3 One live region to rule them all...
 		ul
-			li Use a single, global "announcer" live region
+			li Use a single, global "announcer" live region #[img(src="/img/spa-announcer-html.png" class="code_example" style="margin-top:10px")]
 			li Provide common mechanism to "announce" content
-			li Use a script - #[code $.announce()] - to make updates
-		a(href="https://jsfiddle.net/pfox/ou11fr9p/show/light/" target="github") $.announce in action
+			li Use a script - #[code announce()] - to make updates
+		a(href="https://jsfiddle.net/pfox/ou11fr9p/show/light/" target="github") Say anything w/announce()
 		a(href="https://github.com/patrickfox/a11y_kit" target="github") Check out $.announce() and a11y_kit on Github
 
 	a-slide(data-hid='best_practices' data-state='responsibility')
@@ -123,8 +132,8 @@ block main
 		p Use this technique judiciously
 		ul
 			li Rule #1: Follow core accessibility principles, best practices
-			li Use this technique to communicate pertinent info only
-			li Keep messages succinct
+			li Use #[code announce()] to communicate pertinent info only
+			li Keep announced messages succinct
 			li Use cases:
 				ul
 					li View updates in single-page apps
@@ -137,6 +146,7 @@ block main
 
 	a-slide(data-hid='implementation')
 		h3 Single-Page Application Lifecycle
+		p In a nutshell:
 		ol
 			li User action
 			li Some stuff happens...
@@ -151,15 +161,15 @@ block main
 			li Grab new title from view's #[code h2[data-page-title]]
 			li Create "loaded" message
 			li Update page title 
-			li Call #[code announce(message, 'assertive')]
-		//script(src="http://gist.github.com/patrickfox/ed600b3b38c2cfab2b11.js")
+			li Call #[code announce(message, 'polite')]
 		a(href="https://gist.github.com/patrickfox/ed600b3b38c2cfab2b11" target="anounce_view_loaded") anounce_view_loaded() Gist
 
 	a-slide(data-hid='implementation')
 		h3(class="angular") Angular
 		ul
 			li Subscribe to #[code $viewContentLoaded] event in controller
-		img(src="/img/spa-angular-code.png" alt="Angular code example using the $viewContentLoaded event")
+		a(href="/img/spa-angular-code-arrow.png" target="angular-detail" class="noarrow")
+			img(src="/img/spa-angular-code.png" class="code_example" alt="Angular code example using the $viewContentLoaded event")
 		a(href="https://moderna11y.firebaseapp.com/" target="angular") Angular Example
 		a(href="https://docs.angularjs.org/api/ngRoute/directive/ngView" target="angular") Angular's ngView directive
 
@@ -167,8 +177,9 @@ block main
 		h3(class="angular2") Angular 2
 		ul
 			li #[code ngView] is deprecated, provides new #[code ngAfterViewInit()] method
-		img(src="/img/spa-angular2-code.png" alt="Angular 2 code example using ngAfterViewInit")
-		a(href="#" target="angular") Angular 2 Example
+		a(href="/img/spa-angular2-code-arrow.png" target="angular2-detail" class="noarrow")
+			img(src="/img/spa-angular2-code.png" class="code_example" alt="Angular 2 code example using ngAfterViewInit")
+		a(href="http://localhost:5555/" target="angular") Angular 2 Example
 		a(href="https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html" target="angular") Angular 2's Component Lifecycle Hooks and ngAfterViewInit()
 
 
@@ -176,8 +187,9 @@ block main
 		h3(class="react") React
 		ul
 			li Use #[code componentDidUpdate] - only called on updates after initial render
-		img(src="/img/spa-react-code.png" alt="React code example using componentDidUpdate")
-		a(href="#" target="react") React Example
+		a(href="/img/spa-react-code-arrow.png" target="react-detail" class="noarrow")
+			img(src="/img/spa-react-code.png" class="code_example" alt="React code example using componentDidUpdate")
+		a(href="http://localhost:8080/" target="react") React Example
 		a(href="https://facebook.github.io/react/docs/component-specs.html" target="react-lifecycle") React Lifecycle Specs
 
 
@@ -185,11 +197,22 @@ block main
 		h3(class="ember") Ember 2.x
 		ul
 			li As of 2.x, Views are deprecated in favor of Components
-			li Use Ember.Route's #[code renderTemplate()] and Ember's Run Loop #[code afterRender] queue
-		img(src="/img/spa-ember-code.png" alt="Ember code example using afterRender queue")
-		a(href="#" target="ember") Ember Example
+			li Use Route's #[code renderTemplate()] and Run Loop's #[code afterRender] queue
+		a(href="/img/spa-ember-code-arrow.png" target="ember-detail" class="noarrow")
+			img(src="/img/spa-ember-code.png" class="code_example" alt="Ember code example using afterRender queue")
+		a(href="http://localhost:4200/" target="ember") Ember Example
 		a(href="http://emberjs.com/api/classes/Ember.run.html#method_scheduleOnce" target="ember-run") Run Loop and Ember.run
-		
+
+	a-slide(data-hid='implementation')
+		h3(class="ember") How about a more complex scenario?
+		p E.g. asynchronous loading of modules
+		ul
+			li Announce "loading"
+			li Script listens for custom #[code "all_modules_loaded"] event
+			li Each module registers iself as loaded
+			li On #[code "all_modules_loaded"], invoke #[code announce_view_loaded();]
+			li Have timeout (5s?) so loaded message doesn't hang up
+			li On error potentially announce error state (if pertinent)
 
 	//- a-slide(data-hid='implementation')
 	//- 	h3(class="riot") RiotJS
@@ -202,10 +225,11 @@ block main
 
 	a-slide(data-state='intro' id='thanks')
 		h2 Thanks!
-		p I'll post links to this deck and the code examples on Twitter tomorrow!
-		//a(href="https://spa-a11y.firebaseapp.com" target="twitter") This deck: spa-a11y.firebaseapp.com
-		//a(href="https://github.com/patrickfox/accessible_spa_examples" target="twitter") Deck examples: github.com/patrickfox/accessible_spa_examples
+		//p I'll post links to this deck and the code examples on Twitter tomorrow!
+		a(href="https://spa-a11y.firebaseapp.com" target="twitter") This deck: spa-a11y.firebaseapp.com
+		a(href="https://github.com/patrickfox/accessible_spa_examples" target="twitter") Deck examples: github.com/patrickfox/accessible_spa_examples
 		a(href="https://twitter.com/patrickfox" target="twitter") @patrickfox
+		a(href="https://github.com/patrickfox" target="gh") gh/patrickfox
 
 
 
