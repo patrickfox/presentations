@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Improving Single Page App Accessibility</title>
+    <meta charset="utf-8">
+    <title>Slider</title>
+    <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link href="a-slide-deck.html" rel="import">
+    <link href="a-slide.html" rel="import">
+    <link href="flex-line.html" rel="import">
+    <link href="flex-grid.html" rel="import">
+    <link href="code-block.html" rel="import">
+    <link href="/css/theme.css" rel="stylesheet">
+  </head>
+  <body unresolved>
+    <a-slide-deck>
+      <a-slide data-state="title">
+        <h1>Improving SPA Screen Reader Accessibility</h1>
+        <p>Patrick Fox, Razorfish, Austin, TX</p><a href="http://www.twitter.com/patrickfox" target="twitter">@patrickfox</a>
+      </a-slide>
+      <a-slide data-state="intro" id="overview">
+        <h2>Overview</h2>
+      </a-slide>
+      <a-slide data-hid="overview">
+        <ul>
+          <li>Modern Web UI Challenges</li>
+          <li>Single-Page Applications</li>
+          <li>Improving SPA UX</li>
+          <li>Live Region Best Practices</li>
+          <li>Implementation Examples</li>
+        </ul>
+      </a-slide>
+      <a-slide data-state="intro" id="challenges">
+        <h2>Modern Web UI Challenges</h2>
+      </a-slide>
+      <a-slide data-hid="challenges">
+        <h3>Dynamic UI</h3>
+        <p>Content and states change without a page refresh</p>
+        <ul>
+          <li>Custom drop down Menus</li>
+          <li>Modal dialogs</li>
+          <li>Tooltips</li>
+          <li>Tabbed and accordion content</li>
+          <li>Dynamic errors, notifications</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="challenges">
+        <h3>Dynamic UI</h3>
+        <p>Assistive technology (AT) doesn't recognize dynamic UI changes</p>
+        <ul>
+          <li>Native HTML, JavaScript can't communicate DOM updates</li>
+          <li>AT is geared towards static documents</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="challenges">
+        <h3>ARIA bridges the gap</h3>
+        <p>The W3C's <a href="https://www.w3.org/TR/wai-aria/" target="aria" class="noarrow">WAI-ARIA specification</a> provides missing semantics</p>
+        <ul>
+          <li part="">States and Properties - <code>aria-disabled="true"</code>, <code>aria-required="true"</code></li>
+          <li part="">Relationships - <code>aria-labelledby="{idref}"</code></li>
+          <li part="">Roles
+            <ul>
+              <li>Widgets: <code>role="menu|dialog|checkbox|radio"</code></li>
+              <li>Landmarks: <code>role="banner|main|contentinfo|nav"</code></li>
+            </ul>
+          </li>
+          <li part="">Live regions
+            <ul>
+              <li><code>aria-live="polite|assertive"</code></li>
+              <li><code>role="alert|status|timer"</code></li>
+            </ul>
+          </li>
+        </ul>
+      </a-slide>
+      <a-slide data-state="intro" id="spas">
+        <h2>Single-Page Applications</h2>
+      </a-slide>
+      <a-slide data-hid="spas">
+        <h3>The promise: Improved UX</h3>
+        <ul>
+          <li>Content updated dynamically w/o page refresh</li>
+          <li>Refresh only what has changed</li>
+          <li>Improved responsiveness, efficiency</li>
+        </ul><a href="https://moderna11y.firebaseapp.com/" target="angularwofix">Angular Example</a>
+      </a-slide>
+      <a-slide data-hid="spas">
+        <h3>The reality: broken accessibility</h3>
+        <ul>
+          <li>Sreen reader users don't percieve important UI changes</li>
+          <li>Screen readers don't recognize dynamically updated content</li>
+          <!--li View change can lose user's focus-->
+          <li>Standards are vague on handling dynamic content</li>
+        </ul>
+        <p>From <a style="display: inline" href="https://www.w3.org/TR/WCAG20/#consistent-behavior-no-extreme-changes-context" target="wcag">WCAG 2</a>: </p>
+        <blockquote><strong>"changes of context"</strong>: major changes in the content of the Web page that, if made without user awareness, can disorient users who are not able to view the entire page simultaneously</blockquote>
+      </a-slide>
+      <a-slide data-state="intro" id="improving_spaux">
+        <h2>Improving SPA UX</h2>
+      </a-slide>
+      <a-slide data-hid="improving_spaux">
+        <h3>Communicate View Changes</h3>
+        <p>One approach: Emulate native browser page-load behavior</p>
+        <ul>
+          <li>Page title is used to announce page load/refresh</li>
+          <li>Stating that page/view is "loaded" is helpful</li>
+        </ul><a href="https://moderna11y.firebaseapp.com/#/blog/screen-reader-page-load-behaviors.html" target="pageload">Page load behaviors</a>
+      </a-slide>
+      <a-slide data-hid="improving_spaux">
+        <h3>Step 1: Update Page Title</h3>
+        <ul>
+          <li>Significant UI/context change requires a title change</li>
+          <li><code>&lt;title&gt;</code> plays an important role in orientation</li>
+          <li>SPA frameworks don't automate title updates</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="improving_spaux">
+        <h3>Step 2: Announce view change</h3>
+        <ul>
+          <li>Live regions are great for announcing content unobtrusively</li>
+          <li>Create a message: <code>{page_title} + " loaded"</code></li>
+          <li>Update live region &rarr; message is spoken by screen reader</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="improving_spaux">
+        <h3>Goal: Provide out-of-the-box accessibility</h3>
+        <p>Several view update solutions exist or are in the works</p>
+        <ul>
+          <li><a href="https://github.com/Robdel12/a11y-announcer" target="ember-a11y">Ember a11y-announcer</a></li>
+        </ul>
+      </a-slide>
+      <a-slide data-state="intro" id="best_practices">
+        <h2>Live Region Best Practices</h2>
+      </a-slide>
+      <a-slide data-hid="best_practices">
+        <h3>Caveats</h3>
+        <ul>
+          <li>Multiple live regions add complexity</li>
+          <li>Live region role support is unreliable (<code>role="alert|log|status|timer"</code>)</li>
+          <li>Live regions can't be added dynamically to the DOM <sup>*</sup></li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="best_practices" data-state="one-ring">
+        <h3>One live region to rule them all...</h3>
+        <ul>
+          <li>Use a single, global "announcer" live region <img src="/img/spa-announcer-html.png" style="margin-top:10px" class="code_example"></li>
+          <li>Provide common mechanism to "announce" content</li>
+          <li>Use a script - <code>announce()</code> - to make updates</li>
+        </ul><a href="https://jsfiddle.net/pfox/ou11fr9p/show/light/" target="github">Say anything w/announce()</a><a href="https://github.com/patrickfox/a11y_kit" target="github">Check out $.announce() and a11y_kit on Github</a>
+      </a-slide>
+      <a-slide data-hid="best_practices" data-state="responsibility">
+        <h3>With great power...</h3>
+        <p>Use this technique judiciously</p>
+        <ul>
+          <li>Rule #1: Follow core accessibility principles, best practices</li>
+          <li>Use <code>announce()</code> to communicate pertinent info only</li>
+          <li>Keep announced messages succinct</li>
+          <li>Use cases:
+            <ul>
+              <li>View updates in single-page apps</li>
+              <li>Form validation errors</li>
+              <li>Alert messages (non-modal)</li>
+              <li>Progress updates in multi-step process</li>
+            </ul>
+          </li>
+        </ul>
+      </a-slide>
+      <a-slide data-state="intro" id="implementation">
+        <h2>Implementation Examples</h2>
+      </a-slide>
+      <a-slide data-hid="implementation">
+        <h3>Single-Page Application Lifecycle</h3>
+        <p>In a nutshell:</p>
+        <ol>
+          <li>User action</li>
+          <li>Some stuff happens...</li>
+          <li>View rendered &rarr; announce loaded status</li>
+        </ol>
+        <p>Create a helper function: <code>announce_view_loaded();</code></p>
+        <p>Most SPA's have a "view loaded" event of some sort</p>
+      </a-slide>
+      <a-slide data-hid="implementation">
+        <h3>Announce Helper Function</h3>
+        <p><code>announce_view_loaded()</code> does the following:</p>
+        <ol>
+          <li>Grab new title from view's <code>h2[data-page-title]</code></li>
+          <li>Create "loaded" message</li>
+          <li>Update page title </li>
+          <li>Call <code>announce(message, 'polite')</code></li>
+        </ol><a href="https://gist.github.com/patrickfox/ed600b3b38c2cfab2b11" target="anounce_view_loaded">anounce_view_loaded() Gist</a>
+      </a-slide>
+      <a-slide data-hid="implementation">
+        <h3 class="angular">Angular</h3>
+        <ul>
+          <li>Subscribe to <code>$viewContentLoaded</code> event in controller</li>
+        </ul><a href="/img/spa-angular-code-arrow.png" target="angular-detail" class="noarrow"><img src="/img/spa-angular-code.png" alt="Angular code example using the $viewContentLoaded event" class="code_example"></a><a href="https://moderna11y.firebaseapp.com/" target="angular">Angular Example</a><a href="https://docs.angularjs.org/api/ngRoute/directive/ngView" target="angular">Angular's ngView directive</a>
+      </a-slide>
+      <a-slide data-hid="implementation">
+        <h3 class="angular2">Angular 2</h3>
+        <ul>
+          <li><code>ngView</code> is deprecated, provides new <code>ngAfterViewInit()</code> method</li>
+        </ul><a href="/img/spa-angular2-code-arrow.png" target="angular2-detail" class="noarrow"><img src="/img/spa-angular2-code.png" alt="Angular 2 code example using ngAfterViewInit" class="code_example"></a><a href="http://localhost:5555/" target="angular">Angular 2 Example</a><a href="https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html" target="angular">Angular 2's Component Lifecycle Hooks and ngAfterViewInit()</a>
+      </a-slide>
+      <a-slide data-hid="implementation">
+        <h3 class="react">React</h3>
+        <ul>
+          <li>Use <code>componentDidUpdate</code> - only called on updates after initial render</li>
+        </ul><a href="/img/spa-react-code-arrow.png" target="react-detail" class="noarrow"><img src="/img/spa-react-code.png" alt="React code example using componentDidUpdate" class="code_example"></a><a href="http://localhost:8080/" target="react">React Example</a><a href="https://facebook.github.io/react/docs/component-specs.html" target="react-lifecycle">React Lifecycle Specs</a>
+      </a-slide>
+      <a-slide data-hid="implementation">
+        <h3 class="ember">Ember 2.x</h3>
+        <ul>
+          <li>As of 2.x, Views are deprecated in favor of Components</li>
+          <li>Use Route's <code>renderTemplate()</code> and Run Loop's <code>afterRender</code> queue</li>
+        </ul><a href="/img/spa-ember-code-arrow.png" target="ember-detail" class="noarrow"><img src="/img/spa-ember-code.png" alt="Ember code example using afterRender queue" class="code_example"></a><a href="http://localhost:4200/" target="ember">Ember Example</a><a href="http://emberjs.com/api/classes/Ember.run.html#method_scheduleOnce" target="ember-run">Run Loop and Ember.run</a>
+      </a-slide>
+      <a-slide data-hid="implementation">
+        <h3 class="ember">How about a more complex scenario?</h3>
+        <p>E.g. asynchronous loading of modules</p>
+        <ul>
+          <li>Announce "loading"</li>
+          <li>Script listens for custom <code>"all_modules_loaded"</code> event</li>
+          <li>Each module registers iself as loaded</li>
+          <li>On <code>"all_modules_loaded"</code>, invoke <code>announce_view_loaded();</code></li>
+          <li>Have timeout (5s?) so loaded message doesn't hang up</li>
+          <li>On error potentially announce error state (if pertinent)</li>
+        </ul>
+      </a-slide>
+      <a-slide data-state="intro" id="questions">
+        <h2>Questions</h2>
+      </a-slide>
+      <a-slide data-state="intro" id="thanks">
+        <h2>Thanks!</h2>
+        <!--p I'll post links to this deck and the code examples on Twitter tomorrow!--><a href="https://spa-a11y.firebaseapp.com" target="twitter">This deck: spa-a11y.firebaseapp.com</a><a href="https://github.com/patrickfox/accessible_spa_examples" target="twitter">Deck examples: github.com/patrickfox/accessible_spa_examples</a><a href="https://twitter.com/patrickfox" target="twitter">@patrickfox</a><a href="https://github.com/patrickfox" target="gh">gh/patrickfox</a>
+      </a-slide>
+    </a-slide-deck>
+    <div id="currentheading"></div>
+  </body>
+</html>
