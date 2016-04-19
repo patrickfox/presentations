@@ -1,0 +1,366 @@
+extends partials/master.jade
+
+prepend head
+	title Citi Accessibility
+
+block main
+	a-slide(data-state='intro')
+		h1 Citi Accessibility
+		p Patrick Fox, Technology Director, Razorfish
+
+	a-slide(data-state='section')
+		h2 Agenda
+		ul
+			li Building a11y expertise
+			li Dev process and testing
+			li Widget Keyboard Navigation
+			li Drop-Down Menus
+			li Alternative Text
+			li Forms
+			li Announcing Content
+			li Navigation and Page Hierarchy
+			li Tabindex and Focus Management
+			li Using ARIA
+			li Break
+			li Implementation Deep Dive
+			li Bootstrap Accessibility
+
+	a-slide(data-state='intro', id='compliance')
+		h2 Compliance Strategy and Goals
+
+	a-slide(for='compliance')
+		h3 Opportunities
+		ul
+			li(part) Create efficient and innovative web experiences for all
+			li(part) Exceed the accessibility standards and best practices
+			li(part) Value-add, key differentiator
+			li(part) Being a good steward of the web
+			li(part) Improved brand perception
+			li(part) Avoiding lawsuits
+
+	a-slide(for='compliance')
+		h3 Building expertise
+		em Continuous training and review
+		ul
+			li(part) Assign an accessibility lead
+			li(part) Conduct periodic training
+			li(part) Continuous feedback via frequent code reviews
+			li(part) Become screen reader experts
+
+	a-slide(for='compliance')
+		h3 Areas of difficulty
+		p From WebAIM's Annual Screen Reader Survey (2014)
+		flex-line(style="display: flex;")
+			div(flex)
+				ul
+					li Inaccessible Flash content
+					li CAPTCHA’s
+					li Ambiguous links
+					li Missing/improper alt text
+					li Unexpected screen changes
+					li Complex/difficult forms
+			div(flex)
+				ul
+					li Poor keyboard accessibility
+					li Missing or improper headings
+					li Too many links
+					li Complex data tables
+					li Lack of ‘Skip’ links
+					li Inaccessible/missing search
+
+	a-slide(data-state='intro' id='process')
+		h2 Dev process and testing
+
+	a-slide(for='process')
+		h3 General
+		ul
+			li Accessibility is a team effort!
+			li Be proactive about accessibility - don't put it off until QA
+			li Retrofitting and remediation efforts are costly
+			li Review and test as you go
+			li Waiting until QA is the same as remediation
+
+	a-slide(for='process')
+		h3 Design review and technical planning
+		ul
+			li(part) Review and approve designs for accessibility
+			li(part) Create prototypes to address unknown situations
+			li(part) ?
+
+	a-slide(for='process')
+		h3 Automated testing
+		em Make compliance testing part of the development process
+		ul
+			li(part) Tests color contrast, code validation
+			li(part) #[a(target='axe', url='http://www.deque.com/products/axe/') aXe] - Chrome plugin
+			li(part) #[a(target='tenon', url='http://tenon.io/') Tenon] - testing service
+			li(part) #[a(target='tv', url='https://www.totalvalidator.com/') Total Validator] - browser plug-in
+			li(part) Write custom scripts
+
+	a-slide(for='process')
+		h3 Manual testing
+		em Automated testing only accounts for ~30% of a11y issues
+		ul
+			li(part) Ensure keyboard operablility
+			li(part) Ensure that UI and content structure are clear via screen reader
+			li(part) Screen readers:
+				ul
+					li Win: NVDA, JAWS
+					li MacOS, iOS: VoiceOver
+					li Android: TalkBack
+	a-slide(for='process')
+		h3 Screen reader/browser support
+		em Goal: compliance across widest range of screen reader/browser combos, within reason...
+		ul
+			li(part) Focus on most widely used screen reader/browser combos
+				ul
+					li Win: JAWS and IE
+					li Win: NVDA and FF
+					li Android: TalkBack and FF
+					li iOS: VO and Safari
+			li(part) Not every feature will work the same across the combos
+			li(part) Document known issues for future reference
+			li(part) Report screen reader and browser defects to their manufacturers
+				ul
+					li [Apple Bug Reporter](https://bugreport.apple.com/)
+					li [Google Chrome Bugs](http://dev.chromium.org/for-testers/bug-reporting-guidelines)
+					li [NVDA Bugs](http://community.nvda-project.org/wiki/Issues)
+					li [JAWS Bugs](http://www.freedomscientific.com/Forms/TechSupport)
+
+	a-slide(data-state='intro' for='bestpractices')
+		h2 Implementation Best Practices
+
+	a-slide(for='bestpractices')
+		h3 ARIA
+		p Question the need for and minimize use of ARIA attributes
+			ul
+				li #[code aria-required="false"] - redundant
+				li #[code aria-invalid="false"] - redundant
+				li #[code aria-hidden="false"] - redundant, #[em causes issues]
+		strong Don't arbitrarily use ARIA attributes without testing
+
+	a-slide(for='bestpractices')
+		h3 Focus Management
+		ul
+			li Care for user focus
+			li Ensure that UI updates do not change user focus unless:
+				ul
+					li the focus change is intended and necessary
+					li the focus change improves the user's understanding of a context change
+					li Ex: modals, content is no longer available in new context
+
+	a-slide(for='bestpractices')
+		h3 Tabindex
+		ul
+			li(part) Do not hard code #[code tabindex] - rely on natural tab order
+			li(part) Need a clickable/user interactive element?
+				ul
+					li Use a #[code button] or #[code a] for intended purpose
+					li Don't: #[code div(role="button" tabindex="1")]
+					li Don't: #[code a(role="button")] or #[code button(role="link")]
+			li(part) Need to put focus somewhere in the UI that isn't focusable?
+				ul
+					li Use a script to manage focus and place focus temporarily
+					li See $.access()
+
+	a-slide(for='bestpractices')
+		h3 Navigation and Content Hierarchy
+		ul
+			li Skip to content
+			li Establish content hierarchy using headings
+				ul 
+					li don't overuse headings
+					li one H1 per view
+					li use headings to indicate hiearchy of content
+					li no links in headings
+					li visual size should not indicate heading use
+		a(url='https://dit08.mobile.citibank.com/USCRSF/CMLSVC/index.html#dash/lan') Example
+
+	a-slide(for='bestpractices')
+		h3 Landmarks
+		ul
+			li every page should have one #[code banner], #[code main], #[code contentinfo]
+			li generic landmarks like #[code navigation], #[code complementary]  require a label
+			li search should use #[code role="search"]
+			li HTML5 sectioning elements maybe recognized as landmarks
+				ul
+					li e.g. #[code aside] is a complementary in VO
+					li is a landmark: use the accompanying role
+					li is not a landmark: use #[code role="presentation"]
+			li don't use #[code form] or #[code application]
+
+	a-slide(for='bestpractices')
+		h3 Widget Keyboard Navigation
+		ul
+			li Ensure that widgets are navigable via the keyboard
+			li Emulate native browser functionality where possible
+			li Use ARIA to provide state semantics
+		a(url='http://www.moderna11y.com/#/blog/accessible-popup-menus' target='ddmenu') Example: Drop-down menus
+		a(url='http://access.aol.com/dhtml-style-guide-working-group/' target='dhtmlsgwg') DHTML Style Guide Working Group
+
+	a-slide(for='bestpractices')
+		h3 Modals
+		h4 Goal
+		ul
+			li Announce presence of modal and purpose
+			li Keep user isolated in modal
+
+	a-slide(for='bestpractices')
+		h3 Modals
+		h4 Setup
+		ul
+			li H1 is first heading
+			li #[code role="dialog"]
+			li #[code aria-labelledby] to label modal
+
+	a-slide(for='bestpractices')
+		h3 Modals
+		h4 On Open
+		ul
+			li UI Isolation
+			li Place focus on first focusable element
+			li Esc key closes dialog (unless action required)
+
+	a-slide(for='bestpractices')
+		h3 Modals
+		h4 On Close
+		ul
+			li Remove UI isolation
+			li Place focus back on modal trigger
+
+		a(href="https://citiretailservices.citibankonline.com/RSnextgen/svc/launch/index.action?siteId=PLCN_HOMEDEPOT&langId=en_US&JFP_TOKEN=12345&pagename=signon#retrieve" target="popup") Modal example (Citi) ➔
+		br
+		a(href="#{modern}#/blog/accessible-modals.html" target="popup") Modal example ➔
+
+	a-slide(for='bestpractices')
+		h3 Tooltips
+		ul
+			li Tooltips contain succinct, non-interactive, informational content #[strong only]
+			li On hover/focus, it's OK to display a tooltip if contents are read to user
+			li E.g. #[code button(role="tooltip" aria-label="Tooltip content")]
+		a(href="#{modern}#/blog/accessible-tooltips.html" target="popup") Tooltip example ➔
+
+	a-slide(for='bestpractices')
+		h3 Collapsibles
+		h4 Button
+		ul
+			li Toggle #[code aria-expanded="true|false"] to indicate expanded/collapsed state
+
+	a-slide(for='bestpractices')
+		h3 Collapsibles
+		h4 Content
+		ul
+			li #[code display: none;] to hide inactive content from screen readers
+
+	a-slide(for='bestpractices')
+		h3 Drop-Down Menus
+		h4 Button
+		ul
+			li Use #[code aria-haspopup="true"] to indicate popup menu button
+			li Use #[code aria-expanded="true|false"] to indicate current menu state
+
+	a-slide(for='bestpractices')
+		h3 Drop-Down Menus
+		h4 Menu
+		ul
+			li Use #[code display: none;] to hide inactive menu content from screen readers
+			li Emulate native menu keyboard navigation (arrow keys, esc, tab)
+
+		a(href="#{modern}#/blog/accessible-popup-menus.html" target="popup") Drop-down menu example ➔
+	
+	a-slide(for='bestpractices')
+		h3 Alternative Text
+		ul
+			li Improves understanding and accessibility for screen reader users
+			li Use #[code alt] for images
+			li #[code aria-label] for screen-reader only content
+			li #[code aria-labelledby], #[code aria-describedby] - use available content to label something
+
+	a-slide(for='bestpractices')
+		h3 Form Validation
+		h4 Basics
+		ul
+			li Every form input requires a label (via #[code label(for="id")] or #[code aria-label])
+			li #[code aria-required="true"] to indicate required fields
+			li Avoid links in input labels
+
+	a-slide(for='bestpractices')
+		h3 Form Validation
+		h4 Error/help messages
+		ul
+			li Visible error/help messages must be read upon interaction with field
+			li Use #[code aria-invalid="true"] to indicate invalid fields
+			li Use #[code $.announce()] to announce error messages to user
+
+		a(href="https://citiretailservices.citibankonline.com/RSnextgen/svc/launch/index.action?siteId=PLCN_HOMEDEPOT#signon" target="popup") Form validation example (Citi) ➔
+
+	a-slide(for='bestpractices')
+		h3 Announcing Content
+		em Use sparingly to communicate messages without changing user focus
+		ul
+			li Single-page app view changes
+			li Any pertinent alerts/errors
+	
+	a-slide(for='bestpractices')
+		h3 Single Page Applications
+		h4 Goals
+		ul
+			li Make user aware of page transitions
+			li Emulate native page load behavior
+
+	a-slide(for='bestpractices')
+		h3 Single Page Applications
+		h4 Solution
+		ul
+			li Use #[code $.announce()] to announce new view title upon view change
+
+		a(href="#{modern}#/blog/screen-reader-page-load-behaviors.html" target="popup") Native page load behaviors ➔
+		br
+		a(href="#{modern}" target="popup") SPA example ➔		
+
+	a-slide(for='bestpractices')
+		h3 
+		ul
+			li 
+			li 
+			li 
+	a-slide(for='bestpractices')
+		h3 
+		ul
+			li 
+			li 
+			li 
+
+	a-slide(data-state="intro" id='implementation')
+		h2 Implementation Deep Dive
+
+	a-slide(data-state="intro" id='implementation')
+		h2 Development Tips
+		ul
+			li Minimize the use of ARIA tags
+			li Don't overcomplicate your code
+
+	a-slide(for='implementation')
+		h3 A11y Kit
+		p Provides essential accessibility tools:
+		ul
+			li Announce content using #[code $.announce()]
+			li Focus on anything using #[code $.access()]
+
+		a(href="https://github.com/patrickfox/a11y_kit" target="a11ykit") A11y Kit details ➔
+
+	a-slide(for='implementation')
+		h3 Bootstrap accessibility
+		ul
+			li Bootstrap is great but not perfect
+			li #[a(href="http://getbootstrap.com/javascript/#live-demo") Modal example]
+
+
+	a-slide(for='process')
+		h2 Questions
+
+	a-slide(for='process')
+		h2 Thanks!
+		a(href="https://twitter.com/patrickfox" target="twitter") @patrickfox
+
+
