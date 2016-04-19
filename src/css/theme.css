@@ -331,7 +331,10 @@ a.noarrow {
   transition: top .5s;
   font-family: 'Maven Pro';
   font-weight:600;
+  font-size: .6em;
+  color: #666;
 }
+
 
 #currentheading.showheading {
   top: 0;
