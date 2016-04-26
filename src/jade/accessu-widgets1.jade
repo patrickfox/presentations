@@ -1,0 +1,82 @@
+extends partials/master.jade
+
+prepend head
+	title Intro to A11y
+
+block main
+	a-slide(data-state='intro')
+		h1 Intro to Accessibility
+		p Patrick Fox, Technology Director @Razorfish, Austin, TX
+
+	a-slide(data-state='intro')
+		h2 Agenda
+
+		ul
+			li Focus Management
+			li Announcing Dynamic Content
+			li Modal Dialogs
+			li Dynamic Table Filtering and Sorting
+
+	a-slide(data-state='section', id='focusmgmt')
+		h2 Focus Management
+
+	a-slide(for='focusmgmt')
+		h3 
+		ul
+			li(part) 
+			li(part) 
+			li(part) 
+			li(part) 
+
+
+	a-slide(data-state='section', id='announce')
+		h2 Announcing Dynamic Updates
+
+	a-slide(for='announce')
+		h3 
+		ul
+			li(part) 
+			li(part) 
+			li(part) 
+			li(part) 
+
+
+	a-slide(data-state='section', id='modals')
+		h2 Modal Dialogs
+
+	a-slide(for='modals')
+		h3 
+		ul
+			li(part) 
+			li(part) 
+			li(part) 
+			li(part) 
+
+	a-slide(data-state='section', id='tables')
+		h2 Dynamic Table Filtering and Sorting
+
+	a-slide(for='tables')
+		h3 
+		ul
+			li(part) 
+			li(part) 
+			li(part) 
+			li(part) 
+
+	a-slide(for='target')
+		flex-line(style="display: flex;")
+			div(flex)
+				ul
+					li 
+			div(flex)
+				ul
+					li 
+
+	a-slide(for='process')
+		h2 Questions
+
+	a-slide(for='process')
+		h2 Thanks!
+		a(href="https://twitter.com/patrickfox" target="twitter") @patrickfox
+
+

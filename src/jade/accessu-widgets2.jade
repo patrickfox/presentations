@@ -1,0 +1,95 @@
+extends partials/master.jade
+
+prepend head
+	title AccessU 2016 - Widgets
+
+block main
+	a-slide(data-state='intro')
+		h1 Intro to Accessibility
+		p Patrick Fox, Technology Director @Razorfish, Austin, TX
+		p #[a(href="https://twitter.com/patrickfox" target="twitter") @patrickfox]
+
+	a-slide(data-state='intro')
+		h2 Agenda
+
+		ul
+			li Wizard Progress Indicator
+			li File Selector and Upload
+			li Form Validation
+			li Search By Location
+			li Dynamic application page elements and flow
+
+	a-slide(data-state='section', id='progress')
+		h2 Focus Management
+
+	a-slide(for='progress')
+		h3 
+		ul
+			li(part) 
+			li(part) 
+			li(part) 
+			li(part) 
+
+
+	a-slide(data-state='section', id='fileupload')
+		h2 Announcing Dynamic Updates
+
+	a-slide(for='fileupload')
+		h3 
+		ul
+			li(part) 
+			li(part) 
+			li(part) 
+			li(part) 
+
+
+	a-slide(data-state='section', id='validation')
+		h2 Modal Dialogs
+
+	a-slide(for='validation')
+		h3 
+		ul
+			li(part) 
+			li(part) 
+			li(part) 
+			li(part) 
+
+	a-slide(data-state='section', id='location')
+		h2 Dynamic Table Filtering and Sorting
+
+	a-slide(for='location')
+		h3 
+		ul
+			li(part) 
+			li(part) 
+			li(part) 
+			li(part) 
+
+	a-slide(data-state='section', id='dynamicapp')
+		h2 Dynamic Table Filtering and Sorting
+
+	a-slide(for='dynamicapp')
+		h3 
+		ul
+			li(part) 
+			li(part) 
+			li(part) 
+			li(part) 
+
+	a-slide(for='target')
+		flex-line(style="display: flex;")
+			div(flex)
+				ul
+					li 
+			div(flex)
+				ul
+					li 
+
+	a-slide(for='process')
+		h2 Questions
+
+	a-slide(for='process')
+		h2 Thanks!
+		a(href="https://twitter.com/patrickfox" target="twitter") @patrickfox
+
+

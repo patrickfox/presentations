@@ -19,14 +19,14 @@ block main
 		h2 Compliance Strategy and Goals
 
 	a-slide(data-hid='compliance')
-		h3 Opportunities
+		h3 Opportunities and Inclusivity
 		ul
 			li(part) Create efficient and innovative web experiences for all
 			li(part) Exceed the accessibility standards and best practices
-			li(part) Value-add, key differentiator
-			li(part) Being a good steward of the web
-			li(part) Improved brand perception
-			li(part) Avoiding lawsuits
+			li(part) Competetive value-add, key differentiator
+			li(part) Be a good steward of the web
+			li(part) Improve brand perception
+			li(part) Minimize legal risks
 
 	a-slide(data-hid='compliance')
 		h3 Building expertise
@@ -64,10 +64,11 @@ block main
 	a-slide(data-hid='process')
 		h3 General
 		ul
-			li(part) Accessibility is a team effort!
+			li(part) Accessibility is a team effort
 			li(part) Be proactive about accessibility - don't put it off until QA
-			li(part) Retrofitting and remediation efforts are costly
+			li(part) Build accessibility into each task
 			li(part) Review and test as you go
+			li(part) Retrofitting and remediation efforts are costly
 			li(part) Waiting until QA is the same as remediation
 
 	a-slide(data-hid='process')
@@ -82,8 +83,8 @@ block main
 		ul
 			li(part) Tests color contrast, code validation
 			li(part) #[a(target='axe', url='http://www.deque.com/products/axe/') aXe (Chrome plugin)]
-			li(part) #[a(target='tenon', url='http://tenon.io/') Tenon (a11y testing service)] 
 			li(part) #[a(target='tv', url='https://www.totalvalidator.com/') Total Validator (browser plug-in)]
+			li(part) #[a(target='tenon', url='http://tenon.io/') Tenon (a11y testing service)]
 			li(part) Write custom scripts
 
 	a-slide(data-hid='process')
@@ -92,11 +93,6 @@ block main
 		ul
 			li(part) Ensure keyboard operablility
 			li(part) Ensure that UI and content structure are clear via screen reader
-			li(part) Screen readers:
-				ul
-					li Win: NVDA, JAWS
-					li MacOS, iOS: VoiceOver
-					li Android: TalkBack
 
 	a-slide(data-hid='process')
 		h3 Screen reader/browser support
@@ -200,8 +196,12 @@ block main
 		h3 Announcing Content
 		em Use a single live region to communicate pertinent messages
 		ul
-			li Single-page app view changes
-			li Any pertinent alerts/errors
+			li Multiple live regions complicates code and testing
+			li Avoid live region roles: `role='status|log|alert|timer'`
+			li Use to announce pertinent updates
+				ul
+					li Single-page app view changes
+					li Any pertinent alerts/errors
 		a(href='https://jsfiddle.net/pfox/ou11fr9p/') Say anything w/ $.announce()
 			
 	a-slide(data-hid='bestpractices')
@@ -317,7 +317,8 @@ block main
 			li Use #[code display: none;] to hide inactive menu content from screen readers
 			li Emulate native menu keyboard navigation (arrow keys, esc, tab)
 
-		a(href="#{modern}#/blog/accessible-popup-menus.html" target="popup") Drop-down menu example
+		a(href="#{modern}#/blog/accessible-popup-menus.html" target="moderna11ydds") Drop-down menu example
+		a(href="http://fusion-p5-staging.herokuapp.com/p5_core_index.html" target="fusiondds") Drop-down menu example
 
 	a-slide(data-state='intro')
 		h2 Questions
