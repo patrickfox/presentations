@@ -1,11 +1,11 @@
 extends partials/master.jade
 
 prepend head
-	title Intro to A11y
+	title AccessU 2016 - Widgets 1
 
 block main
-	a-slide(data-state='intro')
-		h1 Intro to Accessibility
+	a-slide(data-state='title')
+		h1 AccessU 2016 - Widgets!
 		p Patrick Fox, Technology Director @Razorfish, Austin, TX
 
 	a-slide(data-state='intro')
@@ -20,62 +20,201 @@ block main
 	a-slide(data-state='section', id='focusmgmt')
 		h2 Focus Management
 
-	a-slide(for='focusmgmt')
-		h3 
-		ul
-			li(part) 
-			li(part) 
-			li(part) 
-			li(part) 
 
+	a-slide(data-hid='focusmgmt')
+		h3 Focus Management
+		ul
+			li(part) Care for user focus
+			li(part) Ensure that UI updates do not change user focus #[em unless]:
+				ul
+					li A focus change is intended and necessary
+					li A focus change improves the user's understanding of a context change
+					li Examples: modals, drop-down menus, content is no longer available in new context
+
+	a-slide(data-hid='focusmgmt')
+		h3 Tabindex Usage
+		ul
+			li(part)  #[code tabindex="0"] makes an element keyboard focusable, uses natural tab order
+			li(part)  #[code tabindex="{&ge;1}"] makes an element keyboard focusable, assigns specific order
+			li(part)  #[code tabindex="-1"] makes an element programmatically focusable (e.g. via JS)
+
+	a-slide(data-hid='focusmgmt')
+		h3 Tabindex Best Practices
+		ul
+			li(part) Never use #[code tabindex] values &gt; 0
+			li(part) Ad hoc use of #[code tabindex] can cause a lot of unintended issues
+			li(part) Avoid the use of	 #[code tabindex] - rely on natural tab order
+
+	a-slide(data-hid='focusmgmt')
+		h3 Use Buttons and Links
+		p Need a clickable/user-interactive element?
+		ul
+			li Use a #[code button] or #[code a] for intended purpose
+				ul
+					li Use #[code a] to link to another location/view
+					li Use #[code button] for generic clickable or form submit
+			li Don't: #[code div(role="button" tabindex="1")] or #[span div(role="button" tabindex="1")]
+			li Don't: #[code a(role="button")] or #[code button(role="link")]
+
+	a-slide(data-hid='focusmgmt')
+		h3 Focus On Anything
+		p Need to put focus somewhere in the UI that isn't focusable?
+		ul
+			li Use a script to manage focus and place focus temporarily
+			li No need to manually hard code #[code tabindex] in HTML
+			li #[a(href='https://jsfiddle.net/pfox/vkyrdy1a/' target='access') See $.access()]
 
 	a-slide(data-state='section', id='announce')
 		h2 Announcing Dynamic Updates
 
-	a-slide(for='announce')
-		h3 
+	a-slide(data-hid='announce')
+		h3 Live Region Caveats
 		ul
-			li(part) 
-			li(part) 
-			li(part) 
-			li(part) 
+			li Multiple live regions add complexity
+			li Live region role support is unreliable (#[code role="alert|log|status|timer"])
+			li Live regions can't be added dynamically to the DOM #[sup *]
 
+	a-slide(data-hid='announce' data-state='one-ring')
+		h3 One live region to rule them all...
+		ul
+			li Use a single, global "announcer" live region #[img(src="/img/spa-announcer-html.png" class="code_example" style="margin-top:10px")]
+			li Provide common mechanism to "announce" content
+			li Use a script - #[code announce()] - to make updates
+		a(href="https://jsfiddle.net/pfox/ou11fr9p/show/light/" target="github") Say anything w/announce()
+		a(href="https://github.com/patrickfox/a11y_kit" target="github") Check out $.announce() and a11y_kit on Github
+
+	a-slide(data-hid='announce' data-state='responsibility')
+		h3 With great power...
+		p Use this technique judiciously
+		ul
+			li Rule #1: Follow core accessibility principles, best practices
+			li Use #[code announce()] to communicate pertinent info only
+			li Keep announced messages succinct
+
+	a-slide(data-hid='announce' data-state='responsibility')
+		h3 With great power... (continued)
+		p Use this technique judiciously
+		ul
+			li Use cases:
+				ul
+					li View updates in single-page apps
+					li Form validation errors
+					li Alert messages (non-modal)
+					li Progress updates in multi-step process
 
 	a-slide(data-state='section', id='modals')
 		h2 Modal Dialogs
 
-	a-slide(for='modals')
-		h3 
+	a-slide(data-hid='modals')
+		h3 Modals
+		p Goals
 		ul
-			li(part) 
-			li(part) 
-			li(part) 
-			li(part) 
+			li User is aware of model presence and purpose
+			li User is able to navigate modal content
+			li User is unable to navigate background content
+
+	a-slide(data-hid='modals')
+		h3 Modals
+		p Setup
+		ul
+			li H1 is first heading
+			li Use #[code role="dialog"] to assign role to modal container
+			li Use #[code aria-labelledby] to label modal
+			li Use #[code aria-describedby] to describe modal (optional)
+
+	a-slide(data-hid='modals')
+		h3 Modals
+		p On Open
+		ul
+			li UI Isolation - hide main content using #[code aria-hidden="true"]
+			li Tab fence - script keeps focus in modal
+			li Place focus on first focusable element
+			li Esc key closes dialog (unless action required)
+
+	a-slide(data-hid='modals')
+		h3 Modals
+		p On Close
+		ul
+			li Remove UI isolation
+			li Place focus back on modal trigger
+		a(href="#{modern}#/blog/accessible-modals.html" target="popup") Modal example
+
+	a-slide(data-hid='modals')
+		h3 Tooltips
+		p Design Tips
+		ul
+			li Tooltips should contain succinct, #[em non-interactive], informational content #[strong only]
+			li Tooltips with interactive content (e.g. links, buttons) should be a modal
+
+	a-slide(data-hid='modals')
+		h3 Tooltips
+		p Behaviors
+		ul
+			li On hover/focus, it's OK to display a tooltip if contents are read to user
+			li E.g. #[code button(role="tooltip" aria-label="Tooltip content")]
+		a(href="#{modern}#/blog/accessible-tooltips.html" target="popup") Tooltip example
 
 	a-slide(data-state='section', id='tables')
 		h2 Dynamic Table Filtering and Sorting
 
-	a-slide(for='tables')
-		h3 
+	a-slide(data-hid='tables')
+		h3 Goals
 		ul
-			li(part) 
-			li(part) 
-			li(part) 
-			li(part) 
+			li Communicate of table purpose and functionality
+			li Communicate status changes, avoid confusion
 
-	a-slide(for='target')
-		flex-line(style="display: flex;")
-			div(flex)
-				ul
-					li 
-			div(flex)
-				ul
-					li 
+	a-slide(data-hid='tables')
+		h3 Overview
+		ul
+			li Table Navigation
+			li Table Structure
+			li Column Sorting
+			li Table Summary
+		a(href='http://assets.cms.gov/resources/framework/2.0/Pages/datatables.html' target='datatable') Data table widget example
 
-	a-slide(for='process')
+	a-slide(data-hid='tables')
+		h3 Table Navigation in VoiceOver
+		ul
+			li #[strong VO-R] - hear table row contents from the location of the VoiceOver cursor to the end of the row
+			li #[strong VO-C] - hear the column header
+			li #[strong VO-C-C] - hear table column contents from the location of the VoiceOver cursor to the bottom of the column
+			li #[strong Up/Down Arrow] - move up or down in a column
+			li #[strong VO-|] - sort the column, position the VoiceOver cursor on the column
+			li #[strong VO-Command-\] - move to the parent row of the current column
+
+	a-slide(data-hid='tables')
+		h3 Table Structure
+		ul
+			li(part) Provide a title for your table via the #[code caption] tag
+			li(part) Use #[code thead] and #[code tbody] correctly
+			li(part) Use #[code th(scope="col")] to define table column headings
+			li(part) Use #[code th(scope="row")] to define table row headings
+			li(part) Column/row heading content should be succint but understandable
+
+
+	a-slide(data-hid='tables')
+		h3 Column Sorting
+		ul
+			li(part) Use #[code button] element to control column sorting
+			li(part) Use #[code aria-sort='ascending|descending'] on the sorted #[code th]
+			li(part) Use #[code aria-label] to communicate visual icon meaning
+			li(part) Update the table status and announce state change
+			li(part) Manage focus - ensure that focus stays on active button
+
+
+	a-slide(data-hid='tables')
+		h3 Table Summary
+		ul
+			li(part) Provide a table status that is connected to the table via #[code aria-describedby]
+				ul
+					li "Showing page 2 of 5, sorted descending by First Name"
+					li "Now sorting by Last Name ascending"
+			li(part) Update and #[code announce()] the new table state when filtering, pagination and/or sorting changes
+
+	a-slide(data-state='intro')
 		h2 Questions
 
-	a-slide(for='process')
+	a-slide(data-state='intro')
 		h2 Thanks!
 		a(href="https://twitter.com/patrickfox" target="twitter") @patrickfox
 

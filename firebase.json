@@ -1,5 +1,5 @@
 {
-  "firebase": "spa-a11y",
+  "firebase": "accessu2016-widgets",
   "public": "build",
   "ignore": [
     "firebase.json",
