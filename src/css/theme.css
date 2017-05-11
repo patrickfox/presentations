@@ -351,3 +351,12 @@ img {
 .code_example {
   max-width: 700px;
 }
+
+.hidden {
+  display: none;
+}
+
+h3 div.small {
+  font-size: 60%;
+  color:#999;
+}

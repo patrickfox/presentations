@@ -1,12 +1,13 @@
 extends partials/master.jade
 
 prepend head
-	title AccessU 2016 - Widgets 2
+	title AccessU 2017 - Widgets 2
 
 block main
 	a-slide(data-state='intro')
-		h1 AccessU 2016 - Widgets 2
-		p Patrick Fox, Technology Director @Razorfish, Austin, TX
+		h1 AccessU 2017
+			div Widgets 2
+		p Patrick Fox, Technology Director @SapientRazorfish, Austin, TX
 		p #[a(href="https://twitter.com/patrickfox" target="twitter") @patrickfox]
 
 	a-slide(data-state='intro')
@@ -19,64 +20,205 @@ block main
 			li Search By Location
 			li Dynamic application page elements and flow
 
-	a-slide(data-state='section', id='progress')
-		h2 Focus Management
-
-	a-slide(for='progress')
-		h3 
+	a-slide(data-state='intro', id='progress')
+		h2 Wizard Progress Indicator
+	a-slide(data-hid='progress')
+		h3 Overview
 		ul
-			li(part) 
-			li(part) 
-			li(part) 
-			li(part) 
-
-
-	a-slide(data-state='section', id='fileupload')
-		h2 Announcing Dynamic Updates
-
-	a-slide(for='fileupload')
-		h3 
+			li(part) Multi-step process
+			li(part) Communicate state/progress
+			li(part) Overlooked
+				ul
+					li Visual progress indicator not accessible
+					li Focus management (for single-page apps)
+	a-slide(data-hid='progress')
+		h3 Implementation
 		ul
-			li(part) 
-			li(part) 
-			li(part) 
-			li(part) 
+			li() Update page title
+			li() Make visual progress bar accessible
+			li() Use heading to reflect current 
+			li() Provide summary and confirmation steps
+	a-slide(data-hid='progress')
+		h3 Examples
+		ul
+			li() #[a(href='https://www.w3.org/WAI/eval/report-tool/#/' target='wizard') WCAG-EM Report Tool]
+			li() #[a(href='http://fusion.razorretail.xyz/test/2017/q1/homedepot/dashboard.html' target='wizard') CRS - Make A Payment]
 
+	a-slide(data-state='intro', id='fileupload')
+		h2 File Selector and Upload
+
+	a-slide(data-hid='fileupload')
+		h3 Overview
+		p Modern file upload supports multiple uploads and provides progress bars and status
+		strong Goal: communicate dynamic file upload status in an accessible manner
+
+
+	a-slide(data-hid='fileupload')
+		h3 Experience Design
+		p Provide visual text alerts for each status update
+		ul
+			li() 
+
+	a-slide(data-hid='fileupload')
+		h3 Experience Design - Requirements
+		p Ensure that upload instructions and requirements are communicated
+		ul
+			li() "Maximum file size is 10 megabytes"
+
+	a-slide(data-hid='fileupload')
+		h3 Experience Design - On Submit
+		p Confirm that upload is underway, report status
+		ul
+			li() "Uploading 5 files to 'My Photos'"
+		img(src='/img/accessu/fileupload-uPloading.jpg' alt='Files uploading notification')
+
+	a-slide(data-hid='fileupload')
+		h3 Experience Design - On File/Upload Complete
+		ul
+			li() "Uploaded 3 of 5 files"
+			li() "3 of 5 files uploaded, 50% complete"
+			li() "5 of 5 files uploaded - upload complete"
+		img(src='/img/accessu/fileupload-complete.jpg' alt='File upload complete notification')
+
+
+	a-slide(data-hid='fileupload')
+		h3 Experience Design - On Error/Cancel
+		ul
+			li() "Upload failed - 4 of 7 files were uploaded"
+			li() "Upload cancelled - 2 of 5 files not uploaded"
+		img(src='/img/accessu/fileupload-cancelled.jpg' alt='File upload cancelled notification')
+
+	a-slide(data-hid='fileupload')
+		h3 Experience Design - On Unload
+		p Upon navigating away from the page, warn users that upload is not complete
+		img(src='/img/accessu/fileupload-unload-warning.jpg' alt='Page unload warning dialog')
+
+	a-slide(data-hid='fileupload')
+		h3 Implementation
+		p Status updates are made possible via XMLHttpRequest object and #[em upload] property
+		code
+			pre
+				#	xhr.upload.onprogress = function(e) {
+				#		if (e.lengthComputable) {
+				#			progressBar.value = (e.loaded / e.total) * 100;
+				#			progressBar.textContent = progressBar.value; // Fallback for unsupported browsers.
+				#		}
+				#	};
+
+	a-slide(data-hid='fileupload')
+		h3 Examples
+		ul
+			li #[a(href='https://photos.google.com/' target='fileupload') Google Photos]
 
 	a-slide(data-state='section', id='validation')
-		h2 Modal Dialogs
+		h2 Form Validation
 
-	a-slide(for='validation')
-		h3 
+	a-slide(data-hid='validation')
+		h3 Overview
+		p #[em Make success easy for all users, provide info and assistance]
 		ul
-			li(part) 
-			li(part) 
-			li(part) 
-			li(part) 
+			li() labels - purpose
+			li() requirements - required input, formatting, instructional info
+			li() errors and help info - what is wrong and how to fix it
+
+	a-slide(data-state='section' data-hid='validation')
+		h3 Implementation
+
+	a-slide(data-hid='validation')
+		h3 #[.small Implementation] Labels
+		p Form fields and groups of related radios/checkboxes must be labelled
+		p Techniques:	
+		ul
+			li() #[code &lt;label for="{id}"&gt;]
+			li() #[code aria-label="label copy"]
+			li() #[code aria-labelledby="{idref}"]
+
+	a-slide(data-hid='validation')
+		h3 #[.small Implementation] Requirements
+		p Required fields and formatting or instructional copy must be associated with a field and understood via AT
+		ul
+			li() Required field - use #[code aria-required="true"]
+			li() Formatting and instructional copy - use #[code aria-describedby="{idref}"]
+
+	a-slide(data-hid='validation')
+		h3 #[.small Implementation] Errors
+		p Error states and messaging must be communicated via AT
+		ul
+			li() Field error state - use #[code aria-invalid="true"]
+			li() Error text - use #[code aria-describedby="{idref}"] or "label error" technique
+			li() Additional copy - prepend "Error: " to error message
+			li() Onblur - announce errors politely
+
+	a-slide(data-hid='validation')
+		h3 #[.small Implementation] Example
+		ul
+			li() #[a(href='https://citiretailservices.citibankonline.com/RSnextgen/svc/launch/index.action?siteId=SEARS&langId=en_US' target='formvalidation') Sears Card - Sign On Form ]
 
 	a-slide(data-state='section', id='location')
-		h2 Dynamic Table Filtering and Sorting
+		h2 Search By Location
 
-	a-slide(for='location')
+	a-slide(data-hid='location')
+		h3 Overview
+		p Dynamic location search with map view
+		ul
+			li() 
+			li() 
+			li() 
+			li()
+
+	a-slide(data-hid='location')
+		h3 Experience Design
+		ul
+			li() Maps are visual - make map accessible if possible
+			li() Provide equivalent alternative list of search results 
+			li() As results are updated/filtered, display and announce a notification
+			li() Ensure that filtered state and number of results is communicated
+			li() Ensure that filter controls are keyboard navigable
+
+	a-slide(data-hid='location')
+		h3 Implementation
+		ul
+			li() 
+			li() 
+			li() 
+			li()
+
+	a-slide(data-hid='location')
+		h3 Examples
+		ul
+			li() #[a(href='https://www.starbucks.com/store-locator') Starbucks - Store Locator]
+			li()  #[a(href='https://www.thefreshmarket.com/your-market/store-locator') The Fresh Market - Find a Store]
+			li() 
+			li()
+
+	a-slide(data-hid='location')
 		h3 
 		ul
-			li(part) 
-			li(part) 
-			li(part) 
-			li(part) 
+			li() 
+			li() 
+			li() 
+			li()
+
+	a-slide(data-hid='location')
+		h3 
+		ul
+			li() 
+			li() 
+			li() 
+			li()
 
 	a-slide(data-state='section', id='dynamicapp')
-		h2 Dynamic Table Filtering and Sorting
+		h2 Dynamic application page elements and flow
 
-	a-slide(for='dynamicapp')
+	a-slide(data-hid='dynamicapp')
 		h3 
 		ul
-			li(part) 
-			li(part) 
-			li(part) 
-			li(part) 
+			li() 
+			li() 
+			li() 
+			li() 
 
-	a-slide(for='target')
+	a-slide(data-hid='dynamicapp')
 		flex-line(style="display: flex;")
 			div(flex)
 				ul
@@ -85,10 +227,10 @@ block main
 				ul
 					li 
 
-	a-slide(for='process')
+	a-slide
 		h2 Questions
 
-	a-slide(for='process')
+	a-slide
 		h2 Thanks!
 		a(href="https://twitter.com/patrickfox" target="twitter") @patrickfox
 
