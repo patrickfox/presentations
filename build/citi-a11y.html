@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Citi Accessibility</title>
+    <meta charset="utf-8">
+    <title>Slider</title>
+    <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link href="a-slide-deck.html" rel="import">
+    <link href="a-slide.html" rel="import">
+    <link href="flex-line.html" rel="import">
+    <link href="flex-grid.html" rel="import">
+    <link href="code-block.html" rel="import">
+    <link href="/css/theme.css" rel="stylesheet">
+  </head>
+  <body unresolved>
+    <a-slide-deck>
+      <a-slide data-state="intro">
+        <h1>Citi Accessibility</h1>
+        <p>Patrick Fox, Technology Director, Razorfish</p>
+      </a-slide>
+      <a-slide data-state="section">
+        <h2>Agenda</h2>
+        <ul>
+          <li>Compliance Strategy and Goals</li>
+          <li>Dev Process and Testing</li>
+          <li>Implementation Best Practices</li>
+        </ul>
+      </a-slide>
+      <a-slide data-state="intro" id="compliance">
+        <h2>Compliance Strategy and Goals</h2>
+      </a-slide>
+      <a-slide data-hid="compliance">
+        <h3>Opportunities and Inclusivity</h3>
+        <ul>
+          <li part>Create efficient and innovative web experiences for all</li>
+          <li part>Exceed the accessibility standards and best practices</li>
+          <li part>Competetive value-add, key differentiator</li>
+          <li part>Be a good steward of the web</li>
+          <li part>Improve brand perception</li>
+          <li part>Minimize legal risks</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="compliance">
+        <h3>Building expertise</h3><em>Continuous training and review</em>
+        <ul>
+          <li part>Assign an accessibility lead</li>
+          <li part>Conduct periodic training</li>
+          <li part>Continuous feedback via frequent code reviews</li>
+          <li part>Become screen reader experts</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="compliance">
+        <h3>Common accessibility issues</h3>
+        <p>From WebAIM's Annual Screen Reader Survey (2014)</p>
+        <flex-line style="display: flex;">
+          <div flex>
+            <ul>
+              <li>Inaccessible Flash content</li>
+              <li>CAPTCHA’s</li>
+              <li>Ambiguous links</li>
+              <li>Missing/improper alt text</li>
+              <li>Unexpected screen changes</li>
+              <li>Complex/difficult forms</li>
+            </ul>
+          </div>
+          <div flex>
+            <ul>
+              <li>Poor keyboard accessibility</li>
+              <li>Missing or improper headings</li>
+              <li>Too many links</li>
+              <li>Complex data tables</li>
+              <li>Lack of ‘Skip’ links</li>
+              <li>Inaccessible/missing search</li>
+            </ul>
+          </div>
+        </flex-line>
+      </a-slide>
+      <a-slide data-state="intro" id="process">
+        <h2>Dev process and testing</h2>
+      </a-slide>
+      <a-slide data-hid="process">
+        <h3>General</h3>
+        <ul>
+          <li part>Accessibility is a team effort</li>
+          <li part>Be proactive about accessibility - don't put it off until QA</li>
+          <li part>Build accessibility into each task</li>
+          <li part>Review and test as you go</li>
+          <li part>Retrofitting and remediation efforts are costly</li>
+          <li part>Waiting until QA is the same as remediation</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="process">
+        <h3>Design review and technical planning</h3>
+        <ul>
+          <li part>Review and approve designs for accessibility early on</li>
+          <li part>Create prototypes to address unknown situations</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="process">
+        <h3>Automated testing</h3><em>Make compliance testing part of the development process</em>
+        <ul>
+          <li part>Tests color contrast, code validation</li>
+          <li part><a target="axe" url="http://www.deque.com/products/axe/">aXe (Chrome plugin)</a></li>
+          <li part><a target="tv" url="https://www.totalvalidator.com/">Total Validator (browser plug-in)</a></li>
+          <li part><a target="tenon" url="http://tenon.io/">Tenon (a11y testing service)</a></li>
+          <li part>Write custom scripts</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="process">
+        <h3>Manual testing</h3><em>Automated testing only accounts for ~30% of a11y issues</em>
+        <ul>
+          <li part>Ensure keyboard operablility</li>
+          <li part>Ensure that UI and content structure are clear via screen reader</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="process">
+        <h3>Screen reader/browser support</h3><em>Goal: compliance across widest range of screen reader/browser combos, within reason...</em>
+        <ul>
+          <li part>Focus on most widely used screen reader/browser combos
+            <ul>
+              <li>Win: JAWS and IE, NVDA and FF</li>
+              <li>Android: TalkBack and FF</li>
+              <li>MacOS, iOS: VO and Safari</li>
+            </ul>
+          </li>
+          <li part>Not every feature will work the same across the combos</li>
+          <li part>Document known issues for future reference</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="process">
+        <h3>Screen reader/browser support</h3><em>Report screen reader and browser defects to their manufacturers</em>
+        <ul>
+          <li>[Apple Bug Reporter](https://bugreport.apple.com/)</li>
+          <li>[Google Chrome Bugs](http://dev.chromium.org/for-testers/bug-reporting-guidelines)</li>
+          <li>[NVDA Bugs](http://community.nvda-project.org/wiki/Issues)</li>
+          <li>[JAWS Bugs](http://www.freedomscientific.com/Forms/TechSupport)</li>
+        </ul>
+      </a-slide>
+      <a-slide data-state="intro" id="bestpractices">
+        <h2>Implementation Best Practices</h2>
+      </a-slide>
+      <a-slide data-hid="bestpractices">
+        <h3>Skip Navigation and Headings</h3>
+        <ul>
+          <li part>Provide "Skip to content" link to bypass repetetive content</li>
+          <li part>Use headings to create content hierarchy
+            <ul> 
+              <li>Don't overuse headings</li>
+              <li>Use one H1 per view</li>
+              <li>Use headings to improve content navigation and understanding</li>
+              <li>Avoid links in headings</li>
+              <li>Visual size should not indicate heading use</li>
+            </ul>
+          </li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="bestpractices">
+        <h3>Landmarks</h3><em>Landmarks provide a high level map of the major content sections</em>
+        <ul>
+          <li part>All page content should live within a landmark</li>
+          <li part>Every page should have one <code>banner</code>, <code>main</code>, <code>contentinfo</code></li>
+          <li part>Generic landmarks like <code>navigation</code>, <code>complementary</code> require a label</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="bestpractices">
+        <h3>Landmarks</h3><em>Landmarks provide a high level map of the major content sections</em>
+        <ul>
+          <li part>Search should use <code>role="search"</code></li>
+          <li part>HTML5 sectioning elements may be recognized as landmarks
+            <ul>
+              <li><code>aside</code> is a complementary in VO by default</li>
+              <li>Is a landmark: use the accompanying role</li>
+              <li>Is not a landmark: use <code>role="presentation"</code></li>
+            </ul>
+          </li>
+          <li part>Don't use <code>form</code> or <code>application</code> roles</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="bestpractices">
+        <h3>Alternative Text</h3>
+        <ul>
+          <li part>Improves understanding and accessibility for screen reader users</li>
+          <li part>Use <code>alt</code> for images</li>
+          <li part><code>aria-label</code> for screen-reader only content</li>
+          <li part><code>aria-labelledby</code>, <code>aria-describedby</code> - use available content to label something</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="bestpractices">
+        <h3>Focus Management</h3>
+        <ul>
+          <li part>Care for user focus</li>
+          <li part>Ensure that UI updates do not change user focus unless:
+            <ul>
+              <li>The focus change is intended and necessary</li>
+              <li>the focus change improves the user's understanding of a context change</li>
+              <li>E.g. modals, content is no longer available in new context</li>
+            </ul>
+          </li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="bestpractices">
+        <h3>Tabindex</h3>
+        <ul>
+          <li part>Do not hard code <code>tabindex</code> - rely on natural tab order</li>
+          <li part>Need a clickable/user interactive element?
+            <ul>
+              <li>Use a <code>button</code> or <code>a</code> for intended purpose</li>
+              <li>Don't: <code>div(role="button" tabindex="1")</code></li>
+              <li>Don't: <code>a(role="button")</code> or <code>button(role="link")</code></li>
+            </ul>
+          </li>
+          <li part>Need to put focus somewhere in the UI that isn't focusable?
+            <ul>
+              <li>Use a script to manage focus and place focus temporarily</li>
+              <li><a href="https://jsfiddle.net/pfox/vkyrdy1a/" target="access">See $.access()</a></li>
+            </ul>
+          </li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="bestpractices">
+        <h3>ARIA</h3><em>Question the need for and minimize use of ARIA attributes</em>
+        <ul>
+          <li><code>aria-required="false"</code> - redundant</li>
+          <li><code>aria-invalid="false"</code> - redundant</li>
+          <li><code>aria-hidden="false"</code> - redundant, <em>causes issues</em></li>
+        </ul><strong>Don't arbitrarily use ARIA attributes without testing</strong>
+      </a-slide>
+      <a-slide data-hid="bestpractices">
+        <h3>Announcing Content</h3><em>Use a single live region to communicate pertinent messages</em>
+        <ul>
+          <li>Multiple live regions complicates code and testing</li>
+          <li>Avoid live region roles: `role='status|log|alert|timer'`</li>
+          <li>Use to announce pertinent updates
+            <ul>
+              <li>Single-page app view changes</li>
+              <li>Any pertinent alerts/errors</li>
+            </ul>
+          </li>
+        </ul><a href="https://jsfiddle.net/pfox/ou11fr9p/">Say anything w/ $.announce()</a>
+      </a-slide>
+      <a-slide data-hid="bestpractices">
+        <h3>Form Validation</h3>
+        <h4>Basics</h4>
+        <ul>
+          <li>Every form input requires a label (via <code>label(for="id")</code> or <code>aria-label</code>)</li>
+          <li><code>aria-required="true"</code> to indicate required fields</li>
+          <li>Avoid links in input labels</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="bestpractices">
+        <h3>Form Validation</h3>
+        <h4>Error/help messages</h4>
+        <ul>
+          <li>Visible error/help messages must be read upon interaction with field</li>
+          <li>Use <code>aria-invalid="true"</code> to indicate invalid fields</li>
+          <li>Use <code>$.announce()</code> to announce error messages to user</li>
+        </ul><a href="https://citiretailservices.citibankonline.com/RSnextgen/svc/launch/index.action?siteId=PLCN_HOMEDEPOT#signon" target="popup">Form validation example (Citi)</a>
+      </a-slide>
+      <a-slide data-hid="bestpractices">
+        <h3>Single Page Applications</h3>
+        <h4>Goals</h4>
+        <ul>
+          <li>Make user aware of page transitions</li>
+          <li>Emulate native page load behavior</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="bestpractices">
+        <h3>Single Page Applications</h3>
+        <h4>Solution</h4>
+        <ul>
+          <li>Use <code>$.announce()</code> to announce new view title upon view change</li>
+        </ul><a href="http://www.moderna11y.com/#/blog/screen-reader-page-load-behaviors.html" target="popup">Native page load behaviors</a><br><a href="http://www.moderna11y.com/" target="popup">SPA example</a>
+      </a-slide>
+      <a-slide data-hid="bestpractices">
+        <h3>Widget Keyboard Navigation</h3>
+        <ul>
+          <li>Ensure that widgets are navigable via the keyboard</li>
+          <li>Emulate native browser functionality where possible</li>
+          <li>Use ARIA to provide state semantics</li>
+        </ul><a href="http://www.moderna11y.com/#/blog/accessible-popup-menus" target="ddmenu">Example: Drop-down menus</a><a href="http://access.aol.com/dhtml-style-guide-working-group/" target="dhtmlsgwg">DHTML Style Guide Working Group</a>
+      </a-slide>
+      <a-slide data-hid="bestpractices">
+        <h3>Modals</h3>
+        <h4>Goal</h4>
+        <ul>
+          <li>Announce presence of modal and purpose</li>
+          <li>Keep user isolated in modal</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="bestpractices">
+        <h3>Modals</h3>
+        <h4>Setup</h4>
+        <ul>
+          <li>H1 is first heading</li>
+          <li><code>role="dialog"</code></li>
+          <li><code>aria-labelledby</code> to label modal</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="bestpractices">
+        <h3>Modals</h3>
+        <h4>On Open</h4>
+        <ul>
+          <li>UI Isolation - hide main content using <code>aria-hidden="true"</code></li>
+          <li>Tab Fence - script keeps focus in modal</li>
+          <li>Place focus on first focusable element</li>
+          <li>Esc key closes dialog (unless action required)</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="bestpractices">
+        <h3>Modals</h3>
+        <h4>On Close</h4>
+        <ul>
+          <li>Remove UI isolation</li>
+          <li>Place focus back on modal trigger</li>
+        </ul><a href="https://citiretailservices.citibankonline.com/RSnextgen/svc/launch/index.action?siteId=PLCN_HOMEDEPOT&amp;langId=en_US&amp;JFP_TOKEN=12345&amp;pagename=signon#retrieve" target="popup">Modal example (Citi)</a><br><a href="http://www.moderna11y.com/#/blog/accessible-modals.html" target="popup">Modal example</a>
+      </a-slide>
+      <a-slide data-hid="bestpractices">
+        <h3>Tooltips</h3>
+        <ul>
+          <li>Tooltips contain succinct, non-interactive, informational content <strong>only</strong></li>
+          <li>On hover/focus, it's OK to display a tooltip if contents are read to user</li>
+          <li>E.g. <code>button(role="tooltip" aria-label="Tooltip content")</code></li>
+        </ul><a href="http://www.moderna11y.com/#/blog/accessible-tooltips.html" target="popup">Tooltip example</a>
+      </a-slide>
+      <a-slide data-hid="bestpractices">
+        <h3>Collapsibles</h3>
+        <h4>Button</h4>
+        <ul>
+          <li>Toggle <code>aria-expanded="true|false"</code> to indicate expanded/collapsed state</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="bestpractices">
+        <h3>Collapsibles</h3>
+        <h4>Content</h4>
+        <ul>
+          <li><code>display: none;</code> to hide inactive content from screen readers</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="bestpractices">
+        <h3>Drop-Down Menus</h3>
+        <h4>Button</h4>
+        <ul>
+          <li>Use <code>aria-haspopup="true"</code> to indicate popup menu button</li>
+          <li>Use <code>aria-expanded="true|false"</code> to indicate current menu state</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="bestpractices">
+        <h3>Drop-Down Menus</h3>
+        <h4>Menu</h4>
+        <ul>
+          <li>Use <code>display: none;</code> to hide inactive menu content from screen readers</li>
+          <li>Emulate native menu keyboard navigation (arrow keys, esc, tab)</li>
+        </ul><a href="http://www.moderna11y.com/#/blog/accessible-popup-menus.html" target="moderna11ydds">Drop-down menu example</a>
+      </a-slide>
+      <a-slide data-state="intro">
+        <h2>Questions</h2>
+      </a-slide>
+      <a-slide data-state="intro">
+        <h2>Thanks!</h2><a href="mailto:patrick.fox@razorfish.com">patrick.fox@razorfish.com</a><a href="https://twitter.com/patrickfox" target="twitter">@patrickfox</a>
+      </a-slide>
+    </a-slide-deck>
+    <div id="currentheading"></div>
+  </body>
+</html>

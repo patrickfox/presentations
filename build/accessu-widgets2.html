@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>AccessU 2017 - Widgets 2</title>
+    <meta charset="utf-8">
+    <title>Slider</title>
+    <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link href="a-slide-deck.html" rel="import">
+    <link href="a-slide.html" rel="import">
+    <link href="flex-line.html" rel="import">
+    <link href="flex-grid.html" rel="import">
+    <link href="code-block.html" rel="import">
+    <link href="/css/theme.css" rel="stylesheet">
+  </head>
+  <body unresolved>
+    <a-slide-deck>
+      <a-slide data-state="intro">
+        <h1>AccessU 2017
+          <div>Widgets 2!</div>
+        </h1>
+        <p>Patrick Fox</p>
+        <p>Technology Director @SapientRazorfish, Austin, TX</p>
+        <p><a href="https://twitter.com/patrickfox" target="twitter">@patrickfox</a></p>
+      </a-slide>
+      <a-slide data-state="intro">
+        <h2>Agenda</h2>
+        <ul>
+          <li>Wizard Progress Indicator</li>
+          <li>File Selector and Upload</li>
+          <li>Form Validation</li>
+          <li>Search By Location</li>
+          <li>Improving Single Page Applications</li>
+        </ul>
+      </a-slide>
+      <a-slide data-state="intro" id="progress">
+        <h2>Wizard Progress Indicator</h2>
+      </a-slide>
+      <a-slide data-hid="progress">
+        <h3>Overview</h3>
+        <ul>
+          <li>Multi-step process</li>
+          <li>Communicate state/progress</li>
+          <li>Overlooked
+            <ul>
+              <li>Visual progress indicator not accessible</li>
+              <li>Focus management (for single-page apps)</li>
+            </ul>
+          </li>
+        </ul>
+        <p><a href="https://www.w3.org/WAI/eval/report-tool/#/" target="wizard">Wizard Progress Example</a></p>
+      </a-slide>
+      <a-slide data-hid="progress">
+        <h3>Implementation</h3>
+        <ul>
+          <li>Update page title - "Insurance application - Step 2 of 3"</li>
+          <li>Make visual progress bar accessible</li>
+          <li>Use main heading to reflect current state (same as title)</li>
+          <li>Provide summary and confirmation steps</li>
+          <li>Provide ability to go back and fix mistakes</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="progress">
+        <h3>Examples</h3>
+        <ul>
+          <li><a href="https://www.w3.org/WAI/eval/report-tool/#/" target="wizard">WCAG-EM Report Tool</a></li>
+        </ul>
+      </a-slide>
+      <a-slide data-state="intro" id="fileupload">
+        <h2>File Selector and Upload</h2>
+      </a-slide>
+      <a-slide data-hid="fileupload">
+        <h3>Overview</h3>
+        <ul>
+          <li>Modern file upload supports multiple uploads and provides progress bars and status</li>
+          <li>Goal: communicate dynamic updates to file upload status in an accessible manner</li>
+        </ul>
+        <p><a href="https://photos.google.com/" target="fileupload">File Upload Example</a></p>
+      </a-slide>
+      <a-slide data-hid="fileupload">
+        <h3>Experience Design</h3>
+        <p>Provide accessible notifications for each status update</p>
+        <ul>
+          <li>Visible notifications update dynamically</li>
+          <li><code>announce()</code> important notifications for AT users</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="fileupload">
+        <h3>
+          <div class="small">Experience Design</div> Requirements
+        </h3>
+        <p>Ensure that upload instructions and requirements are available</p>
+        <ul>
+          <li>"Maximum file size is 10 megabytes"</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="fileupload">
+        <h3>
+          <div class="small">Experience Design</div> On Upload
+        </h3>
+        <flex-line style="display: flex;">
+          <div flex>
+            <ul>
+              <li>"Uploading 5 files to 'My Photos'"</li>
+            </ul>
+          </div>
+          <div flex><img src="/img/accessu/fileupload-uPloading.jpg" alt="Files uploading notification" class="_50"></div>
+        </flex-line>
+      </a-slide>
+      <a-slide data-hid="fileupload">
+        <h3>
+          <div class="small">Experience Design</div> On File/Upload Complete
+        </h3>
+        <flex-line style="display: flex;">
+          <div flex>
+            <ul>
+              <li>"Uploaded 3 of 5 files"</li>
+              <li>"3 of 5 files uploaded, 50% complete"</li>
+              <li>"5 of 5 files uploaded - upload complete"</li>
+            </ul>
+          </div>
+          <div flex><img src="/img/accessu/fileupload-complete.jpg" alt="File upload complete notification" class="_50"></div>
+        </flex-line>
+      </a-slide>
+      <a-slide data-hid="fileupload">
+        <h3>
+          <div class="small">Experience Design</div> On Error/Cancel
+        </h3>
+        <flex-line style="display: flex;">
+          <div flex>
+            <ul>
+              <li>"Upload failed - 4 of 7 files were uploaded"</li>
+              <li>"Upload cancelled - 2 of 5 files not uploaded"</li>
+            </ul>
+          </div>
+          <div flex><img src="/img/accessu/fileupload-cancelled.jpg" alt="File upload cancelled notification" class="_50"></div>
+        </flex-line>
+      </a-slide>
+      <a-slide data-hid="fileupload">
+        <h3>
+          <div class="small">Experience Design</div> On Unload
+        </h3>
+        <flex-line style="display: flex;">
+          <div flex>
+            <ul> 
+              <li>Warn users - upload is not complete</li>
+            </ul>
+          </div>
+          <div flex><img src="/img/accessu/fileupload-unload-warning.jpg" alt="Page unload warning dialog" class="_50"></div>
+        </flex-line>
+      </a-slide>
+      <a-slide data-hid="fileupload">
+        <h3>Implementation</h3>
+        <p>Status updates are made possible via XMLHttpRequest2 object's <em>upload</em> property</p><code>
+          <pre>xhr.upload.onprogress = function(e) {
+ if (e.lengthComputable) {
+   progressBar.value = (e.loaded / e.total) * 100;
+   var message = 'Files' + progressBar.value + '% loaded';
+   $.announce(message, 'assertive');
+ }
+};</pre></code>
+      </a-slide>
+      <a-slide data-hid="fileupload">
+        <h3>Example</h3>
+        <ul>
+          <li><a href="https://photos.google.com/" target="fileupload">Google Photos</a></li>
+        </ul>
+      </a-slide>
+      <a-slide data-state="intro" id="validation">
+        <h2>Form Validation</h2>
+      </a-slide>
+      <a-slide data-hid="validation">
+        <h3>Overview</h3>
+        <p>Make success easy for all users, provide info and assistance</p>
+        <ul>
+          <li>Field labels convey purpose</li>
+          <li>Requirements - required inputs, formatting, instructional info</li>
+          <li>Errors and help - what is wrong and how to fix it</li>
+        </ul>
+        <p><a href="https://citiretailservices.citibankonline.com/RSnextgen/svc/launch/index.action?siteId=SEARS&amp;langId=en_US" target="formvalidation">Form Validation Example</a></p>
+      </a-slide>
+      <a-slide data-state="section" data-hid="validation">
+        <h3>Implementation</h3>
+      </a-slide>
+      <a-slide data-hid="validation">
+        <h3>
+          <div class="small">Implementation</div> Labels
+        </h3>
+        <p>Form fields and groups of related radios/checkboxes must be labelled</p>
+        <p>Techniques:	</p>
+        <ul>
+          <li><code>&lt;label for="{id}"&gt;</code></li>
+          <li><code>aria-label="label copy"</code></li>
+          <li><code>aria-labelledby="{idref}"</code></li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="validation">
+        <h3>
+          <div class="small">Implementation</div> Requirements
+        </h3>
+        <p>Required fields and formatting or instructional copy must be associated with a field and understood via AT</p>
+        <ul>
+          <li>Required field - use <code>aria-required="true"</code></li>
+          <li>Formatting and instructional copy - use <code>aria-describedby="{idref}"</code></li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="validation">
+        <h3>
+          <div class="small">Implementation</div> Errors and Help
+        </h3>
+        <p>Error states and messaging must be communicated via AT</p>
+        <ul>
+          <li>Field error state - use <code>aria-invalid="true"</code></li>
+          <li>Error text - use <code>aria-describedby="{idref}"</code> or "label error" technique</li>
+          <li>Additional copy - prepend "Error: " to error message</li>
+          <li>Onblur - announce errors politely</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="validation">
+        <h3>
+          <div class="small">Implementation</div> Example
+        </h3>
+        <ul>
+          <li><a href="https://citiretailservices.citibankonline.com/RSnextgen/svc/launch/index.action?siteId=SEARS&amp;langId=en_US" target="formvalidation">Sears Card - Sign On Form </a></li>
+        </ul>
+      </a-slide>
+      <a-slide data-state="intro" id="location">
+        <h2>Search By Location</h2>
+      </a-slide>
+      <a-slide data-hid="location">
+        <h3>Overview</h3>
+        <p>Dynamic location search with map view</p>
+        <ul>
+          <li>Maps OK when combined with text results</li>
+          <li>Search results displayed dynamically</li>
+          <li>Filtering options update search results</li>
+          <li>Make current search status available to all users</li>
+        </ul>
+        <p><a href="https://www.starbucks.com/store-locator" target="storelocator">Store Locator Example</a></p>
+      </a-slide>
+      <a-slide data-hid="location">
+        <h3>Experience Design</h3>
+        <ul>
+          <li>As results are updated/filtered, display and announce a notification</li>
+          <li>Ensure that filtered state and number of results is communicated</li>
+          <li>Ensure that filter controls are keyboard navigable</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="location">
+        <h3>
+          <div class="small">Experience Design</div> On Search/Filter Update
+        </h3>
+        <ul>
+          <li>Dynamically update map and results</li>
+          <li>Communicate update and status
+            <ul>
+              <li>"Found 18 open stores near 78701"</li>
+              <li>"Showing locations in 55442, 2 filters active"</li>
+            </ul>
+          </li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="location">
+        <h3>
+          <div class="small">Implementation</div> Map and Search Results
+        </h3>
+        <ul>
+          <li>Hide map from screen reader via  <code>aria-hidden</code></li>
+          <li>Ensure equivalent alternative to map</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="location">
+        <h3>
+          <div class="small">Implementation</div> On Search/Filter Update
+        </h3>
+        <ul>
+          <li>Update search/filter status message</li>
+          <li>Manage focus
+            <ul> 
+              <li>Place focus on visible summary (e.g. <code>$.access()</code>)</li>
+              <li>Not visible? Hidden heading, button description</li>
+            </ul>
+          </li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="location">
+        <h3>Examples</h3>
+        <ul>
+          <li><a href="https://www.starbucks.com/store-locator" target="storelocator">Starbucks - Store Locator</a></li>
+        </ul>
+      </a-slide>
+      <a-slide data-state="intro" id="improving_spaux">
+        <h2>Improving Single Page Applications</h2>
+      </a-slide>
+      <a-slide data-hid="improving_spaux">
+        <h3>Communicate View Changes</h3>
+        <p>One approach: Emulate native browser page-load behavior</p>
+        <ul>
+          <li>Page title is used to announce page load/refresh</li>
+          <li>Stating that page/view is "loaded" is helpful</li>
+        </ul><a href="http://www.moderna11y.com/#/blog/screen-reader-page-load-behaviors.html" target="pageload">Page load behaviors</a>
+      </a-slide>
+      <a-slide data-hid="improving_spaux">
+        <h3>Step 1: Update Page Title</h3>
+        <ul>
+          <li>Significant UI/context change requires a title change</li>
+          <li><code>&lt;title&gt;</code> plays an important role in orientation</li>
+          <li>SPA frameworks don't automate title updates</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="improving_spaux">
+        <h3>Step 2: Announce view change</h3>
+        <ul>
+          <li>Live regions are great for announcing content unobtrusively</li>
+          <li>Create a message: <code>{page_title} + " loaded"</code></li>
+          <li>Update live region &rarr; message is spoken by screen reader</li>
+        </ul>
+      </a-slide>
+      <a-slide data-state="intro">
+        <h2>Questions</h2>
+      </a-slide>
+      <a-slide data-state="intro">
+        <h2>Thanks!</h2><a href="https://twitter.com/patrickfox" target="twitter">@patrickfox</a>
+      </a-slide>
+    </a-slide-deck>
+    <div id="currentheading"></div>
+  </body>
+</html>
