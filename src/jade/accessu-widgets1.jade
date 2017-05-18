@@ -5,7 +5,8 @@ prepend head
 
 block main
 	a-slide(data-state='title')
-		h1 AccessU 2017 - Widgets!
+		h1 AccessU 2017
+			p Widgets!
 		p Patrick Fox, Technology Director @SapientRazorfish, Austin, TX
 
 	a-slide(data-state='intro')
@@ -53,8 +54,15 @@ block main
 				ul
 					li Use #[code a] to link to another location/view
 					li Use #[code button] for generic clickable or form submit
-			li Don't: #[code div(role="button" tabindex="1")] or #[span div(role="button" tabindex="1")]
-			li Don't: #[code a(role="button")] or #[code button(role="link")]
+
+	a-slide(data-hid='focusmgmt')
+		h3 Use Buttons and Links
+		p Antipatterns (do not do this):
+		ul
+			li #[code div(role="button" tabindex="1")] or #[code div(role="button" tabindex="1")]
+			li #[code a(role="button")] #[sup *] or #[code button(role="link")] #[sup *]
+
+		p * Except with remediation efforts
 
 	a-slide(data-hid='focusmgmt')
 		h3 Focus On Anything
@@ -66,6 +74,12 @@ block main
 
 	a-slide(data-state='section', id='announce')
 		h2 Announcing Dynamic Updates
+
+	a-slide(data-hid='announce')
+		h3 Live Regions
+		ul
+			li Live regions are easy: #[code div(aria-live="assertive|polite")]
+			li Update contents, screen reader speaks content
 
 	a-slide(data-hid='announce')
 		h3 Live Region Caveats
@@ -109,7 +123,7 @@ block main
 		h3 Modals
 		p Goals
 		ul
-			li User is aware of model presence and purpose
+			li User is aware of modal presence and purpose
 			li User is able to navigate modal content
 			li User is unable to navigate background content
 
@@ -127,7 +141,6 @@ block main
 		p On Open
 		ul
 			li UI Isolation - hide main content using #[code aria-hidden="true"]
-			li Tab fence - script keeps focus in modal
 			li Place focus on first focusable element
 			li Esc key closes dialog (unless action required)
 
@@ -139,14 +152,18 @@ block main
 			li Place focus back on modal trigger
 		a(href="#{modern}#/blog/accessible-modals.html" target="popup") Modal example
 
-	a-slide(data-hid='modals')
+
+	a-slide(data-state='section', id='tooltips')
+		h2 Tooltips
+
+	a-slide(data-hid='tooltips')
 		h3 Tooltips
 		p Design Tips
 		ul
 			li Tooltips should contain succinct, #[em non-interactive], informational content #[strong only]
 			li Tooltips with interactive content (e.g. links, buttons) should be a modal
 
-	a-slide(data-hid='modals')
+	a-slide(data-hid='tooltips')
 		h3 Tooltips
 		p Behaviors
 		ul
