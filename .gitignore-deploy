@@ -2,7 +2,6 @@
 .sass-cache
 .divshot-cache
 bower_components
-build
 node_modules
 **/.DS_Store
 .bowerrc
