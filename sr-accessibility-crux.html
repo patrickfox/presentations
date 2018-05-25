@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Intro to A11y</title>
+    <meta charset="utf-8">
+    <title>Slider</title>
+    <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link href="a-slide-deck.html" rel="import">
+    <link href="a-slide.html" rel="import">
+    <link href="flex-line.html" rel="import">
+    <link href="flex-grid.html" rel="import">
+    <link href="code-block.html" rel="import">
+    <link href="/css/theme.css" rel="stylesheet">
+  </head>
+  <body unresolved>
+    <a-slide-deck>
+      <a-slide data-state="intro">
+        <h1>Intro to Accessibility</h1>
+        <p>Patrick Fox, Technology Director, Austin, TX</p>
+      </a-slide>
+      <a-slide data-state="intro">
+        <h2>Agenda</h2>
+        <ul>
+          <li>What is accessibility?</li>
+          <li>Target Audience</li>
+          <li>Screen Readers</li>
+          <li>Laws and Standards</li>
+          <li>WCAG2 and Best Practices Overview</li>
+          <li>Integrating Accessibility Into Our Process</li>
+          <li>Break</li>
+          <li>Implementation Deep Dive</li>
+        </ul>
+      </a-slide>
+      <a-slide data-state="title" id="whatisa11y">
+        <h2>What is accessibility (a11y)?</h2>
+      </a-slide>
+      <a-slide data-hid="whatisa11y">
+        <h2>For our clients:</h2>
+        <ul>
+          <li part>Inclusivity</li>
+          <li part>More sales, participation, improved brand perception</li>
+          <li part>Avoiding lawsuits</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="whatisa11y">
+        <h2>For Razorfish:</h2>
+        <ul>
+          <li part>Create efficient and innovative web experiences for all</li>
+          <li part>Exceed the accessibility standards and best practices</li>
+          <li part>Value-add, key differentiator</li>
+          <li part>Being a good steward of the web</li>
+          <li part>Looking out for our clients</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="whatisa11y">
+        <h2>For our end users:</h2>
+        <ul>
+          <li part>Access to the conveniences of the web (e.g. banking, shopping, social)</li>
+          <li part>Independence, self-reliance, participation</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="whatisa11y">
+        <h2>In a nutshell:</h2>
+        <ul>
+          <li>What can be seen or heard (color, imagery, icons, font weight/size, audio alerts) is read/interpreted by a screen reader (and still makes sense)</li>
+          <li>What can be heard is also indicated to the user via visible text</li>
+          <li>Any functions and interactions available via a mouse are also available via keyboard</li>
+        </ul>
+      </a-slide>
+      <a-slide data-state="intro" id="target">
+        <h2>Target Audience</h2>
+      </a-slide>
+      <a-slide data-hid="target">
+        <h3>Vision impairments</h3>
+        <p>Partial to total blindness</p>
+        <ul>
+          <li>Color blindness</li>
+          <li>Total blindness (only ~3% of blindness)</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="target">
+        <h3>Hearing impairments </h3>
+        <p>Partial to total deafness</p>
+        <ul>
+          <li>Hard of hearing</li>
+          <li>Situational impairment (e.g. loud environment)</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="target">
+        <h3>Mobility impairments </h3>
+        <p>Loss of mobility, dexterity in arms or hands</p>
+        <ul>
+          <li>Mobility control</li>
+          <li>Amputee or paralysis</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="target">
+        <h3>Cognitive impairments </h3>
+        <p>Ease of distraction or difficulty </p>
+        <ul>
+          <li>Attention deficit disorder</li>
+          <li>PTSD</li>
+          <li>Brain injury</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="target">
+        <h3>Areas of difficulty</h3>
+        <p>From WebAIM's Annual Screen Reader Survey (2014)</p>
+        <flex-line style="display: flex;">
+          <div flex>
+            <ul>
+              <li>Inaccessible Flash content</li>
+              <li>CAPTCHA’s</li>
+              <li>Ambiguous links</li>
+              <li>Missing/improper alt text</li>
+              <li>Unexpected screen changes</li>
+              <li>Complex/difficult forms</li>
+            </ul>
+          </div>
+          <div flex>
+            <ul>
+              <li>Poor keyboard accessibility</li>
+              <li>Missing or improper headings</li>
+              <li>Too many links</li>
+              <li>Complex data tables</li>
+              <li>Lack of ‘Skip’ links</li>
+              <li>Inaccessible/missing search</li>
+            </ul>
+          </div>
+        </flex-line>
+      </a-slide>
+      <a-slide data-hid="target">
+        <h2>Screen Readers</h2>
+        <p>Software that reads content, provides tools to navigate and understand UI</p>
+        <h4>Top screen readers</h4>
+        <ul>
+          <li>JAWS</li>
+          <li>NVDA</li>
+          <li>VoiceOver (MacOS and iOS)</li>
+          <li>TalkBack (Android)</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="target">
+        <h3>Basic Voiceover Commands</h3>
+        <ul>
+          <li>⌘-F5 - toggle on/off</li>
+          <li>VO(ctrl + option) + left/right arrows - navigate through elements</li>
+          <li>VO + U - use arrows to view available elements</li>
+          <li>VO + A/B - start reading page from cursor or from top of page to cursor</li>
+        </ul>
+      </a-slide>
+      <a-slide data-state="title" id="laws">
+        <h2>Laws and Standards</h2>
+      </a-slide>
+      <a-slide data-hid="laws">
+        <h3>Section 508 amendment to the Rehabilitation Act</h3>
+        <p>Established a US government accessibility standard, requires that all US federal agencies ensure that their electronic and information technology are accessible per the Section 508 guidelines</p>
+      </a-slide>
+      <a-slide data-hid="laws">
+        <h3>WCAG2</h3>
+        <p>W3C's international accessibility standard</p>
+        <ul>
+          <li>levels of compliance: A, AA, AAA</li>
+          <li>WCAG2 Level AA covers the majority of Section 508</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="laws">
+        <h3>ARIA Specification</h3>
+        <ul>
+          <li>International, W3C spec</li>
+          <li>Addresses accessibility issues pertaining to dynamic and custom web UI</li>
+          <li>Defines a set of HTML attributes e.g. <code>aria-label</code>, <code>role</code>, <code>aria-live</code></li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="laws">
+        <h3>American's with Disabilities Act of 1990 (ADA)</h3>
+        <p>A civil rights law that is intended to protect against discrimination based on disability</p>
+        <p>Specific to physical </p>
+      </a-slide>
+      <a-slide data-hid="laws">
+        <h3>National Federation of the Blind (NFB)</h3>
+        <p>Blind and vision-impaired rights advocacy group, assists with high-profile lawsuits</p>
+      </a-slide>
+      <a-slide data-hid="laws">
+        <h3>Air Carrier Access Act (ACAA)</h3>
+        <p>Mandates compliant, accessible web experiences for air carriers operating in the US by December 2015/2016</p>
+      </a-slide>
+      <a-slide data-hid="laws">
+        <h3>Accessibility for Ontarians with Disabilities Act, 2005 (AODA)</h3>
+        <p>Canadian standard based on WCAG2 AA</p>
+        <p>Mandates timeline for government and public sector organization compliance</p>
+      </a-slide>
+      <a-slide data-state="title" id="goals">
+        <h2>Goals ???????</h2>
+      </a-slide>
+      <a-slide data-hid="goals">
+        <h3>???????</h3>
+        <ul>
+          <li>Accessibility is usability</li>
+          <li>Accessibility is a team effort</li>
+          <li>Accessibility must be driven by CRUX for efficiency and greatest chance of success</li>
+        </ul>
+      </a-slide>
+      <a-slide data-state="section" id="standards">
+        <h2>CRUX Guidelines</h2>
+      </a-slide>
+      <a-slide data-state="title" id="standards">
+        <h2>General Structure/Layout</h2>
+      </a-slide>
+      <a-slide data-hid="standards">
+        <h3>Skip Link</h3>
+        <p>Provide a skip link to bypass repetitive header content
+          <li>Ensure meaningful and logical focus order</li>
+          <li>Ensure that pages can be found in multiple ways (e.g. via navigation, site map, site search)</li>
+        </p>
+      </a-slide>
+      <a-slide data-hid="standards">
+        <h3>Skip Link</h3>
+        <p>Ensure meaningful and logical focus order
+          <li>Ensure that pages can be found in multiple ways (e.g. via navigation, site map, site search)</li>
+        </p>
+      </a-slide>
+      <a-slide data-state="title" id="headings">
+        <h2>Headings</h2>
+      </a-slide>
+      <a-slide data-hid="headings">
+        <h3>Heading Usage</h3>
+        <p>Wireframes prescribe heading and heading level usage</p>
+      </a-slide>
+      <a-slide data-hid="headings">
+        <h3>One H1 Per Page</h3>
+        <p>One H1 is prescribed per view defined in the wires</p>
+        <p>Modal headings should start at H1</p>
+      </a-slide>
+      <a-slide data-hid="headings">
+        <h3>Consistent Use of Headings</h3>
+        <p>Heading styles are prescribed in design comps and convey heading level and hierarchy in a consistent manner across a site or application</p>
+      </a-slide>
+      <a-slide data-hid="headings">
+        <h3>Sequential Headings</h3>
+        <p>Heading level is prescribed in the wires and is used to accurately indicate relationship and content hierarchy</p>
+        <ul>
+          <li>Heading order should never increase by more than 1</li>
+          <li>Good: H2 &gt; H3, H1 &gt; H2, H4 &gt; H2</li>
+          <li>Not so good: H2 &gt; H4, H1 &gt; H4</li>
+        </ul>
+        <p>Heading order is used to indicate hierarchy. An H3 is considered to be a child of its parent H2.</p>
+      </a-slide>
+      <a-slide data-hid="headings">
+        <h3>Text Only Headings</h3>
+        <p>Design comps prescribe headings that do not contain clickable text</p>
+      </a-slide>
+      <a-slide data-state="title" id="landmarks">
+        <h2>Landmarks</h2>
+      </a-slide>
+      <a-slide data-hid="landmarks">
+        <h3>Purpose</h3>
+        <p>Landmarks designate key sections of the UI and improve understanding and navigation for screen reader users</p>
+      </a-slide>
+      <a-slide data-hid="landmarks">
+        <h3>Landmark Rules</h3>
+        <p>All page content should live within a landmark - avoid orphaned content</p>
+        <p>Use landmarks minimally - should designate high-level structure only</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Role</th>
+              <th>Usage</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>banner</td>
+              <td>1</td>
+              <td>Header section</td>
+            </tr>
+            <tr>
+              <td>main</td>
+              <td>1</td>
+              <td>Main content section</td>
+            </tr>
+            <tr>
+              <td>contentinfo</td>
+              <td>1</td>
+              <td>Footer content section</td>
+            </tr>
+            <tr>
+              <td>navigation</td>
+              <td>0+</td>
+              <td>generic, container that houses navigation</td>
+            </tr>
+            <tr>
+              <td>complementary</td>
+              <td>0+</td>
+              <td>generic, secondary content related to main view content</td>
+            </tr>
+            <tr>
+              <td>search</td>
+              <td>0+</td>
+              <td>use role on enclosing search box container that contains search field; do not use directly on a form field</td>
+            </tr>
+          </tbody>
+        </table>
+      </a-slide>
+      <a-slide data-hid="landmarks">
+        <h3>Landmark Usage</h3>
+        <p>UX: Landmark usage is clearly defined in the wires</p>
+      </a-slide>
+      <a-slide data-hid="landmarks">
+        <h3>Label Generic Landmarks</h3>
+        <p>Copy: Multiple generic landmarks (e.g. navigation, complentary) are labelled to differentiate their purpose, and label copy is captured in the copy deck.</p>
+      </a-slide>
+      <a-slide data-state="title" id="tables">
+        <h2>Tables</h2>
+      </a-slide>
+      <a-slide data-hid="landmarks">
+        <h3>Table Row/Column Headings</h3>
+        <p>UX/Copy: Wireframes prescribe table column and row headings that accurately represent their purpose of their column or row content.</p>
+      </a-slide>
+      <a-slide data-hid="landmarks">
+        <h3>Complex Table Summary</h3>
+        <p>UX: Wireframes specify a table caption that provides a summary.</p>
+      </a-slide>
+      <a-slide data-state="title" id="copy">
+        <h2>General Copy</h2>
+      </a-slide>
+      <a-slide data-hid="copy">
+        <h3>Alternative Text</h3>
+        <p> Provide alternative text when visible text for labelling a button, link, form element or pertinent image is insufficient for understanding its purpose or context.</p>
+        <p>Examples:</p>
+        <ul>
+          <li>"Read More" links</li>
+          <li>Pertinent images</li>
+          <li>Visual indicators (progress bar, icons, red error text)</li>
+        </ul>
+      </a-slide>
+      <a-slide data-state="title" id="page">
+        <h2>Page Purpose</h2>
+      </a-slide>
+      <a-slide data-hid="page">
+        <h3>Page Context Cues and Consistency</h3>
+        <p>Design: Current navigation item is indicated visually and in a consistent manner.</p>
+      </a-slide>
+      <a-slide data-state="title" id="dynamic">
+        <h2>Dynamic Content</h2>
+      </a-slide>
+      <a-slide data-hid="dynamic">
+        <h3>Dynamic Changes Announced</h3>
+        <p>UX: Wireframes document how to communicate dynamic UI updates to AT users.</p>
+      </a-slide>
+      <a-slide data-hid="dynamic">
+        <h3>Dynamic Search / Filtering / Sorting</h3>
+        <p>UX/Copy: Dynamic search provides summary of results that informs AT users of change in content</p>
+        <p>Example: https://www.thefreshmarket.com/search</p>
+      </a-slide>
+      <a-slide data-hid="dynamic">
+        <h3>Timeout Warning and Extension</h3>
+        <p>UX: Wireframes document a mechanism (typically a modal dialog) that interrupts and alerts the user to an impending session timeout. In addition, the UI must allow the user to adjust the timeout in one of the following ways:</p>
+        <ul>
+          <li>Turn Off - disable or opt out of the timeout option</li>
+          <li>Adjust - set a custom timeout limit</li>
+          <li>Extend - extend the time and that allow the user to extend the session for 15 minutes, up to 4 times, before forcing a timeout</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="dynamic">
+        <h3>Infinite Scrolling</h3>
+        <p>UX: Wireframes prescribe an explicit means for users to load additional content (e.g. activating a “Load more results” button).</p>
+      </a-slide>
+      <a-slide data-state="title" id="forms">
+        <h2>Dynamic Content</h2>
+      </a-slide>
+      <a-slide data-hid="forms">
+        <h3>Form Controls are Labelled</h3>
+        <p>Design: Form controls have a visually-associated text label that is separate from placeholder or instructional text and is located before the form control (e.g. above or to the left).</p>
+      </a-slide>
+      <a-slide data-hid="forms">
+        <h3>Placeholder Text Is Not a Label</h3>
+        <p>Design: Text that 1) appears by default inside of a text input and 2) disappears when a value is entered does not suffice as a label.</p>
+      </a-slide>
+      <a-slide data-hid="forms">
+        <h3>Labels Contain Text Only</h3>
+        <p>Design: Labels defined in comps contain text only and no buttons or links.</p>
+      </a-slide>
+      <a-slide data-hid="forms">
+        <h3>Required Form Controls</h3>
+        <p>Design: Comps clearly indicate the display of required fields.</p>
+      </a-slide>
+      <a-slide data-hid="forms">
+        <h3>Formatting, Error and Help Messages</h3>
+        <p>Design: Pertinent instructional, error, formatting and help messages are present and are visually associated with their form controls.</p>
+      </a-slide>
+      <a-slide data-hid="forms">
+        <h3>Communicate Generic Errors</h3>
+        <p>Design: Comps document the display of generic form errors, summarized and grouped prominently above the form. </p>
+      </a-slide>
+      <a-slide data-state="title" id="distraction">
+        <h2>Reduce Distraction</h2>
+      </a-slide>
+      <a-slide data-hid="distraction">
+        <h3>Provide Pause/Stop/Start Controls</h3>
+        <p>Design: Design comps document user-operable means to control any motion, animations and animated content (e.g. background videos, automated carousel content).</p>
+      </a-slide>
+      <a-slide data-hid="distraction">
+        <h3>No Blinking or Flashing Content</h3>
+        <p>Design: Design comps do not prescribe any blinking or flashing content.</p>
+      </a-slide>
+      <a-slide data-state="title" id="distraction">
+        <h2>Keyboard Navigation</h2>
+      </a-slide>
+      <a-slide data-hid="distraction">
+        <h3>Visible Keyboard Focus</h3>
+        <p>Design: Focus state for each interactive element type (e.g. buttons, links, form controls) is captured in the design comps.</p>
+      </a-slide>
+      <a-slide data-state="title" id="consistency">
+        <h2>UI Consistency</h2>
+      </a-slide>
+      <a-slide data-hid="consistency">
+        <h3>Same Relative Order</h3>
+        <p>Design: Design comps present a natural, logical and consistent flow for all components on a page, across the site.</p>
+      </a-slide>
+      <a-slide data-hid="consistency">
+        <h3>Consistent Responsive Experience</h3>
+        <p>Comps present content and controls as consistently as possible from breakpoint to breakpoint.</p>
+      </a-slide>
+      <a-slide data-state="intro2" id="visual">
+        <h2>Visual Design</h2>
+      </a-slide>
+      <a-slide data-hid="visual">
+        <h3>Text Color Contrast Ratio</h3>
+        <p>The comps provide a style guide that documents and prescribes valid, color contrast compliant text-to-background color combinations. This guide provides color hex values and contrast ratios, and serves as a usage guide for developers and a confirmation of accessibility compliance for QA. </p>
+        <p>Examples:</p>
+        <ul>
+          <li>Text superimposed over dynamic image or video</li>
+        </ul>
+        <ul>
+          <li>Requirement: text-to-background color contrast ratio for all text must be at least <strong>4.5:1</strong>.</li>
+          <li>One exception - a lighter <strong>3:1</strong> contrast ratio will suffice if:
+            <ul>
+              <li>the text size is at least 14pt/19px and bold, or</li>
+              <li>the text	 is 18pt/24px and normal weight</li>
+            </ul>
+          </li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="visual">
+        <h3>Avoid Images of Text</h3>
+        <p>Non-logo image assets do not contain pertinent graphical text. If an image contains pertinent or relavent text, alternative text should be provided. </p>
+      </a-slide>
+      <a-slide data-hid="visual">
+        <h3>Avoid Using Color Alone</h3>
+        <p>Links must be visually identifiable via a non-color attribute e.g. an underline</p>
+      </a-slide>
+      <a-slide data-hid="visual">
+        <h3> </h3>
+        <p> </p>
+      </a-slide>
+      <a-slide data-state="title" id="process">
+        <h2>Integrating Accessibility Into Our Process</h2>
+      </a-slide>
+      <a-slide data-hid="process">
+        <h3>General</h3>
+        <ul>
+          <li>Accessibility is a team effort!</li>
+          <li>Be proactive about accessibility</li>
+          <li>Retrofitting and remediation efforts are costly</li>
+          <li>Design, copy and UX must drive a11y requirements and direction from the beginning</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="process">
+        <h3>Delivery Management</h3>
+        <ul>
+          <li>Ensure dev oversight during wireframing and design process</li>
+          <li>Request dev sign off on client deliverables before delivery</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="process">
+        <h3>UX</h3>
+        <ul>
+          <li>Prescribe landmark and heading usage</li>
+          <li>Prescribe a "skip to content" link</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="process">
+        <h3>Design</h3>
+        <ul>
+          <li>Test and document color contrast in comps</li>
+          <li>Create a color usage page that outlines compliant color combination usage and color contrasts for each combo</li>
+        </ul><a href="/img/cc-documentation.png" target="ccdoc">Color contrast doc example ➔</a><br><a href="https://viget.com/inspire/color-contrast" target="ccdoc">Color contrast article ➔</a>
+      </a-slide>
+      <a-slide data-hid="process">
+        <h3>Copy</h3>
+        <ul>
+          <li>Capture accessibility text in copy decks</li>
+          <li>Work with clients to understand impact on CMS</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="process">
+        <h3>Tech</h3>
+        <ul>
+          <li>Follow standards and best practices</li>
+          <li>Test code in <strong>aXe</strong> or <strong>FireEyes</strong></li>
+          <li>Manually test code frequently using screen readers</li>
+          <li>Mac users: set up VM's for JAWS, NVDA</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="process">
+        <h3>QA</h3>
+        <ul>
+          <li>Test code in aXe (free dev plugin for Chrome)</li>
+          <li>Manually test code using screen readers</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="process">
+        <h2>Questions</h2>
+      </a-slide>
+      <a-slide data-hid="process">
+        <h2>Thanks!</h2><a href="https://twitter.com/patrickfox" target="twitter">@patrickfox</a>
+      </a-slide>
+    </a-slide-deck>
+    <div id="currentheading"></div>
+    <div id="footer">Publicis.Sapient</div>
+  </body>
+</html>

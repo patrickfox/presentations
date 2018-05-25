@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>AccessU 2018 - Widgets 1</title>
+    <meta charset="utf-8">
+    <title>Slider</title>
+    <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link href="a-slide-deck.html" rel="import">
+    <link href="a-slide.html" rel="import">
+    <link href="flex-line.html" rel="import">
+    <link href="flex-grid.html" rel="import">
+    <link href="code-block.html" rel="import">
+    <link href="/css/theme.css" rel="stylesheet">
+  </head>
+  <body unresolved>
+    <a-slide-deck>
+      <a-slide data-state="title">
+        <h1>AccessU 2018
+          <p>Widgets!</p>
+        </h1>
+        <p>Patrick Fox, Technology Director @Publicis.Sapient, Austin, TX</p>
+      </a-slide>
+      <a-slide data-state="intro">
+        <h2>Agenda</h2>
+        <ul>
+          <li>Focus Management</li>
+          <li>Announcing Dynamic Content</li>
+          <li>Modal Dialogs</li>
+          <li>Dynamic Table Filtering and Sorting</li>
+        </ul>
+      </a-slide>
+      <a-slide data-state="section" id="focusmgmt">
+        <h2>Focus Management</h2>
+      </a-slide>
+      <a-slide data-hid="focusmgmt">
+        <h3>Caring for Keyboard Focus</h3>
+        <ul>
+          <li part>Avoid accidental focus loss
+            <ul>
+              <li>User "investment"</li>
+              <li>Potential for confusion, frustration</li>
+              <li>Conduct thorough keyboard-only testing</li>
+            </ul>
+          </li>
+          <li part>Ensure that UI updates do not change user focus <em>unless</em>:
+            <ul>
+              <li>A focus change is intended and necessary</li>
+              <li>A focus change improves the user's understanding of a context change</li>
+              <li>Examples: modals, drop-down menus, content is no longer available in new context</li>
+            </ul>
+          </li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="focusmgmt">
+        <h3>Use Buttons and Links</h3>
+        <p>Need a clickable/user-interactive element?</p>
+        <ul>
+          <li>Use a <code>button</code> or <code>a</code> for intended purpose
+            <ul>
+              <li>Use <code>a</code> to link to another location/view</li>
+              <li>Use <code>button</code> for generic clickable or form submit</li>
+            </ul>
+          </li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="focusmgmt">
+        <h3>Use Buttons and Links</h3>
+        <p>Antipatterns (do not do this):</p>
+        <ul>
+          <li><code>div(role="button" tabindex="1")</code> or <code>div(role="button" tabindex="1")</code></li>
+          <li><code>a(role="button")</code> <sup>*</sup> or <code>button(role="link")</code> <sup>*</sup></li>
+        </ul>
+        <p>* Except with remediation efforts</p>
+      </a-slide>
+      <a-slide data-hid="focusmgmt">
+        <h3>Tabindex Usage</h3>
+        <p><code>tabindex</code> allows an element to receive keyboard focus</p>
+        <ul>
+          <li part> <code>tabindex="0"</code> makes an element keyboard focusable, uses natural tab order</li>
+          <li part> <code>tabindex="{&ge;1}"</code> makes an element keyboard focusable, assigns specific order</li>
+          <li part> <code>tabindex="-1"</code> makes an element programmatically focusable (e.g. via JS)</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="focusmgmt">
+        <h3>Tabindex Best Practices</h3>
+        <ul>
+          <li part>Rely on natural tab order vs. trying to curate focus order</li>
+          <li part>Never use <code>tabindex</code> values &gt; 0</li>
+          <li part>Ad hoc use of <code>tabindex</code> can cause a lot of unintended issues</li>
+          <li part>Avoid (and question) hardcoded <code>tabindex</code></li>
+          <li part>Add and manage <code>tabindex</code> attributes programmatically</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="focusmgmt">
+        <h3>Focus On Anything</h3>
+        <p>Need to put focus somewhere in the UI that isn't focusable?</p>
+        <ul>
+          <li>Use a script to manage focus and place focus temporarily</li>
+          <li>No need to manually hard code <code>tabindex</code> in HTML</li>
+          <li><a href="https://jsfiddle.net/pfox/vkyrdy1a/" target="access">See $.access()</a></li>
+        </ul>
+      </a-slide>
+      <a-slide data-state="section" id="announce">
+        <h2>Announcing Dynamic Updates</h2>
+      </a-slide>
+      <a-slide data-hid="announce">
+        <h3>Live Regions</h3>
+        <ul>
+          <li>Live regions provide ability to announce content changes dynamically</li>
+          <li>Live regions are easy: <code>div(aria-live="assertive|polite")</code></li>
+          <li>Update contents, screen reader speaks content</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="announce">
+        <h3>Live Region Caveats</h3>
+        <ul>
+          <li>Multiple live regions add complexity</li>
+          <li>Live region role support is unreliable (<code>role="alert|log|status|timer"</code>)</li>
+          <li>Live regions can't be added dynamically to the DOM <sup>*</sup></li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="announce" data-state="one-ring">
+        <h3>One live region to rule them all...</h3>
+        <ul>
+          <li>Use a single, global "announcer" live region <img src="/img/spa-announcer-html.png" style="margin-top:10px" class="code_example"></li>
+          <li>Provide common mechanism to "announce" content</li>
+          <li>Use a script - <code>announce()</code> - to make updates</li>
+        </ul><a href="https://jsfiddle.net/pfox/ou11fr9p/show/light/" target="github">Say anything w/announce()</a><a href="https://github.com/patrickfox/a11y_kit" target="github">Check out $.announce() and a11y_kit on Github</a>
+      </a-slide>
+      <a-slide data-hid="announce" data-state="responsibility">
+        <h3>With great power...</h3>
+        <p>Use this technique judiciously</p>
+        <ul>
+          <li>Rule #1: Follow core accessibility principles, best practices</li>
+          <li>Use <code>announce()</code> to communicate pertinent info only</li>
+          <li>Keep announced messages succinct</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="announce" data-state="responsibility">
+        <h3>With great power... (continued)</h3>
+        <p>Use this technique judiciously</p>
+        <ul>
+          <li>Use cases:
+            <ul>
+              <li>View updates in single-page apps</li>
+              <li>Form validation errors</li>
+              <li>Alert messages (non-modal)</li>
+              <li>Progress updates in multi-step process</li>
+            </ul>
+          </li>
+        </ul>
+        <p>Example: <a href="https://www.thefreshmarket.com/search?q=cauliflower" target="_blank">The Fresh Market</a></p>
+      </a-slide>
+      <a-slide data-state="section" id="modals">
+        <h2>Modal Dialogs</h2>
+      </a-slide>
+      <a-slide data-hid="modals">
+        <h3>Modals</h3>
+        <p>Ensure that user is:</p>
+        <ul>
+          <li>aware of modal presence and purpose</li>
+          <li>able to navigate modal content</li>
+          <li>unable to navigate background content</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="modals">
+        <h3>Modals</h3>
+        <p>Setup</p>
+        <ul>
+          <li>H1 is first heading</li>
+          <li>Use <code>role="dialog"</code> to assign role to modal container</li>
+          <li>Use <code>aria-labelledby</code> to label modal</li>
+          <li>Use <code>aria-describedby</code> to describe modal (optional)</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="modals">
+        <h3>Modals</h3>
+        <p>On Open</p>
+        <ul>
+          <li>UI Isolation - hide main content using <code>aria-hidden="true"</code></li>
+          <li>Place focus on first focusable element</li>
+          <li>Esc key closes dialog (unless action required)</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="modals">
+        <h3>Modals</h3>
+        <p>On Close</p>
+        <ul>
+          <li>Remove UI isolation</li>
+          <li>Place focus back on modal trigger</li>
+        </ul><a href="http://www.moderna11y.com/#/blog/accessible-modals.html" target="popup">Modal example</a>
+      </a-slide>
+      <a-slide data-state="section" id="tooltips">
+        <h2>Tooltips</h2>
+      </a-slide>
+      <a-slide data-hid="tooltips">
+        <h3>Tooltips</h3>
+        <p>Design Tips</p>
+        <ul>
+          <li>Tooltips should contain succinct, <em>non-interactive</em>, informational content <strong>only</strong></li>
+          <li>Tooltips with interactive content (e.g. links, buttons) should be a modal</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="tooltips">
+        <h3>Tooltips</h3>
+        <p>Behaviors</p>
+        <ul>
+          <li>On hover/focus, it's OK to display a tooltip if contents are read to user</li>
+          <li>E.g. <code>button(role="tooltip" aria-label="Tooltip content")</code></li>
+        </ul><a href="http://www.moderna11y.com/#/blog/accessible-tooltips.html" target="popup">Tooltip example</a>
+      </a-slide>
+      <a-slide data-state="section" id="tables">
+        <h2>Dynamic Table Filtering and Sorting</h2>
+      </a-slide>
+      <a-slide data-hid="tables">
+        <h3>Goals</h3>
+        <ul>
+          <li>Communicate of table purpose and functionality</li>
+          <li>Communicate status changes, avoid confusion</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="tables">
+        <h3>Overview</h3>
+        <ul>
+          <li>Table Navigation</li>
+          <li>Table Structure</li>
+          <li>Column Sorting</li>
+          <li>Table Summary</li>
+        </ul><a href="http://assets.cms.gov/resources/framework/2.0/Pages/datatables.html" target="datatable">Data table widget example</a>
+      </a-slide>
+      <a-slide data-hid="tables">
+        <h3>Table Navigation in VoiceOver</h3>
+        <ul>
+          <li><strong>VO-R</strong> - hear table row contents from the location of the VoiceOver cursor to the end of the row</li>
+          <li><strong>VO-C</strong> - hear the column header</li>
+          <li><strong>VO-C-C</strong> - hear table column contents from the location of the VoiceOver cursor to the bottom of the column</li>
+          <li><strong>Up/Down Arrow</strong> - move up or down in a column</li>
+          <li><strong>VO-|</strong> - sort the column, position the VoiceOver cursor on the column</li>
+          <li><strong>VO-Command-\</strong> - move to the parent row of the current column</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="tables">
+        <h3>Table Structure</h3>
+        <ul>
+          <li part>Provide a title for your table via the <code>caption</code> tag</li>
+          <li part>Use <code>thead</code> and <code>tbody</code> correctly</li>
+          <li part>Use <code>th(scope="col")</code> to define table column headings</li>
+          <li part>Use <code>th(scope="row")</code> to define table row headings</li>
+          <li part>Column/row heading content should be succint but understandable</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="tables">
+        <h3>Column Sorting</h3>
+        <ul>
+          <li part>Use <code>button</code> element to control column sorting</li>
+          <li part>Use <code>aria-sort='ascending|descending'</code> on the sorted <code>th</code></li>
+          <li part>Use <code>aria-label</code> to communicate visual icon meaning</li>
+          <li part>Update the table status and announce state change</li>
+          <li part>Manage focus - ensure that focus stays on active button</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="tables">
+        <h3>Table Summary</h3>
+        <ul>
+          <li part>Provide a table status that is connected to the table via <code>aria-describedby</code>
+            <ul>
+              <li>"Showing page 2 of 5, sorted descending by First Name"</li>
+              <li>"Now sorting by Last Name ascending"</li>
+            </ul>
+          </li>
+          <li part>Update and <code>announce()</code> the new table state when filtering, pagination and/or sorting changes</li>
+        </ul>
+      </a-slide>
+      <a-slide data-state="intro">
+        <h2>Questions</h2>
+      </a-slide>
+      <a-slide data-state="intro">
+        <h2>Thanks!</h2><a href="https://twitter.com/patrickfox" target="twitter">@patrickfox</a>
+      </a-slide>
+    </a-slide-deck>
+    <div id="currentheading"></div>
+    <div id="footer">Publicis.Sapient</div>
+  </body>
+</html>

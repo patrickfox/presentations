@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Intro to A11y</title>
+    <meta charset="utf-8">
+    <title>Slider</title>
+    <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link href="a-slide-deck.html" rel="import">
+    <link href="a-slide.html" rel="import">
+    <link href="flex-line.html" rel="import">
+    <link href="flex-grid.html" rel="import">
+    <link href="code-block.html" rel="import">
+    <link href="/css/theme.css" rel="stylesheet">
+  </head>
+  <body unresolved>
+    <a-slide-deck>
+      <a-slide data-state="intro">
+        <h1>LPACA Accessibility</h1>
+      </a-slide>
+      <a-slide data-state="intro" id="status">
+        <h2>Status</h2>
+        <p>Overall, things are looking good. A few things to cover:</p>
+        <ul>
+          <li>Compliance issues</li>
+          <li>Best practices</li>
+          <li>Process updates</li>
+        </ul>
+      </a-slide>
+      <a-slide>
+        <h2>Compliance Issues</h2>
+        <p>Jira tickets coming soon for these 👍</p>
+        <ul>
+          <li><a href="https://citicards.citi.com/usc/LPACA/AA/AAdvantage/Gold/external/index.html" target="_blank">Empty link</a> that points to default_image.jpg</li>
+          <li><a href="https://citicards.citi.com/usc/LPACA/AA/AAdvantage/Gold/external/index.html" target="_blank">Gold/bronze text vs whiteEmpty link</a> doesn't meet contrast reqs</li>
+          <li><a href="https://citicards.citi.com/usc/LPACA/AA/AAdvantage/Gold/external/index.html" target="_blank">White text over photographic image</a> is iffy</li>
+          <li><a href="https://citicards.citi.com/usc/LPACA/PP/ThankYou/Preferred/ps/index.html" target="_blank">Alt text does not match image text</a></li>
+          <li><a href="https://citicards.citi.com/usc/LPACA/citi/cards/prestige/PS/index.html" target="_blank">Heading text not entirely in heading tag</a></li>
+          <li><a href="https://citicards.citi.com/usc/LPACA/AA/AAdvantage/Exec/external/index.html" target="_blank">Color contrast at mobile BP not compliant</a></li>
+          <li><a href="https://citicards.citi.com/usc/LPACA/AA/AAdvantage/Platinum/PS_LTO/index.html" target="_blank">Empty logo link text issue</a> is really a minor coding issue</li>
+        </ul>
+      </a-slide>
+      <a-slide data-state="intro" id="bps">
+        <h2>Best Practices</h2>
+      </a-slide>
+      <a-slide data-hid="bps">
+        <h3>Use of aria-expanded</h3>
+        <ul>
+          <li><code>aria-expanded</code> is for use on interactive elements <strong>only</strong> (<code>button</code>, <code>a</code>)</li>
+        </ul><a href="https://citicards.citi.com/usc/LPACA/Citi/Cards/DoubleCash/ps/index.html" target="_blank">Example</a>
+      </a-slide>
+      <a-slide data-hid="bps">
+        <h3>Use of aria-label</h3>
+        <p><code>aria-label</code> has a tendency to override and speak for any inner text</p>
+        <ul>
+          <li>Currently used on all "Apply Now" CTA's</li>
+          <li>In most cases, the "Apply Now" text is not read</li>
+        </ul><a href="https://citicards.citi.com/usc/LPACA/Citi/Cards/DoubleCash/ps/index.html" target="_blank">Example</a>
+      </a-slide>
+      <a-slide data-hid="bps">
+        <h3>Use of landmarks</h3>
+        <ul>
+          <li>LPACA pages are missing landmarks</li>
+          <li><code>role='main'</code> and 
+            <cod>role='contentinfo'</cod> should demarcate main and footer content areas
+          </li>
+          <li>Normal pages with distinct header and navigation would provide these landmarks as well</li>
+        </ul><a href="https://citicards.citi.com/usc/LPACA/Citi/Cards/DoubleCash/ps/index.html" target="_blank">Example</a>
+      </a-slide>
+      <a-slide data-hid="bps">
+        <h3>Anchors as buttons 👎</h3>
+        <ul>
+          <li>Use <code>button</code> for functionality and form submit</li>
+          <li>Use <code>a</code> for true links (a link to a new page/view)</li>
+          <li>Avoid <code>role='button'</code> and <code>role='link'</code></li>
+          <li>Use HTML that describes the functionality, not what something looks like</li>
+        </ul><a href="https://citicards.citi.com/usc/LPACA/Citi/Cards/DoubleCash/ps/index.html" target="_blank">Example</a>
+      </a-slide>
+      <a-slide data-hid="bps">
+        <h3>Text Color Contrast Ratio 🌈</h3>
+        <p>The comps provide a style guide that documents and prescribes valid, color contrast compliant text-to-background color combinations. This guide provides color hex values and contrast ratios, and serves as a usage guide for developers and a confirmation of accessibility compliance for QA. </p>
+        <p>Examples:</p>
+        <ul>
+          <li>Text superimposed over dynamic image or video</li>
+        </ul>
+        <ul>
+          <li>Requirement: text-to-background color contrast ratio for all text must be at least <strong>4.5:1</strong>.</li>
+          <li>One exception - a lighter <strong>3:1</strong> contrast ratio will suffice if:
+            <ul>
+              <li>the text size is at least 14pt/19px and bold, or</li>
+              <li>the text	 is 18pt/24px and normal weight</li>
+            </ul>
+          </li>
+        </ul>
+      </a-slide>
+      <a-slide data-state="intro" id="process">
+        <h2>Process Updates</h2>
+      </a-slide>
+      <a-slide data-hid="process">
+        <h3>Tech</h3>
+        <ul>
+          <li>Before delivery to QA, check accessibility <strong>at each break point</strong> using <a href="https://developers.google.com/web/tools/lighthouse/#devtools" target="_blank">Chrome Lighthouse A11y Audit</a></li>
+          <li>Employ best practices outlined above</li>
+          <li>Watch for iffy color contrast when using bold text &lt; 20px and normal weight text &lt; 24px</li>
+          <li>Watch for color text over photographic images</li>
+        </ul>
+      </a-slide>
+      <a-slide data-hid="process">
+        <h3>QA</h3>
+        <ul>
+          <li>Check accessibility <strong>at each break point</strong> using <a href="https://developers.google.com/web/tools/lighthouse/#devtools" target="_blank">Chrome Lighthouse A11y Audit</a></li>
+          <li>Watch for color text over photographic images</li>
+        </ul>
+      </a-slide>
+      <a-slide data-state="intro">
+        <h2>Questions</h2>
+      </a-slide>
+      <a-slide data-state="intro">
+        <h2>Thanks!</h2>
+      </a-slide>
+    </a-slide-deck>
+    <div id="currentheading"></div>
+    <div id="footer">Publicis.Sapient</div>
+  </body>
+</html>
